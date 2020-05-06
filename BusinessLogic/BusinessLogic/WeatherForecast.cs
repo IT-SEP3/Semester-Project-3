@@ -1,6 +1,6 @@
 using System;
 
-namespace BussinessLogic
+namespace BusinessLogic
 {
     public class WeatherForecast
     {
