@@ -12,17 +12,13 @@ public class UserModelImpl implements UserModel{
     }
 
     @Override
-    public void login(User loginCarrier) {
+    public void login(String username, String password) {
+        User loginCarrier = new User(username,String.valueOf(password.hashCode()));
         client.Login(loginCarrier);
     }
 
     @Override
     public String loginResponse() {
         return client.getResponse();
-    }
-
-    @Override
-    public String getServerResponse() {
-        return null;
     }
 }

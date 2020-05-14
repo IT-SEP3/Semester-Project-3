@@ -35,7 +35,7 @@ public class ClientImp implements ClientNetworking.Client {
         String json = jsonSerializer.toJson(loginCarrier);
         System.out.println(json);
         System.out.println(response);
-        socketHandler.Login(json);
+        //socketHandler.Login(json);
     }
 
     @Override

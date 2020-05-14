@@ -35,10 +35,9 @@ public class LoginVM {
     public void login() {
         if(username.get() != null && !username.get().isEmpty() && password.get() != null && !username.get().isEmpty()) {
             loginResponse.setValue(null);
-            User loginCarrier = new User(username.get(),String.valueOf(password.get().hashCode()));
-            model.login(loginCarrier);
-            String response = model.getServerResponse();
-            System.out.println(response);
+            model.login(username.get(), password.get());
+
+            String response = model.loginResponse();
             loginResponse.set(response);
         }
         else{
