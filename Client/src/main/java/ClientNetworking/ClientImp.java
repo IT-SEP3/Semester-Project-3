@@ -15,6 +15,7 @@ public class ClientImp implements ClientNetworking.Client {
 
 
     public ClientImp(){
+        // TESTING FOR RESPONSE OF SERVER NOT WORKING NOT ACCTUALL SERVER CODE. FREE TO DELETE
         try {
             Socket socket = new Socket("localhost", 3000);
             socketHandler = new ClientSocketHandler(
@@ -27,6 +28,7 @@ public class ClientImp implements ClientNetworking.Client {
             response = "Server down";
             e.printStackTrace();
         }
+        // ===================================================
         this.jsonSerializer = new Gson();
     }
 
