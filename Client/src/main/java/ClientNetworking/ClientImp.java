@@ -1,6 +1,7 @@
 package ClientNetworking;
 
 import Shared.User;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -8,7 +9,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 public class ClientImp implements ClientNetworking.Client {
-    //private Gson jsonSerializer;
+    private Gson jsonSerializer;
     private String response;
     private ClientSocketHandler socketHandler;
 
@@ -26,15 +27,15 @@ public class ClientImp implements ClientNetworking.Client {
             response = "Server down";
             e.printStackTrace();
         }
-        //this.jsonSerializer = new Gson();
+        this.jsonSerializer = new Gson();
     }
 
     @Override
     public void Login(User loginCarrier) {
-        //String json = jsonSerializer.toJson(loginCarrier);
-        //System.out.println(json);
+        String json = jsonSerializer.toJson(loginCarrier);
+        System.out.println(json);
         System.out.println(response);
-        //socketHandler.Login(json);
+        socketHandler.Login(json);
     }
 
     @Override
