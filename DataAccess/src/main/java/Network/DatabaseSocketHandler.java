@@ -2,6 +2,7 @@ package main.java.Network;
 
 import main.java.Model.DatabaseModel;
 import com.google.gson.Gson;
+import main.java.Shared.Shift;
 import main.java.Shared.User;
 
 import java.io.*;
@@ -41,11 +42,18 @@ public class DatabaseSocketHandler implements Runnable {
 
                 if(recievedPieces[0].equals("Login")){
                     User login = gson.fromJson(recievedPieces[1], User.class);
-                    User logedInUser = model.Login(login);
-                    sendToClient(logedInUser);
+                    String confirmation = model.Login(login);
+                    confirmation = "Login;" + confirmation;
+                    sendToClient(confirmation);
+                }else if(recievedPieces[0].equals("CalendarMonth")) {
+                    Shift[] shiftsForMonth = model.getMonthOfShiftsByManager(recievedPieces[1], recievedPieces[2]); // Inputs are :Username for first input, month in somekind of 05/2020 format
+                    String shiftsJson = gson.toJson(shiftsForMonth);
+                    sendToClient(shiftsForMonth);
+                }else if(recievedPieces[0].equals("Something")) {
+
                 }
             }
-        }catch (Exception e){
+        }catch (Exception e){ //VIOLATION OF SOLID
             e.printStackTrace();
         }
     }
