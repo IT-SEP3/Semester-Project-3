@@ -1,3 +1,7 @@
+package main.java.Model;
+
+import main.java.Model.DatabaseModel;
+
 public class DatabaseModelImpl implements DatabaseModel {
     private IJDBCConnect connection;
 
