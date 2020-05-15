@@ -1,9 +1,10 @@
 package ClientNetworking;
 
+import ClientNetworking.restEASY.HTTPHandler;
 import Shared.User;
 import com.google.gson.Gson;
 
-import java.io.IOException;
+import javax.xml.ws.Response;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -12,10 +13,13 @@ public class ClientImp implements ClientNetworking.Client {
     private Gson jsonSerializer;
     private String response;
     private ClientSocketHandler socketHandler;
+    private HTTPHandler httpHandler;
 
 
-    public ClientImp(){
-        // TESTING FOR RESPONSE OF SERVER NOT WORKING NOT ACCTUALL SERVER CODE. FREE TO DELETE
+    public ClientImp(HTTPHandler httpHandler){
+        this.httpHandler = httpHandler;
+
+        // TESTING FOR RESPONSE OF SERVER NOT WORKING NOT ACTUAL SERVER CODE. FREE TO DELETE
         try {
             Socket socket = new Socket("localhost", 3000);
             socketHandler = new ClientSocketHandler(
@@ -34,10 +38,10 @@ public class ClientImp implements ClientNetworking.Client {
 
     @Override
     public void Login(User loginCarrier) {
-        String json = jsonSerializer.toJson(loginCarrier);
-        System.out.println(json);
-        System.out.println(response);
-        //socketHandler.Login(json);
+        String PATH ="http://127.0.0.1:5000/api/Login";
+        String loginJson = jsonSerializer.toJson(loginCarrier);
+        response = httpHandler.SendToAPI(loginJson, PATH);
+        System.out.println(loginJson);
     }
 
     @Override
