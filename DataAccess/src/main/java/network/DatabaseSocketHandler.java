@@ -1,4 +1,9 @@
+package main.java.network;
+
 import com.google.gson.Gson;
+import main.java.model.DatabaseModel;
+import main.java.shared.User;
+
 import java.io.*;
 import java.net.Socket;
 
