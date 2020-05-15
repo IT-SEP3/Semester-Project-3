@@ -34,9 +34,10 @@ namespace BusinessLogic.Controllers
         [HttpPost]
         public async Task<ActionResult<User>> ValidateUser(User user)
         {
-            
             BusinessSocketHandler socket = BusinessSocketHandler.getInstance();
-            socket.sendToDatabase();
+            
+            socket.sendToDatabase(user);
+
         }
 
     }
