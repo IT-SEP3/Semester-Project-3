@@ -20,7 +20,8 @@ public class LoginController {
         passWordText.textProperty().bindBidirectional(vm.passwordProperty());
         response.textProperty().bindBidirectional(vm.loginResponseProperty());
     }
-    //Insivisble field on the gui. That changes when the user does someting wrong or good
+
+    //Indivisible field on the gui. That changes when the user does something wrong or good
     @FXML
     private Label response;
 
