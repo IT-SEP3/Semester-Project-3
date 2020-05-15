@@ -23,10 +23,10 @@ namespace BusinessLogic
                 BusinessSocket.Connect(serverAddress);
                 BusinessSocketHandler socketHandler = BusinessSocketHandler.getInstance();
                 socketHandler.setSocket(BusinessSocket);
-                Thread t = new Thread(new ThreadStart(socketHandler.Run));
+                Thread t = new Thread(new ThreadStart(socketHandler.Run));// May be removed. Look at getResponse method for info
                 Console.WriteLine("Connection to Database established");
             }
-            catch (Exception e)
+            catch (Exception e)// Breaking of solid principles
             {
                 Console.WriteLine(e.Message);
             }
