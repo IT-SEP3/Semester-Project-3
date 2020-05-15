@@ -6,7 +6,9 @@ namespace BusinessLogic.Model.Login
     {
         public LoginContext(DbContextOptions<LoginContext> options) : base(options)
         { }
+
         public DbSet<User> Users { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>()

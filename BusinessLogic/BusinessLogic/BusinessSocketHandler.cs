@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Sockets;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace BusinessLogic
 {
-    class BusinessSocketHandler
+    internal class BusinessSocketHandler
     {
         private Socket businessSocket;
 
@@ -30,13 +27,11 @@ namespace BusinessLogic
             }
             return _instance;
         }
+
         public async void Run()//May be removed.
-        {
-            
-        }
+        { }
 
-
-        public void sendToDatabase(String command, Object obj)
+        public void SendToDatabase(String command, Object obj)
         {
             String objJson = JsonSerializer.Serialize(obj);
             objJson = command + ";" + objJson;
@@ -48,8 +43,8 @@ namespace BusinessLogic
             businessSocket.Send(toSendBytes);
         }
 
-        public void sendToDatabaseStringOnly(String statement)
-        {   
+        public void SendToDatabaseStringOnly(String statement)
+        {
             int toSendLen = System.Text.Encoding.ASCII.GetByteCount(statement);
             byte[] toSendBytes = System.Text.Encoding.ASCII.GetBytes(statement);
             byte[] toSendLenBytes = System.BitConverter.GetBytes(toSendLen);
@@ -57,19 +52,20 @@ namespace BusinessLogic
             businessSocket.Send(toSendLenBytes);
             businessSocket.Send(toSendBytes);
         }
+
         // Because the database will only give you things when you ask for them
         // there is no need for a loop in the thread. You ask for response yourself
         // . THER
-        public String getResponse()
+        public String GetResponse()
         {
             byte[] rcvLenBytes = new byte[4];
             businessSocket.Receive(rcvLenBytes);
             int rcvLen = System.BitConverter.ToInt32(rcvLenBytes, 0);
             byte[] rcvBytes = new byte[rcvLen];
             businessSocket.Receive(rcvBytes);
-            String recieved = System.Text.Encoding.ASCII.GetString(rcvBytes);
+            String received = System.Text.Encoding.ASCII.GetString(rcvBytes);
 
-            return recieved;
+            return received;
         }
     }
 }

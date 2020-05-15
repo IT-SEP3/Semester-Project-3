@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using BusinessLogic.Model.Login;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using BusinessLogic.Model.Login;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace BusinessLogic.Controllers
 {
@@ -32,13 +29,13 @@ namespace BusinessLogic.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<User>> ValidateUser(User user)
+        public async Task<ActionResult<string>> ValidateUser(User user)
         {
             BusinessSocketHandler socket = BusinessSocketHandler.getInstance();
-            
-            socket.sendToDatabase(user);
 
+            socket.SendToDatabase("Login", user);
+
+            return socket.GetResponse();
         }
-
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace BusinessLogic.Model.Login
+﻿namespace BusinessLogic.Model.Login
 {
     public class User
     {
