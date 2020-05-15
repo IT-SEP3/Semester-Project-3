@@ -60,7 +60,7 @@ public class DatabaseSocketHandler implements Runnable {
     }
 
     public void sendToClient(Object received){
-        String toSend = "Echo: " + gson.toJson(received);
+        String toSend = gson.toJson(received);
         try {
             byte[] toSendBytes = toSend.getBytes();
             int toSendLen = toSendBytes.length;

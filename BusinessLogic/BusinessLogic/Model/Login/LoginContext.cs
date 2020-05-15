@@ -12,7 +12,7 @@ namespace BusinessLogic.Model.Login
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>()
-                .HasKey(c => c.Id);
+                .HasKey(c => c.username);
         }
     }
 }
