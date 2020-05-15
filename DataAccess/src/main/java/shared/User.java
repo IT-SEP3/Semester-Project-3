@@ -1,4 +1,4 @@
-package main.java.shared;
+package main.java.Shared;
 
 import java.sql.Date;
 

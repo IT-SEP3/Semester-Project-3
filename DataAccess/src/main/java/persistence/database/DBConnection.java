@@ -1,6 +1,6 @@
 package main.java.persistence.database;
 
-import main.java.exceptions.DataConnectionException;
+import main.java.Exceptions.DataConnectionException;
 
 import java.sql.*;
 
