@@ -1,6 +1,6 @@
 package main.java.persistence.login;
 
-import main.java.persistence.exceptions.DataConnectionException;
+import main.java.exceptions.DataConnectionException;
 import main.java.shared.User;
 
 public interface ILoginDAO {

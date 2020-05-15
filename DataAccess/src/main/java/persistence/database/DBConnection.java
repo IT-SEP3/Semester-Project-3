@@ -1,7 +1,6 @@
 package main.java.persistence.database;
 
-import com.mysql.cj.exceptions.DataConversionException;
-import main.java.persistence.exceptions.DataConnectionException;
+import main.java.exceptions.DataConnectionException;
 
 import java.sql.*;
 
