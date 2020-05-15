@@ -13,7 +13,7 @@ namespace BusinessLogic
         {
             try
             {
-                IPEndPoint serverAddress = new IPEndPoint(IPAddress.Parse("192.168.1.11"), 4343);
+                IPEndPoint serverAddress = new IPEndPoint(IPAddress.Parse("192.168.1.26"), 4343);
                 Socket BusinessSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 BusinessSocket.Connect(serverAddress);
                 BusinessSocketHandler socketHandler = BusinessSocketHandler.getInstance();
