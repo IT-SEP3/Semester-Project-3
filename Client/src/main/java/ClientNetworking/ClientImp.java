@@ -24,10 +24,11 @@ public class ClientImp implements ClientNetworking.Client {
         System.out.println(loginJson);
     }
 
-    @Override
+    @Override // date format xx-xxxx
     public Shift[] getCalendarShifts(String username, String month) {
-        String PATH ="http://127.0.0.1:5000/api/Calendar/" +  username + "/" + month;
-        response = httpHandler.PostToAPI(loginJson, PATH);
+        String PATH ="http://127.0.0.1:5000/api/Shifts/?username=" +  username + "&date=" + month;
+        String TestPATH ="http://127.0.0.1:5000/api/Login/?username=" +  username + "&date=" + month;
+        response = httpHandler.GetFromAPI(TestPATH);
         return new Shift[0];
     }
 

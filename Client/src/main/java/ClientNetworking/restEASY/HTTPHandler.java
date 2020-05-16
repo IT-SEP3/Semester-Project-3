@@ -31,31 +31,26 @@ public class HTTPHandler {
 
             System.out.println(response.readEntity(String.class));
         } catch (ProcessingException e){
-            e.fillInStackTrace();
+            e.printStackTrace();
             return "Server not responding";
         }
         return response.readEntity(String.class);
     }
 
-    public String GetFromApi(String URL){
-        Response response;
+    public String GetFromAPI(String URL){
+        String value = "";
         try{
             client = new ResteasyClientBuilder().build();
             target = client.target(URL);
 
-            response = target.request().get(Response.class);
-            System.out.println(response);
+            Response response = target.request().get();
+            value = response.readEntity(String.class);
+            System.out.println(value);
 
-            if (response.getStatus() != 200) {
-                throw new RuntimeException("Failed : HTTP error code : "
-                        + response.getStatus());
-            }
-
-            System.out.println(response.readEntity(String.class));
         } catch (ProcessingException e){
             e.fillInStackTrace();
             return "Server not responding";
         }
-        return response.readEntity(String.class);
+        return value;
     }
 }

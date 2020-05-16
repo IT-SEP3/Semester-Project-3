@@ -1,6 +1,8 @@
 ﻿using BusinessLogic.Model.Login;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -24,6 +26,24 @@ namespace BusinessLogic.Controllers
         {
             return await _context.Users.ToListAsync();
         }
+
+
+        [HttpGet("{id}")]
+        public String Get(String id)
+        {
+            Console.WriteLine("IN get");
+            Console.WriteLine(id);
+            return id;
+        }
+        /*
+        [HttpGet("{username}/{date}")]
+        public String Get(String username, string date)
+        {
+            Console.WriteLine("IN get");
+            Console.WriteLine(username);
+            return "got it";
+        }
+        */
 
         // POST: api/Login
         // To protect from overposting attacks, enable the specific properties you want to bind to, for

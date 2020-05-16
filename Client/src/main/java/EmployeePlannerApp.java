@@ -19,6 +19,7 @@ public class EmployeePlannerApp extends Application {
 
         HTTPHandler httpHandler = new HTTPHandler();
         Client client = new ClientImp(httpHandler);
+        client.getCalendarShifts("kjjj", "05-2020");
         ModelFactory modelFactory = new ModelFactory(client);
         ViewModelFactory viewModelFactory = new ViewModelFactory(modelFactory);
         ViewHandler viewHandler = new ViewHandler(stage, viewModelFactory);
