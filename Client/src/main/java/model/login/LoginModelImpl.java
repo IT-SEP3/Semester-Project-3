@@ -1,14 +1,14 @@
-package Model.UserModel;
+package model.login;
 
 
-import ClientNetworking.Client;
-import Shared.User;
+import clientnetworking.Client;
+import shared.User;
 
-public class UserModelImpl implements UserModel{
+public class LoginModelImpl implements LoginModel {
     public Client client;
     private User currentUser;
 
-    public UserModelImpl(Client client) {
+    public LoginModelImpl(Client client) {
         this.client = client;
     }
 

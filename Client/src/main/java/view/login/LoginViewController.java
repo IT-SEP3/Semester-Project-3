@@ -1,25 +1,17 @@
-package View.Login;
+package view.login;
 
 
-import View.ViewHandler;
-import ViewModel.LoginVM.LoginVM;
+import view.ViewHandler;
+import viewModel.login.LoginViewModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class LoginController {
+public class LoginViewController {
 
     private ViewHandler viewHandler;
-    private LoginVM viewModel;
-
-    public void init(LoginVM vm, ViewHandler vh) {
-        viewHandler = vh;
-        viewModel = vm;
-        userNameText.textProperty().bindBidirectional(vm.usernameProperty());
-        passWordText.textProperty().bindBidirectional(vm.passwordProperty());
-        response.textProperty().bindBidirectional(vm.loginResponseProperty());
-    }
+    private LoginViewModel viewModel;
 
     //Indivisible field on the gui. That changes when the user does something wrong or good
     @FXML
@@ -38,4 +30,14 @@ public class LoginController {
             //viewHandler.openCalendarView();
         }
     }
+
+    public void init(LoginViewModel vm, ViewHandler vh) {
+        viewHandler = vh;
+        viewModel = vm;
+        userNameText.textProperty().bindBidirectional(vm.usernameProperty());
+        passWordText.textProperty().bindBidirectional(vm.passwordProperty());
+        response.textProperty().bindBidirectional(vm.loginResponseProperty());
+    }
+
+
 }

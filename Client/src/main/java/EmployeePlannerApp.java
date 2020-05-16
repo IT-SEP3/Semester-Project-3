@@ -1,16 +1,12 @@
 
-import ClientNetworking.Client;
-import ClientNetworking.ClientImp;
-import ClientNetworking.restEASY.HTTPHandler;
-import Model.ModelFactory;
-import Shared.User;
-import View.ViewHandler;
-import ViewModel.ViewModelFactory;
+import clientnetworking.Client;
+import clientnetworking.ClientImp;
+import clientnetworking.resteasy.HTTPHandler;
+import model.ModelFactory;
+import view.ViewHandler;
+import viewModel.ViewModelFactory;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import org.jboss.resteasy.client.jaxrs.ResteasyClient;
-import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
-import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 
 public class EmployeePlannerApp extends Application {
 
