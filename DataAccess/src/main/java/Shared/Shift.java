@@ -1,4 +1,4 @@
-package main.java.Shared;
+package Shared;
 
 public class Shift {
 }

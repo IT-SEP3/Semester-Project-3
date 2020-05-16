@@ -1,9 +1,8 @@
-package main.java.persistence.login;
+package persistence.login;
 
-import main.java.Exceptions.DataConnectionException;
-import main.java.Shared.User;
-import main.java.persistence.database.IDBConnection;
-
+import Shared.User;
+import exceptions.DataConnectionException;
+import persistence.database.IDBConnection;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

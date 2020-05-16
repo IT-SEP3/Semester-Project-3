@@ -1,6 +1,4 @@
-package main.java.Shared;
-
-import java.sql.Date;
+package Shared;
 
 public class User {
     private String username;

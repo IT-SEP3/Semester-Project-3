@@ -1,6 +1,6 @@
-package main.java.persistence.database;
+package persistence.database;
 
-import main.java.Exceptions.DataConnectionException;
+import exceptions.DataConnectionException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
