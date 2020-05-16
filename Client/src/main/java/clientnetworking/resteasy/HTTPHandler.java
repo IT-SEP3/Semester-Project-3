@@ -1,4 +1,4 @@
-package ClientNetworking.restEASY;
+package clientnetworking.resteasy;
 
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;

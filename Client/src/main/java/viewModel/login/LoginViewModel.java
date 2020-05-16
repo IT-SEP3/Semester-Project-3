@@ -1,20 +1,18 @@
-package ViewModel.LoginVM;
+package viewModel.login;
 
 
-import Model.UserModel.UserModel;
-import Shared.User;
-import javafx.application.Platform;
+import model.login.LoginModel;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 
-public class LoginVM {
+public class LoginViewModel {
 
     private StringProperty username, password, loginResponse;
-    private UserModel model;
+    private LoginModel model;
 
-    public LoginVM(UserModel userModel) {
-        this.model = userModel;
+    public LoginViewModel(LoginModel loginModel) {
+        this.model = loginModel;
         username = new SimpleStringProperty();
         password = new SimpleStringProperty();
         loginResponse = new SimpleStringProperty();

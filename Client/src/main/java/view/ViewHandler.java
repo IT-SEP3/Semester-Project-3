@@ -1,8 +1,8 @@
-package View;
+package view;
 
 
-import View.Login.LoginController;
-import ViewModel.ViewModelFactory;
+import view.login.LoginViewController;
+import viewModel.ViewModelFactory;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -28,8 +28,8 @@ public class ViewHandler {
         FXMLLoader loader = new FXMLLoader();
         if(loginScene == null) {
             Parent root = getRootByPath("Login/Login.fxml", loader);
-            LoginController controller = loader.getController();
-            controller.init(viewModelFactory.getLoginVM(), this);
+            LoginViewController controller = loader.getController();
+            controller.init(viewModelFactory.getLoginViewModel(), this);
             loginScene = new Scene(root);
         }
         mainStage.setTitle("Login");

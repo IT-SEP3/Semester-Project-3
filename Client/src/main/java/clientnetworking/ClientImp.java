@@ -1,11 +1,11 @@
-package ClientNetworking;
+package clientnetworking;
 
-import ClientNetworking.restEASY.HTTPHandler;
-import Shared.Shift;
-import Shared.User;
+import clientnetworking.resteasy.HTTPHandler;
+import shared.Shift;
+import shared.User;
 import com.google.gson.Gson;
 
-public class ClientImp implements ClientNetworking.Client {
+public class ClientImp implements clientnetworking.Client {
     private Gson jsonSerializer;
     private String response;
     private HTTPHandler httpHandler;

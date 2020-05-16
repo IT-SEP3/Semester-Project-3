@@ -1,7 +1,7 @@
-package ClientNetworking;
+package clientnetworking;
 
-import Shared.Shift;
-import Shared.User;
+import shared.Shift;
+import shared.User;
 
 public interface Client {
     void Login(User loginCarrier);
