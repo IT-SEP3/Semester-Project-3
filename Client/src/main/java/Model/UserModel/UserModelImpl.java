@@ -6,6 +6,7 @@ import Shared.User;
 
 public class UserModelImpl implements UserModel{
     public Client client;
+    private User currentUser;
 
     public UserModelImpl(Client client) {
         this.client = client;
@@ -14,7 +15,10 @@ public class UserModelImpl implements UserModel{
     @Override
     public void login(String username, String password) {
         User loginCarrier = new User(username,String.valueOf(password.hashCode()));
-        client.Login(loginCarrier);
+        String answer = client.Login(loginCarrier);
+        if(answer.equals("Login successful")){
+            currentUser = loginCarrier;
+        }
     }
 
     @Override

@@ -34,5 +34,8 @@ public class LoginController {
     @FXML
     void onLogin(ActionEvent event) {
         viewModel.login();
+        if(response.equals("Login successful")){
+            //viewHandler.openCalendarView();
+        }
     }
 }

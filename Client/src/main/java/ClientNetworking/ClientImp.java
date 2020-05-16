@@ -17,11 +17,12 @@ public class ClientImp implements ClientNetworking.Client {
     }
 
     @Override
-    public void Login(User loginCarrier) {
+    public String Login(User loginCarrier) {
         String PATH ="http://127.0.0.1:5000/api/Login";
         String loginJson = jsonSerializer.toJson(loginCarrier);
-        response = httpHandler.PostToAPI(loginJson, PATH);
         System.out.println(loginJson);
+        response = httpHandler.PostToAPI(loginJson, PATH);
+        return response;
     }
 
     @Override // date format xx-xxxx

@@ -27,24 +27,6 @@ namespace BusinessLogic.Controllers
             return await _context.Users.ToListAsync();
         }
 
-
-        [HttpGet("{id}")]
-        public String Get(String id)
-        {
-            Console.WriteLine("IN get");
-            Console.WriteLine(id);
-            return id;
-        }
-        /*
-        [HttpGet("{username}/{date}")]
-        public String Get(String username, string date)
-        {
-            Console.WriteLine("IN get");
-            Console.WriteLine(username);
-            return "got it";
-        }
-        */
-
         // POST: api/Login
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
