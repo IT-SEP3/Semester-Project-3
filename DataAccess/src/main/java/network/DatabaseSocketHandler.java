@@ -1,6 +1,7 @@
 package Network;
 
 import Model.DatabaseModel;
+import Shared.Shift;
 import Shared.User;
 import com.google.gson.Gson;
 
@@ -45,9 +46,9 @@ public class DatabaseSocketHandler implements Runnable {
                     sendToClient(confirmation);
                 }
                 else if(recievedPieces[0].equals("CalendarMonth")) {
-                    //Shift[] shiftsForMonth = model.getMonthOfShiftsByManager(recievedPieces[1], recievedPieces[2]); // Inputs are :Username for first input, month in somekind of 05/2020 format
-                    //String shiftsJson = gson.toJson(shiftsForMonth);
-                    //sendToClient(shiftsForMonth);
+                    Shift[] shiftsForMonth = model.getMonthOfShiftsByManager(recievedPieces[1], recievedPieces[2]); // Inputs are :Username for first input, month in somekind of 05/2020 format
+                    String shiftsJson = gson.toJson(shiftsForMonth);
+                    sendToClient(shiftsForMonth);
                 }
                 else if(recievedPieces[0].equals("Something")) {
 

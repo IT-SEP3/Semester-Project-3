@@ -1,5 +1,6 @@
 package Model;
 
+import Shared.Shift;
 import Shared.User;
 import persistence.database.IDBConnection;
 
@@ -12,7 +13,13 @@ public class DatabaseModelImpl implements DatabaseModel {
 
     @Override
     public String Login(User login) {
-        System.out.println("Someone is tryingto login");
+        System.out.println("Someone is trying to login");
         return null;
+    }
+
+    @Override
+    public Shift[] getMonthOfShiftsByManager(String username, String date) {
+
+        return new Shift[0];
     }
 }

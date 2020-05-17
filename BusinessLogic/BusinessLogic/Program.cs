@@ -13,7 +13,7 @@ namespace BusinessLogic
         {
             try
             {
-
+                //Only for getting your ip. So you dont have to change it every time.
                 string localIP;
                 using (Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, 0))
                 {
