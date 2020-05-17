@@ -13,6 +13,7 @@ public class ViewHandler {
     private ViewModelFactory viewModelFactory;
     private Stage mainStage;
     private Scene loginScene;
+    private Scene calendarScene;
 
     public ViewHandler(Stage stage, ViewModelFactory vmf) {
         viewModelFactory = vmf;
@@ -46,5 +47,17 @@ public class ViewHandler {
         }
 
         return root;
+    }
+
+    public void openCalendarView() {
+        FXMLLoader loader = new FXMLLoader();
+        if (calendarScene == null) {
+            Parent root = getRootByPath("calendar/Calendar.fxml", loader);
+            LoginViewController controller = loader.getController();
+            controller.init(viewModelFactory.getLoginViewModel(), this);
+            calendarScene = new Scene(root);
+        }
+        mainStage.setTitle("Calendar");
+        mainStage.setScene(calendarScene);
     }
 }
