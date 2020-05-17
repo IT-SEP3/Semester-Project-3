@@ -1,7 +1,6 @@
-import Model.DatabaseModel;
-import Model.DatabaseModelImpl;
-import Network.DatabaseSocketHandler;
-import exceptions.DataConnectionException;
+import model.DatabaseModel;
+import model.DatabaseModelImpl;
+import network.DatabaseSocketHandler;
 import persistence.database.DBConnection;
 import persistence.database.IDBConnection;
 

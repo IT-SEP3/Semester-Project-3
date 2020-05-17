@@ -1,8 +1,8 @@
-package Network;
+package network;
 
-import Model.DatabaseModel;
-import Shared.Shift;
-import Shared.User;
+import model.DatabaseModel;
+import shared.Shift;
+import shared.User;
 import com.google.gson.Gson;
 
 import java.io.*;

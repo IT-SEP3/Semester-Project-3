@@ -1,6 +1,6 @@
 package persistence.login;
 
-import Shared.User;
+import shared.User;
 import exceptions.DataConnectionException;
 
 public interface ILoginDAO {

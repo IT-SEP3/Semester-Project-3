@@ -1,7 +1,7 @@
-package Model;
+package model;
 
-import Shared.Shift;
-import Shared.User;
+import shared.Shift;
+import shared.User;
 import persistence.database.IDBConnection;
 
 public class DatabaseModelImpl implements DatabaseModel {
