@@ -48,7 +48,7 @@ public class DatabaseSocketHandler implements Runnable {
                 else if(recievedPieces[0].equals("CalendarMonth")) {
                     Shift[] shiftsForMonth = model.getMonthOfShiftsByManager(recievedPieces[1], recievedPieces[2]); // Inputs are :Username for first input, month in somekind of 05/2020 format
                     String shiftsJson = gson.toJson(shiftsForMonth);
-                    sendToClient(shiftsForMonth);
+                    sendToClient(shiftsJson);
                 }
                 else if(recievedPieces[0].equals("Something")) {
 
@@ -59,8 +59,7 @@ public class DatabaseSocketHandler implements Runnable {
         }
     }
 
-    public void sendToClient(Object received){
-        String toSend = gson.toJson(received);
+    public void sendToClient(String toSend){
         try {
             byte[] toSendBytes = toSend.getBytes();
             int toSendLen = toSendBytes.length;

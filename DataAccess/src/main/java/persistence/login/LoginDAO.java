@@ -17,7 +17,7 @@ public class LoginDAO implements ILoginDAO {
     }
 
     @Override
-    public String validateLogin(User user) throws DataConnectionException {
+    public String validateLogin(User user) {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         User resultUser = null;
@@ -25,7 +25,7 @@ public class LoginDAO implements ILoginDAO {
 
         try {
             String sql = "SELECT username, password FROM " + databaseConnection.getSchemaName() + "." + databaseConnection.getUserTable() +
-                    " WHERE username LIKE ' " + user.getUsername() + "  AND password LIKE ' " + user.getPassword();
+                    " WHERE username LIKE '" + user.getUsername() + "'  AND password LIKE '" + user.getPassword() + "'";
             preparedStatement = databaseConnection.createPreparedStatement(sql);
             resultSet = preparedStatement.executeQuery();
 
@@ -36,12 +36,14 @@ public class LoginDAO implements ILoginDAO {
 
                 resultUser = new User(userName, password);
                 if (resultUser.getPassword().equals(user.getPassword()) && resultUser.getUsername().equals(user.getUsername())) {
-                    conclusion = "OK";
+                    conclusion = "Login successful";
                 } else {
-                    conclusion = "NOT";
+                    conclusion = "Wrong username or password";
                 }
             }
         } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (DataConnectionException e) {
             e.printStackTrace();
         } finally {
             databaseConnection.closeConnection();

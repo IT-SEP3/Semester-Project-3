@@ -1,11 +1,12 @@
-package clientnetworking;
+package clientNetworking;
 
-import clientnetworking.resteasy.HTTPHandler;
+
+import clientNetworking.restEASY.HTTPHandler;
+import com.google.gson.Gson;
 import shared.Shift;
 import shared.User;
-import com.google.gson.Gson;
 
-public class ClientImp implements clientnetworking.Client {
+public class ClientImp implements Client {
     private Gson jsonSerializer;
     private String response;
     private HTTPHandler httpHandler;
@@ -30,6 +31,7 @@ public class ClientImp implements clientnetworking.Client {
         String PATH ="http://127.0.0.1:5000/api/Shifts/?username=" +  username + "&date=" + month;
         String TestPATH ="http://127.0.0.1:5000/api/Login/?username=" +  username + "&date=" + month;
         response = httpHandler.GetFromAPI(TestPATH);
+
         return new Shift[0];
     }
 

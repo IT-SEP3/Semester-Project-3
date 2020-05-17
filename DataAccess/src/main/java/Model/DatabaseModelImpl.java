@@ -2,19 +2,21 @@ package Model;
 
 import Shared.Shift;
 import Shared.User;
+import exceptions.DataConnectionException;
 import persistence.database.IDBConnection;
+import persistence.login.ILoginDAO;
 
 public class DatabaseModelImpl implements DatabaseModel {
-    private IDBConnection connection;
-
-    public  DatabaseModelImpl(IDBConnection connection){
-        this.connection = connection;
+    private ILoginDAO loginDAO;
+    public  DatabaseModelImpl(ILoginDAO loginDAO){
+        this.loginDAO = loginDAO;
     }
 
     @Override
     public String Login(User login) {
         System.out.println("Someone is trying to login");
-        return null;
+        String fromDatabase = loginDAO.validateLogin(login);
+        return fromDatabase;
     }
 
     @Override

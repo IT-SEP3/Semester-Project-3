@@ -1,4 +1,4 @@
-package clientnetworking.resteasy;
+package clientNetworking.restEASY;
 
 import org.jboss.resteasy.client.jaxrs.ResteasyClient;
 import org.jboss.resteasy.client.jaxrs.ResteasyClientBuilder;
@@ -22,14 +22,10 @@ public class HTTPHandler {
             target = client.target(URL);
 
             response = target.request().post(Entity.entity(json, "application/json"));
-            System.out.println(response);
-
             if (response.getStatus() != 200) {
                 throw new RuntimeException("Failed : HTTP error code : "
                         + response.getStatus());
             }
-
-            System.out.println(response.readEntity(String.class));
         } catch (ProcessingException e){
             e.printStackTrace();
             return "Server not responding";
