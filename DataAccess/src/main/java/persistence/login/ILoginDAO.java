@@ -1,7 +1,7 @@
-package main.java.persistence.login;
+package persistence.login;
 
-import main.java.exceptions.DataConnectionException;
-import main.java.shared.User;
+import Shared.User;
+import exceptions.DataConnectionException;
 
 public interface ILoginDAO {
     String validateLogin(User user) throws DataConnectionException;

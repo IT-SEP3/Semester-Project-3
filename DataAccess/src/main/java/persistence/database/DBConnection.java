@@ -1,15 +1,15 @@
-package main.java.persistence.database;
+package persistence.database;
 
-import main.java.exceptions.DataConnectionException;
+import exceptions.DataConnectionException;
 
 import java.sql.*;
 
 public class DBConnection implements IDBConnection {
 
     private final String driver = "com.mysql.cj.jdbc.Driver";
-    private final String url = "jdbc:mysql://localhost:3306/mytest?useTimezone=true&serverTimezone=GMT";
+    private final String url = "jdbc:mysql://localhost:3306/sep3?useTimezone=true&serverTimezone=GMT";
     private final String username = "root";
-    private final String password = "9691cmsj"; //change to your password
+    private final String password = "P4SSW0RD"; //change to your password
 
     private final String schemaName;
     private final String userTableName;

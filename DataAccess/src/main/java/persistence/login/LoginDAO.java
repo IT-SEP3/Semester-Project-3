@@ -1,8 +1,8 @@
-package main.java.persistence.login;
+package persistence.login;
 
-import main.java.persistence.database.IDBConnection;
-import main.java.exceptions.DataConnectionException;
-import main.java.shared.User;
+import Shared.User;
+import exceptions.DataConnectionException;
+import persistence.database.IDBConnection;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,7 +25,8 @@ public class LoginDAO implements ILoginDAO {
 
         try {
             String sql = "SELECT username, password FROM " + databaseConnection.getSchemaName() + "." + databaseConnection.getUserTable() +
-                    " WHERE username LIKE ' " + user.getUsername() + "  AND password LIKE ' " + user.getPassword();
+                    " WHERE username LIKE '" + user.getUsername() + "' AND password LIKE '" + user.getPassword() + "'";
+
             preparedStatement = databaseConnection.createPreparedStatement(sql);
             resultSet = preparedStatement.executeQuery();
 

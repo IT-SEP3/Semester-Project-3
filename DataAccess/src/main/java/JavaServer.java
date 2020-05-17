@@ -1,11 +1,9 @@
-package main.java;
-
-import main.java.exceptions.DataConnectionException;
-import main.java.model.DatabaseModel;
-import main.java.model.DatabaseModelImpl;
-import main.java.network.DatabaseSocketHandler;
-import main.java.persistence.database.DBConnection;
-import main.java.persistence.database.IDBConnection;
+import Model.DatabaseModel;
+import Model.DatabaseModelImpl;
+import Network.DatabaseSocketHandler;
+import exceptions.DataConnectionException;
+import persistence.database.DBConnection;
+import persistence.database.IDBConnection;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -18,7 +16,7 @@ public class JavaServer {
         DatabaseModel model = new DatabaseModelImpl(connect);
         System.out.println("Server started");
         try {
-            connect.getConnection();
+            //connect.getConnection();
             ServerSocket serverSocket = new ServerSocket(4343, 10);
             int i = 0;
             //
@@ -31,7 +29,7 @@ public class JavaServer {
                 System.out.println("Connected to Business server " + i);
                 i++;
             }
-        }catch (IOException | DataConnectionException e) {
+        }catch (IOException /*| DataConnectionException*/ e) {
             System.out.println("Something went bad");
             e.printStackTrace();
         }
