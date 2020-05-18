@@ -21,26 +21,23 @@ public class LoginDAO implements ILoginDAO {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         User resultUser = null;
-        String conclusion = null;
+        String conclusion = "NOT";
 
         try {
             String sql = "SELECT username, password FROM " + databaseConnection.getSchemaName() + "." + databaseConnection.getUserTable() +
                     " WHERE username LIKE '" + user.getUsername() + "'  AND password LIKE '" + user.getPassword() + "'";
             preparedStatement = databaseConnection.createPreparedStatement(sql);
             resultSet = preparedStatement.executeQuery();
-
             while (resultSet.next()) {
-
                 String userName = resultSet.getString("username");
                 String password = resultSet.getString("password");
 
                 resultUser = new User(userName, password);
                 if (resultUser.getPassword().equals(user.getPassword()) && resultUser.getUsername().equals(user.getUsername())) {
-                    conclusion = "Login successful";
-                } else {
-                    conclusion = "Wrong username or password";
+                    conclusion = "OK";
                 }
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (DataConnectionException e) {

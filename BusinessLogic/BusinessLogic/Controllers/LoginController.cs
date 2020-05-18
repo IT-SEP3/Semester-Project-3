@@ -33,11 +33,7 @@ namespace BusinessLogic.Controllers
         [HttpPost]
         public async Task<ActionResult<string>> ValidateUser(User user)
         {
-            BusinessSocketHandler socket = BusinessSocketHandler.getInstance();
-
-            socket.SendToDatabase("Login", user);
-
-            return socket.GetResponse();
+            return _context.validateLogin(user);
         }
     }
 }
