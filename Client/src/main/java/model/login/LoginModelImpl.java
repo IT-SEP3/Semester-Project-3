@@ -1,7 +1,7 @@
 package model.login;
 
 
-import clientnetworking.Client;
+import clientNetworking.Client;
 import shared.User;
 
 public class LoginModelImpl implements LoginModel {

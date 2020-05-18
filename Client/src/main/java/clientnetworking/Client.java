@@ -1,4 +1,5 @@
-package clientnetworking;
+package clientNetworking;
+
 
 import shared.Shift;
 import shared.User;

@@ -64,7 +64,7 @@ namespace BusinessLogic
             byte[] rcvBytes = new byte[rcvLen];
             businessSocket.Receive(rcvBytes);
             String received = System.Text.Encoding.ASCII.GetString(rcvBytes);
-
+            Console.WriteLine(received);
             return received;
         }
     }

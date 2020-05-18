@@ -26,8 +26,10 @@ public class LoginViewController {
     @FXML
     void onLogin(ActionEvent event) {
         viewModel.login();
-        if(response.equals("Login successful")){
+        System.out.println(response.getText());
+        if(response.getText().equals("Login successful")){
             //viewHandler.openCalendarView();
+            System.out.println("trying to change to calendar");
         }
     }
 

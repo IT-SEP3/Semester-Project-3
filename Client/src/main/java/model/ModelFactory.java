@@ -1,7 +1,7 @@
 package model;
 
 
-import clientnetworking.Client;
+import clientNetworking.Client;
 import model.login.LoginModel;
 import model.login.LoginModelImpl;
 
