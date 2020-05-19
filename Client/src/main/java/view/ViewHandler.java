@@ -1,6 +1,7 @@
 package view;
 
 
+import view.calendar.CalendarViewController;
 import view.login.LoginViewController;
 import viewModel.ViewModelFactory;
 import javafx.fxml.FXMLLoader;
@@ -37,6 +38,18 @@ public class ViewHandler {
         mainStage.setScene(loginScene);
     }
 
+    public void openCalendarView() {
+        FXMLLoader loader = new FXMLLoader();
+        if (calendarScene == null) {
+            Parent root = getRootByPath("calendar/Calendar.fxml", loader);
+            CalendarViewController controller = loader.getController();
+            controller.init(viewModelFactory.getCalendarViewModel(), this);
+            calendarScene = new Scene(root);
+        }
+        mainStage.setTitle("Calendar");
+        mainStage.setScene(calendarScene);
+    }
+
     private Parent getRootByPath(String path, FXMLLoader loader) {
         loader.setLocation(getClass().getResource(path));
         Parent root = null;
@@ -49,15 +62,5 @@ public class ViewHandler {
         return root;
     }
 
-    public void openCalendarView() {
-        FXMLLoader loader = new FXMLLoader();
-        if (calendarScene == null) {
-            Parent root = getRootByPath("calendar/Calendar.fxml", loader);
-            LoginViewController controller = loader.getController();
-            controller.init(viewModelFactory.getLoginViewModel(), this);
-            calendarScene = new Scene(root);
-        }
-        mainStage.setTitle("Calendar");
-        mainStage.setScene(calendarScene);
-    }
+
 }

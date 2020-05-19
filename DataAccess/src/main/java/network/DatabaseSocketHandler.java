@@ -1,6 +1,6 @@
 package network;
 
-import model.DatabaseModel;
+import persistence.DAOFactory;
 import shared.Shift;
 import shared.User;
 import com.google.gson.Gson;
@@ -12,12 +12,12 @@ public class DatabaseSocketHandler implements Runnable {
     private Socket socket;
     private OutputStream outToClient;
     private InputStream inFromClient;
-    private DatabaseModel model;
+    private DAOFactory daoFactory;
     private Gson gson;
 
-    public DatabaseSocketHandler(Socket socket, DatabaseModel model){
+    public DatabaseSocketHandler(Socket socket, DAOFactory daoFactory){
         this.socket = socket;
-        this.model = model;
+        this.daoFactory = daoFactory;
         gson = new Gson();
         try {
             inFromClient = socket.getInputStream();
@@ -42,13 +42,13 @@ public class DatabaseSocketHandler implements Runnable {
 
                 if(recievedPieces[0].equals("Login")){
                     User login = gson.fromJson(recievedPieces[1], User.class);
-                    String confirmation = model.Login(login);
+                    String confirmation = daoFactory.getLogin().validateLogin(login);
                     sendToClient(confirmation);
                 }
                 else if(recievedPieces[0].equals("CalendarMonth")) {
-                    Shift[] shiftsForMonth = model.getMonthOfShiftsByManager(recievedPieces[1], recievedPieces[2]); // Inputs are :Username for first input, month in somekind of 05/2020 format
-                    String shiftsJson = gson.toJson(shiftsForMonth);
-                    sendToClient(shiftsJson);
+                    //Shift[] shiftsForMonth = daoFactory.getCalendar().getMonthOfShiftsByManager(recievedPieces[1], recievedPieces[2]); // Inputs are :Username for first input, month in somekind of 05/2020 format
+                    //String shiftsJson = gson.toJson(shiftsForMonth);
+                    //sendToClient(shiftsJson);
                 }
                 else if(recievedPieces[0].equals("Something")) {
 
