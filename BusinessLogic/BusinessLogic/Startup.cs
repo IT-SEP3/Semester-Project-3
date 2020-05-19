@@ -1,3 +1,5 @@
+using BusinessLogic.Model;
+using BusinessLogic.Model.Calendar;
 using BusinessLogic.Model.Login;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -20,7 +22,7 @@ namespace BusinessLogic
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<LoginContext>(options => options.UseInMemoryDatabase("Users"));
+            services.AddDbContext<PlannerContext>(options => options.UseInMemoryDatabase("EmployeePlanner"));
             services.AddControllers();
         }
 

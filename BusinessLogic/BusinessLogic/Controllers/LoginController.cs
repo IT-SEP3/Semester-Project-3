@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using BusinessLogic.Model;
 
 namespace BusinessLogic.Controllers
 {
@@ -12,9 +13,9 @@ namespace BusinessLogic.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
-        private readonly LoginContext _context;
+        private readonly PlannerContext _context;
 
-        public LoginController(LoginContext context)
+        public LoginController(PlannerContext context)
         {
             _context = context;
         }

@@ -1,20 +1,34 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BusinessLogic.Model.Calendar;
+using BusinessLogic.Model.Login;
+using Microsoft.EntityFrameworkCore;
 
-namespace BusinessLogic.Model.Login
+namespace BusinessLogic.Model
 {
-    public class LoginContext : DbContext
+    public class PlannerContext : DbContext
     {
         private BusinessSocketHandler socketHandler = BusinessSocketHandler.getInstance();
 
-        public LoginContext(DbContextOptions<LoginContext> options) : base(options)
+        public PlannerContext(DbContextOptions<PlannerContext> options) : base(options)
         { }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Shift> Shifts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // User
             modelBuilder.Entity<User>()
                 .HasKey(c => c.username);
+
+            // Shift
+            modelBuilder.Entity<Shift>()
+                .HasKey(s => s.Id);
+            modelBuilder.Entity<Shift>()
+                .HasAlternateKey(s => s.Manager);
+            modelBuilder.Entity<Shift>()
+                .HasAlternateKey(s => s.Assignee);
+
+
         }
 
         public string validateLogin(User user)
