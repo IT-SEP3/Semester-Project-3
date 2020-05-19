@@ -11,6 +11,11 @@ import java.sql.SQLException;
 public class LoginDAO implements ILoginDAO {
 
     private final IDBConnection databaseConnection;
+    PreparedStatement preparedStatement = null;
+    ResultSet resultSet = null;
+    User resultUser = null;
+    String conclusion = "NOT";
+    int ID = Integer.parseInt(null);
 
     public LoginDAO(IDBConnection databaseConnection) {
         this.databaseConnection = databaseConnection;
@@ -18,10 +23,6 @@ public class LoginDAO implements ILoginDAO {
 
     @Override
     public String validateLogin(User user) {
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-        User resultUser = null;
-        String conclusion = "NOT";
 
         try {
             String sql = "SELECT username, password FROM " + databaseConnection.getSchemaName() + "." + databaseConnection.getUserTable() +
@@ -51,5 +52,25 @@ public class LoginDAO implements ILoginDAO {
     @Override
     public User getUser(User user) {
         return user;
+    }
+
+    public int getId() {
+        try {
+
+            String query = "SELECT Id FROM users";
+            preparedStatement = databaseConnection.createPreparedStatement(query);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+
+                System.out.println(id);
+                ID = id;
+            }
+
+
+        } catch (DataConnectionException | SQLException e) {
+            e.printStackTrace();
+        }
+        return ID;
     }
 }

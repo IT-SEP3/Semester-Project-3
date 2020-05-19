@@ -20,4 +20,6 @@ public interface IDBConnection {
     String getSchemaName();
 
     String getUserTable();
+
+    String getCalendarTable();
 }
