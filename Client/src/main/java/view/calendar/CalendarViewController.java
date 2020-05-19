@@ -4,12 +4,17 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import view.ViewHandler;
+import viewModel.calendar.CalendarViewModel;
 import viewModel.login.LoginViewModel;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class CalendarViewController {
 
     private ViewHandler viewHandler;
-    private CalendarViewModel calendarViewModel
+    private CalendarViewModel calendarViewModel;
 
     @FXML
     private ChoiceBox selectMonth = new ChoiceBox();
@@ -101,7 +106,10 @@ public class CalendarViewController {
     private Label date6x7 = new Label();
 
 
-    public void init(LoginViewModel vm, ViewHandler vh){
+    public void init(CalendarViewModel vm, ViewHandler vh){
+        viewHandler = vh;
+        calendarViewModel = vm;
+
         selectMonth.getItems().add("January");
         selectMonth.getItems().add("February");
         selectMonth.getItems().add("March");
@@ -115,10 +123,7 @@ public class CalendarViewController {
         selectMonth.getItems().add("November");
         selectMonth.getItems().add("December");
 
-
+        String timeStamp = new SimpleDateFormat("MM-yyyy").format(Calendar.getInstance().getTime());
+        calendarViewModel.getCalendar(timeStamp);
     }
-
-
-
-
 }
