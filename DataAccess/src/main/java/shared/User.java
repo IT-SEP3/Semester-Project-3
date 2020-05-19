@@ -10,9 +10,10 @@ public class User {
     private String status;
     private Date employmentDate;
     private String accessLevel;
+    private int ssn;
 */
     /*
-    public User(String username, String password, String fname, String lname, String email, String status, Date employmentDate, String accessLevel) {
+    public User(String username, String password, String fname, String lname, String email, String status, Date employmentDate, String accessLevel, int ssn) {
         this.username = username;
         this.password = password;
         this.fname = fname;
@@ -21,6 +22,7 @@ public class User {
         this.status = status;
         this.employmentDate = employmentDate;
         this.accessLevel = accessLevel;
+        this.ssn = ssn;
     }
 */
     public User(String username, String password) {

@@ -52,4 +52,5 @@ public class LoginDAO implements ILoginDAO {
     public User getUser(User user) {
         return user;
     }
+
 }

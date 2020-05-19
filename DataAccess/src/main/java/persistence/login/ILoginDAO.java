@@ -7,4 +7,5 @@ public interface ILoginDAO {
     String validateLogin(User user) ;
 
     User getUser(User user);
+
 }
