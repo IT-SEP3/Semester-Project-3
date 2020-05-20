@@ -13,6 +13,7 @@ public class DBConnection implements IDBConnection {
 
     private final String schemaName;
     private final String userTableName;
+    private final String calendarTableName;
 
     private Connection connection;
     private Statement statement;
@@ -21,6 +22,7 @@ public class DBConnection implements IDBConnection {
     public DBConnection() {
         schemaName = "sep3";
         userTableName = "users";
+        calendarTableName = "calendar";
     }
 
     public Connection getConnection() {
@@ -94,5 +96,10 @@ public class DBConnection implements IDBConnection {
     @Override
     public String getUserTable() {
         return userTableName;
+    }
+
+    @Override
+    public String getCalendarTable() {
+        return calendarTableName;
     }
 }
