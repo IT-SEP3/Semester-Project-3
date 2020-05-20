@@ -11,6 +11,7 @@ namespace BusinessLogic.Model
         public PlannerContext(DbContextOptions<PlannerContext> options) : base(options)
         { }
 
+        // Unused for now
         public DbSet<User> Users { get; set; }
         public DbSet<Shift> Shifts { get; set; }
 
@@ -23,12 +24,7 @@ namespace BusinessLogic.Model
             // Shift
             modelBuilder.Entity<Shift>()
                 .HasKey(s => s.Id);
-            modelBuilder.Entity<Shift>()
-                .HasAlternateKey(s => s.Manager);
-            modelBuilder.Entity<Shift>()
-                .HasAlternateKey(s => s.Assignee);
-
-
+            
         }
 
         public string validateLogin(User user)
@@ -43,6 +39,12 @@ namespace BusinessLogic.Model
             {
                 return "Wrong username or password";
             }
+        }
+
+        public void GetAllShifts()
+        {
+            socketHandler.SendToDatabaseStringOnly("GetShifts; OR WHICHEVER COMMAND FROM JAVA SERVER");
+            socketHandler.GetResponse();
         }
     }
 }

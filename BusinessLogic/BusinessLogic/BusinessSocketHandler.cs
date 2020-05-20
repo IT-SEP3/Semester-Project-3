@@ -54,8 +54,7 @@ namespace BusinessLogic
         }
 
         // Because the database will only give you things when you ask for them
-        // there is no need for a loop in the thread. You ask for response yourself
-        // . THER
+        // there is no need for a loop in the thread. You ask for response yourself.
         public String GetResponse()
         {
             byte[] rcvLenBytes = new byte[4];
