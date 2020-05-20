@@ -1,27 +1,22 @@
 package shared;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Shift {
-    private String date;
-    private LocalDate localdate;
+    private LocalDate date;
     private String title;
 
-    public Shift(String date, String title, LocalDate localdate) {
-        this.date = date;
+    public Shift(String date, String title) {
+        this.date = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd-MM-yyyy"));;
         this.title = title;
-        this.localdate = localdate;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public String getDateString() {
-        return date;
-    }
-
     public LocalDate getDate(){
-        return localdate;
+        return date;
     }
 }

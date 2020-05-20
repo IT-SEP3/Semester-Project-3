@@ -126,13 +126,12 @@ public class CalendarViewModel {
     }
 
     public void setCalendar() {
-        String[] temporarySplitOfDay = model.getShift(0).getDateString().split("-");
-        String firstDayOfMonthTest = "01-"+ temporarySplitOfDay[1] + "-" + temporarySplitOfDay[2];
+
+        String firstDayOfMonthTest = "01-"+ model.getShift(0).getDate().getMonthValue() + "-" + model.getShift(0).getDate().getYear();
         String finalDay = "default";
         try {
             SimpleDateFormat format1=new SimpleDateFormat("dd-MM-yyyy");
             Date dt1 = format1.parse(firstDayOfMonthTest);
-            System.out.println(dt1.);
             DateFormat format2=new SimpleDateFormat("EEEE");
             finalDay = format2.format(dt1);
         } catch (ParseException e) {
@@ -165,16 +164,14 @@ public class CalendarViewModel {
                 dayOfweekCounter = 0;
                 break;
         }
-        LocalDate convertedDate = LocalDate.parse(firstDayOfMonthTest, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        LocalDate convertedDate = LocalDate.parse(firstDayOfMonthTest, DateTimeFormatter.ofPattern("d-M-yyyy"));
         int maxMonthDay = convertedDate.getMonth().length(convertedDate.isLeapYear());
         for (int i = 1; i < maxMonthDay+1; i++) {
-            dates.get(dayOfweekCounter+ i).set(i+"");
+            dates.get(dayOfweekCounter+ i-1).set(i+"");
         }
 
         for (int i = 0; i < model.getShifts().size(); i++) {
-            model.getShift(i).getDateString();
-            String[] splitDate = model.getShift(i).getDateString().split("-");
-            int dayMonth = Integer.parseInt(splitDate[0]);
+            int dayMonth = model.getShift(i).getDate().getDayOfMonth();
             dates.get(dayOfweekCounter+dayMonth-1).set(dates.get(dayOfweekCounter+dayMonth-1).get() + "\n" + model.getShift(i).getTitle());
         }
     }
