@@ -1,21 +1,21 @@
 package model.login;
 
 
-import clientNetworking.Client;
+import clientNetworking.login.LoginClient;
 import shared.User;
 
 public class LoginModelImpl implements LoginModel {
-    public Client client;
+    public LoginClient loginClient;
     private User currentUser;
 
-    public LoginModelImpl(Client client) {
-        this.client = client;
+    public LoginModelImpl(LoginClient loginClient) {
+        this.loginClient = loginClient;
     }
 
     @Override
     public void login(String username, String password) {
         User loginCarrier = new User(username,String.valueOf(password.hashCode()));
-        String answer = client.Login(loginCarrier);
+        String answer = loginClient.Login(loginCarrier);
         if(answer.equals("Login successful")){
             currentUser = loginCarrier;
         }
@@ -23,6 +23,11 @@ public class LoginModelImpl implements LoginModel {
 
     @Override
     public String loginResponse() {
-        return client.getResponse();
+        return loginClient.getResponse();
+    }
+
+    @Override
+    public User getCurrentUser() {
+        return currentUser;
     }
 }

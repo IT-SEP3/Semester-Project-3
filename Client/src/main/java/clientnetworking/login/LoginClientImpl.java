@@ -1,4 +1,4 @@
-package clientNetworking;
+package clientNetworking.login;
 
 
 import clientNetworking.restEASY.HTTPHandler;
@@ -6,13 +6,13 @@ import com.google.gson.Gson;
 import shared.Shift;
 import shared.User;
 
-public class ClientImp implements Client {
+public class LoginClientImpl implements LoginClient {
     private Gson jsonSerializer;
     private String response;
     private HTTPHandler httpHandler;
 
 
-    public ClientImp(HTTPHandler httpHandler){
+    public LoginClientImpl(HTTPHandler httpHandler){
         this.httpHandler = httpHandler;
         this.jsonSerializer = new Gson();
     }
@@ -25,16 +25,6 @@ public class ClientImp implements Client {
         response = httpHandler.PostToAPI(loginJson, PATH);
         return response;
     }
-
-    @Override // date format xx-xxxx
-    public Shift[] getCalendarShifts(String username, String month) {
-        String PATH ="http://127.0.0.1:5000/api/Shifts/?username=" +  username + "&date=" + month;
-        String TestPATH ="http://127.0.0.1:5000/api/Login/?username=" +  username + "&date=" + month;
-        response = httpHandler.GetFromAPI(TestPATH);
-
-        return new Shift[0];
-    }
-
 
     @Override
     public String getResponse() {

@@ -1,11 +1,11 @@
-package clientNetworking;
-
+package clientNetworking.calendar;
 
 import shared.Shift;
 import shared.User;
 
-public interface Client {
-    String Login(User loginCarrier);
+public interface CalendarClient {
     Shift[] getCalendarShifts(String username, String month);
     String getResponse();
+
+    User getUser(String currentUser);
 }
