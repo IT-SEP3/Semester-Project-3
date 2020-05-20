@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -341,8 +341,10 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <ChoiceBox fx:id="chooseMonth" prefHeight="44.0" prefWidth="226.0" />
-                        <AnchorPane prefHeight="826.0" prefWidth="217.0" />
+                        <AnchorPane prefHeight="826.0" prefWidth="217.0">
+                           <children>
+                              <ComboBox fx:id="chooseMonth" onAction="#onSelect" prefHeight="44.0" prefWidth="226.0" />
+                           </children></AnchorPane>
                      </children>
                   </VBox>
                </children>

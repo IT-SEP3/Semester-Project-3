@@ -6,6 +6,7 @@ import shared.Shift;
 import shared.User;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class CalendarModelImpl implements CalendarModel {
     private CalendarClient calendarClient;
@@ -43,12 +44,13 @@ public class CalendarModelImpl implements CalendarModel {
 
     @Override
     public void getCalendar(String timeStamp) {
-        calendarClient.getCalendarShifts(loginModel.getCurrentUser().getUserName(), timeStamp);
+        Shift[] shiftsFromDatabase = calendarClient.getCalendarShifts(loginModel.getCurrentUser().getUserName(), timeStamp);
+        shifts = new ArrayList<Shift>(Arrays.asList(shiftsFromDatabase));
     }
 
     @Override
     public void getUser() {
-        currentUser = calendarClient.getUser(loginModel.getCurrentUser().getUserName());
+        currentUser = calendarClient.getUser( Integer.toString(loginModel.getCurrentUser().getUserId()));
     }
 
     @Override
