@@ -19,10 +19,9 @@ public class CalendarClientImpl implements CalendarClient{
     @Override // date format xx-xxxx
     public Shift[] getCalendarShifts(String username, String month) {
         String PATH ="http://127.0.0.1:5000/api/Shifts/?username=" +  username + "&date=" + month;
-        String TestPATH ="http://127.0.0.1:5000/api/Login/?username=" +  username + "&date=" + month;
-        response = httpHandler.GetFromAPI(TestPATH);
-
-        return new Shift[0];
+        response = httpHandler.GetFromAPI(PATH);
+        Shift[] shifts = jsonSerializer.fromJson(response, Shift[].class);
+        return shifts;
     }
 
     @Override
@@ -31,7 +30,10 @@ public class CalendarClientImpl implements CalendarClient{
     }
 
     @Override
-    public User getUser(String currentUser) {
-        return null;
+    public User getUser(String Id) {
+        String PATH ="http://127.0.0.1:5000/api/Login/" +Id;
+        response = httpHandler.GetFromAPI(PATH);
+        User user = jsonSerializer.fromJson(response, User.class);
+        return user;
     }
 }

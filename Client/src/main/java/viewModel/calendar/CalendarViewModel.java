@@ -11,6 +11,8 @@ import java.awt.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -124,25 +126,19 @@ public class CalendarViewModel {
     }
 
     public void setCalendar() {
-        Shift shiftZero = model.getShift(0);
+
+        String firstDayOfMonthTest = "01-"+ model.getShift(0).getDate().getMonthValue() + "-" + model.getShift(0).getDate().getYear();
         String finalDay = "default";
         try {
             SimpleDateFormat format1=new SimpleDateFormat("dd-MM-yyyy");
-            Date dt1 = format1.parse(shiftZero.getDateString());
+            Date dt1 = format1.parse(firstDayOfMonthTest);
             DateFormat format2=new SimpleDateFormat("EEEE");
             finalDay = format2.format(dt1);
-
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        String[] temporarySplitOfDay = model.getShift(0).getDateString().split("-");
-        int weekCounter = 0;//For knowing which week the day is
-        int dayMonth = Integer.parseInt(temporarySplitOfDay[0]);
         int dayOfweekCounter;
-        //May be issue in switch default
-
-        System.out.println(finalDay);
-        switch (finalDay){
+        switch (finalDay) {
             case "Monday":
                 dayOfweekCounter = 0;
                 break;
@@ -168,16 +164,16 @@ public class CalendarViewModel {
                 dayOfweekCounter = 0;
                 break;
         }
-        dates.get(dayOfweekCounter).set(shiftZero.getTitle());
-        //SET ALL DAYS OF THE MONTH. LIKE IF THE FIRST DAY OF THE MONT IS TUESDAY, like 1 day of month then set the entire thing
-
-        /*
-        for (int i = 1; i <30; i++) {
-                if(model.getShift(i) != null){
-
-                }
+        LocalDate convertedDate = LocalDate.parse(firstDayOfMonthTest, DateTimeFormatter.ofPattern("d-M-yyyy"));
+        int maxMonthDay = convertedDate.getMonth().length(convertedDate.isLeapYear());
+        for (int i = 1; i < maxMonthDay+1; i++) {
+            dates.get(dayOfweekCounter+ i-1).set(i+"");
         }
-        */
+
+        for (int i = 0; i < model.getShifts().size(); i++) {
+            int dayMonth = model.getShift(i).getDate().getDayOfMonth();
+            dates.get(dayOfweekCounter+dayMonth-1).set(dates.get(dayOfweekCounter+dayMonth-1).get() + "\n" + model.getShift(i).getTitle());
+        }
     }
 
     public StringProperty getProperyList(int i) {

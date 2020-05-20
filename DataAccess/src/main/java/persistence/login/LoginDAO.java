@@ -15,7 +15,7 @@ public class LoginDAO implements ILoginDAO {
     ResultSet resultSet = null;
     User resultUser = null;
     String conclusion = "NOT";
-    int ID = Integer.parseInt(null);
+    int ID;
 
     public LoginDAO(IDBConnection databaseConnection) {
         this.databaseConnection = databaseConnection;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -14,8 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="913.0" prefWidth="1416.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.calendar.CalendarViewController">
+<AnchorPane prefHeight="913.0" prefWidth="1416.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.calendar.CalendarViewController">
    <children>
       <VBox prefHeight="901.0" prefWidth="1416.0">
          <children>
@@ -121,212 +120,212 @@
                                     </Label>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
                                        <children>
-                                          <Label fx:id="date1x1" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date1x1" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                        <children>
-                                          <Label fx:id="date1x2" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date1x2" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                        <children>
-                                          <Label fx:id="date1x3" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date1x3" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                                        <children>
-                                          <Label fx:id="date1x4" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date1x4" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
                                        <children>
-                                          <Label fx:id="date1x5" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date1x5" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
                                        <children>
-                                          <Label fx:id="date1x6" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date1x6" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowIndex="1">
                                        <children>
-                                          <Label fx:id="date1x7" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date1x7" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
                                        <children>
-                                          <Label fx:id="date2x1" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date2x1" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                        <children>
-                                          <Label fx:id="date2x2" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date2x2" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                        <children>
-                                          <Label fx:id="date2x3" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date2x3" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
                                        <children>
-                                          <Label fx:id="date2x4" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date2x4" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
                                        <children>
-                                          <Label fx:id="date2x5" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date2x5" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
                                        <children>
-                                          <Label fx:id="date2x6" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date2x6" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowIndex="2">
                                        <children>
-                                          <Label fx:id="date2x7" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date2x7" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3">
                                        <children>
-                                          <Label fx:id="date3x1" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date3x1" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                        <children>
-                                          <Label fx:id="date3x2" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date3x2" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                                        <children>
-                                          <Label fx:id="date3x3" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date3x3" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
                                        <children>
-                                          <Label fx:id="date3x4" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date3x4" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
                                        <children>
-                                          <Label fx:id="date3x5" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date3x5" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="3">
                                        <children>
-                                          <Label fx:id="date3x6" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date3x6" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="180.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowIndex="3">
                                        <children>
-                                          <Label fx:id="date3x7" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date3x7" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="4">
                                        <children>
-                                          <Label fx:id="date4x1" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date4x1" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                        <children>
-                                          <Label fx:id="date4x2" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date4x2" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
                                        <children>
-                                          <Label fx:id="date4x3" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date4x3" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="4">
                                        <children>
-                                          <Label fx:id="date4x5" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date4x5" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="4">
                                        <children>
-                                          <Label fx:id="date4x6" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date4x6" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowIndex="4">
                                        <children>
-                                          <Label fx:id="date4x7" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date4x7" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
                                        <children>
-                                          <Label fx:id="date4x4" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date4x4" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="5">
                                        <children>
-                                          <Label fx:id="date5x1" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date5x1" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="117.0" prefWidth="186.0" GridPane.rowIndex="6">
                                        <children>
-                                          <Label fx:id="date6x1" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date6x1" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                                        <children>
-                                          <Label fx:id="date5x2" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date5x2" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                                        <children>
-                                          <Label fx:id="date6x2" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date6x2" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
                                        <children>
-                                          <Label fx:id="date5x3" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date5x3" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
                                        <children>
-                                          <Label fx:id="date6x3" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date6x3" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="5">
                                        <children>
-                                          <Label fx:id="date5x4" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date5x4" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="6">
                                        <children>
-                                          <Label fx:id="date6x4" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date6x4" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="5">
                                        <children>
-                                          <Label fx:id="date5x5" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date5x5" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="6">
                                        <children>
-                                          <Label fx:id="date6x5" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date6x5" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="5">
                                        <children>
-                                          <Label fx:id="date5x6" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date5x6" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="6">
                                        <children>
-                                          <Label fx:id="date6x6" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date6x6" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowIndex="5">
                                        <children>
-                                          <Label fx:id="date5x7" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date5x7" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowIndex="6">
                                        <children>
-                                          <Label fx:id="date6x7" alignment="CENTER" prefHeight="17.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
+                                          <Label fx:id="date6x7" alignment="TOP_CENTER" prefHeight="187.0" prefWidth="186.0" textAlignment="CENTER" wrapText="true" />
                                        </children>
                                     </VBox>
                                  </children>
@@ -342,8 +341,10 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <ChoiceBox fx:id="chooseMonth" prefHeight="44.0" prefWidth="226.0" />
-                        <AnchorPane prefHeight="826.0" prefWidth="217.0" />
+                        <AnchorPane prefHeight="826.0" prefWidth="217.0">
+                           <children>
+                              <ComboBox fx:id="chooseMonth" onAction="#onSelect" prefHeight="44.0" prefWidth="226.0" />
+                           </children></AnchorPane>
                      </children>
                   </VBox>
                </children>
