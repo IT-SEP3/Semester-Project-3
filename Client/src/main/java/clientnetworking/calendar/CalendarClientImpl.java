@@ -1,6 +1,6 @@
 package clientNetworking.calendar;
 
-import clientNetworking.restEASY.HTTPHandler;
+import clientNetworking.HTTPHandler;
 import com.google.gson.Gson;
 import shared.Shift;
 import shared.User;

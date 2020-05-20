@@ -1,9 +1,8 @@
 package clientNetworking.login;
 
 
-import clientNetworking.restEASY.HTTPHandler;
+import clientNetworking.HTTPHandler;
 import com.google.gson.Gson;
-import shared.Shift;
 import shared.User;
 
 public class LoginClientImpl implements LoginClient {

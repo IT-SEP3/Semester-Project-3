@@ -4,15 +4,14 @@ import clientNetworking.calendar.CalendarClient;
 import clientNetworking.calendar.CalendarClientImpl;
 import clientNetworking.login.LoginClient;
 import clientNetworking.login.LoginClientImpl;
-import clientNetworking.restEASY.HTTPHandler;
-import com.google.gson.Gson;
-import model.login.LoginModel;
-import model.login.LoginModelImpl;
+import clientNetworking.shift.ShiftClient;
+import clientNetworking.shift.ShiftClientImpl;
 
 public class ClientFactory {
     private HTTPHandler httpHandler;
     private LoginClient loginClient;
     private CalendarClient calendarClient;
+    private ShiftClient shiftClient;
 
 
     public ClientFactory(HTTPHandler httpHandler){
@@ -29,5 +28,11 @@ public class ClientFactory {
         if(calendarClient == null)
             calendarClient = new CalendarClientImpl(httpHandler);
         return calendarClient;
+    }
+
+    public ShiftClient shiftClient(){
+        if(shiftClient == null)
+            shiftClient = new ShiftClientImpl(httpHandler);
+        return shiftClient;
     }
 }

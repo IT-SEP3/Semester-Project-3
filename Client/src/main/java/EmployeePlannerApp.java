@@ -1,7 +1,5 @@
 import clientNetworking.ClientFactory;
-import clientNetworking.login.LoginClient;
-import clientNetworking.login.LoginClientImpl;
-import clientNetworking.restEASY.HTTPHandler;
+import clientNetworking.HTTPHandler;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import model.ModelFactory;
