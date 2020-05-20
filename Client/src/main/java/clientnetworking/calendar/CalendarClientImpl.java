@@ -3,6 +3,7 @@ package clientNetworking.calendar;
 import clientNetworking.restEASY.HTTPHandler;
 import com.google.gson.Gson;
 import shared.Shift;
+import shared.User;
 
 public class CalendarClientImpl implements CalendarClient{
     private Gson jsonSerializer;
@@ -26,6 +27,11 @@ public class CalendarClientImpl implements CalendarClient{
 
     @Override
     public String getResponse() {
+        return null;
+    }
+
+    @Override
+    public User getUser(String currentUser) {
         return null;
     }
 }

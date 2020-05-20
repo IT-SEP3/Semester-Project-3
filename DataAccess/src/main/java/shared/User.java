@@ -1,20 +1,24 @@
 package shared;
 
+import java.sql.Date;
+
 public class User {
     private String username;
     private String password;
-    /*
+    private int id;
     private String fname;
     private String lname;
     private String email;
     private String status;
     private Date employmentDate;
     private String accessLevel;
-*/
-    /*
-    public User(String username, String password, String fname, String lname, String email, String status, Date employmentDate, String accessLevel) {
+
+
+
+    public User(String username, String password, int id, String fname, String lname, String email, String status, Date employmentDate, String accessLevel) {
         this.username = username;
         this.password = password;
+        this.id = id;
         this.fname = fname;
         this.lname = lname;
         this.email = email;
@@ -22,7 +26,7 @@ public class User {
         this.employmentDate = employmentDate;
         this.accessLevel = accessLevel;
     }
-*/
+
     public User(String username, String password) {
         this.username = username;
         this.password = password;
@@ -43,7 +47,7 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-/*
+
     public String getFname() {
         return fname;
     }
@@ -92,6 +96,15 @@ public class User {
         this.accessLevel = accessLevel;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
     @Override
     public String toString() {
         return "User{" +
@@ -105,6 +118,4 @@ public class User {
                 ", accessLevel='" + accessLevel + '\'' +
                 '}';
     }
-
- */
 }
