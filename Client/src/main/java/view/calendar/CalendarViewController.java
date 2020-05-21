@@ -196,4 +196,9 @@ public class CalendarViewController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    void onCreateEmployee(ActionEvent event) {
+//        viewHandler.openCreateEmployeeView();
+    }
 }

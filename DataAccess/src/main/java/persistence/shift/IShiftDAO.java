@@ -7,5 +7,5 @@ import java.util.ArrayList;
 
 public interface IShiftDAO {
 
-    ArrayList<Shift> getShifts(Shift shift, User user);
+    ArrayList<Shift> getShifts(String userID, String month, String year);
 }
