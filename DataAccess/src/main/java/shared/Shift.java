@@ -1,5 +1,6 @@
 package shared;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Shift {
@@ -9,15 +10,15 @@ public class Shift {
     private String description;
     private String status;
     private int manager_id;
-    private String createdAt;
+    private LocalDate date;
 
-    public Shift(int id, int user_id, String description, String status, int manager_id, String createdAt) {
+    public Shift(int id, int user_id, String description, String status, int manager_id, LocalDate date) {
         this.id = id;
         this.user_id = user_id;
         this.description = description;
         this.status = status;
         this.manager_id = manager_id;
-        this.createdAt = createdAt;
+        this.date = date;
     }
 
     public int getId() {
@@ -60,12 +61,12 @@ public class Shift {
         this.manager_id = manager_id;
     }
 
-    public String getCreatedAt() {
-        return createdAt;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     @Override

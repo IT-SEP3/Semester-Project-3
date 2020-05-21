@@ -10,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -24,11 +26,11 @@ public class ShiftDAO implements IShiftDAO {
     }
 
     @Override
-    public ArrayList<Shift> getShifts(String userID, String month, String year) {
+    public ArrayList<Shift> getShifts(String userID, String monthRequest, String yearRequest) {
         ArrayList<Shift> shifts = new ArrayList<>();
 
         try {
-            String sql = "SELECT * FROM " + databaseConnection.getShiftTable() + " WHERE users_ID = " + Integer.parseInt(userID) + " AND month = " + Integer.parseInt(month) + " AND year = " + Integer.parseInt(year) + ";";
+            String sql = "SELECT * FROM " + databaseConnection.getShiftTable() + " WHERE users_ID = " + Integer.parseInt(userID) + " AND month = " + Integer.parseInt(monthRequest) + " AND year = " + Integer.parseInt(yearRequest) + ";";
             preparedStatement = databaseConnection.createPreparedStatement(sql);
             resultSet = preparedStatement.executeQuery();
             while ( resultSet.next()) {
@@ -41,8 +43,8 @@ public class ShiftDAO implements IShiftDAO {
                 int month = resultSet.getInt("month");
                 int year = resultSet.getInt("year");
 
-                DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-                String date = dateFormat.format();
+                String dateString = day + "-" + month + "-" + year;
+                LocalDate date = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("dd-MM-yyyy"));;
 
                 shifts.add(new Shift(shift_ID, user_ID, description, status, managerID, date));
             }
@@ -56,7 +58,7 @@ public class ShiftDAO implements IShiftDAO {
 
     @Override
     public String postShift(Shift shift) {
-
+/*
         try {
             String sql = "INSERT INTO Users (username, password, firstName, lastName, email, status, accessLevel) +" +
                     "VALUE('"+ shift.getId() +"', '"+ shift.getUser_id() +"', '"+ shift.getDescription() +"', '"+ shift.ge +"', '"+  +"', '"+  +"', '"+  +"')";
@@ -80,5 +82,9 @@ public class ShiftDAO implements IShiftDAO {
             databaseConnection.closeConnection();
         }
         return conclusion;
+         */
+        return null;
     }
+
+
 }

@@ -16,8 +16,10 @@ public class LoginModelImpl implements LoginModel {
     public void login(String username, String password) {
         User loginCarrier = new User(username,String.valueOf(password.hashCode()));
         String answer = loginClient.Login(loginCarrier);
-        if(answer.equals("Login successful")){
+        String[] splitAnswer = answer.split(";");
+        if(splitAnswer[0].equals("Login successful")){
             currentUser = loginCarrier;
+            currentUser.setID(Integer.parseInt(splitAnswer[1]));
         }
     }
 

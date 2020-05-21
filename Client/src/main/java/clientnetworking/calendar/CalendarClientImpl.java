@@ -5,6 +5,8 @@ import com.google.gson.Gson;
 import shared.Shift;
 import shared.User;
 
+import java.util.ArrayList;
+
 public class CalendarClientImpl implements CalendarClient{
     private Gson jsonSerializer;
     private String response;
@@ -17,10 +19,10 @@ public class CalendarClientImpl implements CalendarClient{
     }
 
     @Override // date format xx-xxxx
-    public Shift[] getCalendarShifts(String username, String month) {
-        String PATH ="http://127.0.0.1:5000/api/Shifts/?username=" +  username + "&date=" + month;
+    public ArrayList<Shift> getCalendarShifts(String userID, String month) {
+        String PATH ="http://127.0.0.1:5000/api/Shifts/?username=" +  userID + "&date=" + month;
         response = httpHandler.GetFromAPI(PATH);
-        Shift[] shifts = jsonSerializer.fromJson(response, Shift[].class);
+        ArrayList<Shift> shifts = jsonSerializer.fromJson(response, ArrayList<Shift>.class);
         return shifts;
     }
 

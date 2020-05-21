@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class DatabaseSocketHandler implements Runnable {
     private Socket socket;
@@ -46,7 +47,8 @@ public class DatabaseSocketHandler implements Runnable {
                     sendToClient(confirmation);
                 }
                 else if(recievedPieces[0].equals("CalendarMonth")) {
-                    Shift[] shiftsForMonth = daoFactory.getShift().getShifts(recievedPieces[1], recievedPieces[2]); // Inputs are :Username for first input, month in somekind of 05/2020 format
+                    String[] date = recievedPieces[2].split("-");
+                    ArrayList<Shift> shiftsForMonth = daoFactory.getShift().getShifts(recievedPieces[1], date[0], date[1]); // Inputs are :Username for first input, month in somekind of 05/2020 format
                     String shiftsJson = gson.toJson(shiftsForMonth);
                     sendToClient(shiftsJson);
                 }

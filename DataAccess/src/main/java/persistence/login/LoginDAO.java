@@ -30,12 +30,13 @@ public class LoginDAO implements ILoginDAO {
             preparedStatement = databaseConnection.createPreparedStatement(sql);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
+                int id = resultSet.getInt("Users_ID");
                 String userName = resultSet.getString("username");
                 String password = resultSet.getString("password");
 
                 resultUser = new User(userName, password);
                 if (resultUser.getPassword().equals(user.getPassword()) && resultUser.getUsername().equals(user.getUsername())) {
-                    conclusion = "OK";
+                    conclusion = "OK;"+ id;
                 }
             }
 
@@ -66,8 +67,6 @@ public class LoginDAO implements ILoginDAO {
                 System.out.println(id);
                 ID = id;
             }
-
-
         } catch (DataConnectionException | SQLException e) {
             e.printStackTrace();
         }

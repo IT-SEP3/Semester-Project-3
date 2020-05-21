@@ -1,6 +1,8 @@
 package shared;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 
     private String userName;
     private String password;
@@ -22,5 +24,9 @@ public class User {
 
     public int getUserId() {
         return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 }
