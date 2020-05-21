@@ -125,12 +125,16 @@ public class CalendarViewModel {
         model.getUser();
     }
 
-    public void setCalendar() {
-
-        String firstDayOfMonthTest = "01-"+ model.getShift(0).getDate().getMonthValue() + "-" + model.getShift(0).getDate().getYear();
+    public void setCalendar(int month, int year) {
+        String firstDayOfMonthTest="";
+        try {
+            firstDayOfMonthTest= "01-"+ month + "-" + year;
+        } catch (IndexOutOfBoundsException e){
+            System.out.println("No shifts in that month");
+        }
         String finalDay = "default";
         try {
-            SimpleDateFormat format1=new SimpleDateFormat("dd-MM-yyyy");
+            SimpleDateFormat format1=new SimpleDateFormat("d-M-yyyy");
             Date dt1 = format1.parse(firstDayOfMonthTest);
             DateFormat format2=new SimpleDateFormat("EEEE");
             finalDay = format2.format(dt1);
@@ -172,11 +176,17 @@ public class CalendarViewModel {
 
         for (int i = 0; i < model.getShifts().size(); i++) {
             int dayMonth = model.getShift(i).getDate().getDayOfMonth();
-            dates.get(dayOfweekCounter+dayMonth-1).set(dates.get(dayOfweekCounter+dayMonth-1).get() + "\n" + model.getShift(i).getTitle());
+            dates.get(dayOfweekCounter+dayMonth-1).set(dates.get(dayOfweekCounter+dayMonth-1).get() + "\n" + model.getShift(i).getUser_id());
         }
     }
 
     public StringProperty getProperyList(int i) {
         return dates.get(i);
+    }
+
+    public void clearCalendar() {
+        for (int i = 0; i < 42; i++) {
+            dates.get(i).set("");
+        }
     }
 }

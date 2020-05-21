@@ -18,6 +18,7 @@ public class CalendarModelImpl implements CalendarModel {
         this.calendarClient = calendarClient;
         this.loginModel = loginModel;
         shifts = new ArrayList<Shift>();
+        /*
         Shift kaka = new Shift("19-05-2020", "Shift2");
         Shift kaka1 = new Shift("08-05-2020", "Shift3");
         Shift kaka2 = new Shift("03-05-2020", "Shift4");
@@ -38,18 +39,18 @@ public class CalendarModelImpl implements CalendarModel {
         shifts.add(kaka7);
         shifts.add(kaka8);
         shifts.add(kaka9);
-
-
+         */
     }
 
     @Override
     public void getCalendar(String timeStamp) {
-        shifts = calendarClient.getCalendarShifts(loginModel.getCurrentUser().getUserId(), timeStamp);
+        shifts = calendarClient.getCalendarShifts(loginModel.getCurrentUser().getId(), timeStamp);
     }
 
     @Override
     public void getUser() {
-        currentUser = calendarClient.getUser( Integer.toString(loginModel.getCurrentUser().getUserId()));
+        currentUser = calendarClient.getUser( Integer.toString(loginModel.getCurrentUser().getId()));
+        System.out.println("User recieved"+ currentUser.getAccessLevel());
     }
 
     @Override

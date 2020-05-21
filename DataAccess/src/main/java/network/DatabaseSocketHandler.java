@@ -52,8 +52,11 @@ public class DatabaseSocketHandler implements Runnable {
                     String shiftsJson = gson.toJson(shiftsForMonth);
                     sendToClient(shiftsJson);
                 }
-                else if(recievedPieces[0].equals("Something")) {
-
+                else if(recievedPieces[0].equals("GetUser")) {
+                    System.out.println("trying to get user data");
+                    User user = daoFactory.getEmployee().getUser(recievedPieces[1]);
+                    String userJson = gson.toJson(user);
+                    sendToClient(userJson);
                 }
             }
         }catch (Exception e){ //VIOLATION OF SOLID

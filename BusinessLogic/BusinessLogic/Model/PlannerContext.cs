@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using BusinessLogic.Model.Calendar;
 using BusinessLogic.Model.Shared;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
@@ -29,7 +31,6 @@ namespace BusinessLogic.Model
                 .HasKey(s => s.Id);
             
         }
-
         public string ValidateLogin(User user)
         {
             socketHandler.SendToDatabase("Login", user);
@@ -45,11 +46,11 @@ namespace BusinessLogic.Model
             }
         }
 
-        public async Task GetAllShifts(string UserId, string date)
+        public string GetAllShifts(string UserId, string date)
         {
             socketHandler.SendToDatabaseStringOnly("CalendarMonth;" + UserId + ";" + date);
-            List<Shift> shifts = JsonConvert.DeserializeObject<List<Shift>>(socketHandler.GetResponse());
-            await Shifts.AddRangeAsync(shifts);
+            string shifts = socketHandler.GetResponse();
+            return shifts;
         }
 
         public string postUser(User user)
@@ -57,6 +58,12 @@ namespace BusinessLogic.Model
             socketHandler.SendToDatabase("Login", user);
             string result = socketHandler.GetResponse();
             return result;
+        }
+
+        public String getEmployee(int id)
+        {
+            socketHandler.SendToDatabaseStringOnly("GetUser;" + id);
+            return socketHandler.GetResponse();
         }
     }
 }

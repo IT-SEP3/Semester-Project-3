@@ -27,5 +27,11 @@ namespace BusinessLogic.Controllers
         {
             return _context.postUser(user);
         }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<string>> GetEmployee(int id)
+        {
+            return  _context.getEmployee(id);
+        }
     }
 }

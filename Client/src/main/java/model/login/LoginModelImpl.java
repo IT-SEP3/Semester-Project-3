@@ -21,7 +21,7 @@ public class LoginModelImpl implements LoginModel {
         if(splitAnswer[0].equals("Login successful")){
             currentUser = loginCarrier;
             response = splitAnswer[0];
-            currentUser.setID(Integer.parseInt(splitAnswer[1]));
+            currentUser.setId(Integer.parseInt(splitAnswer[1]));
         }
     }
 
