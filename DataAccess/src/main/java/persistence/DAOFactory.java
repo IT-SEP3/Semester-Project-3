@@ -7,21 +7,25 @@ import persistence.shift.IShiftDAO;
 import persistence.shift.ShiftDAO;
 
 public class DAOFactory {
+
+    private IDBConnection connect;
     private ILoginDAO login;
     private IShiftDAO shift;
-    private IDBConnection connect;
 
     public DAOFactory(IDBConnection connect) {
         this.connect = connect;
-        login = new LoginDAO(connect);
-        shift = new ShiftDAO(connect);
     }
 
     public ILoginDAO getLogin() {
+        if(login == null)
+            login = new LoginDAO(connect);
         return login;
     }
 
+
     public IShiftDAO getShift() {
+        if(shift == null)
+            shift = new ShiftDAO(connect);
         return shift;
     }
 }

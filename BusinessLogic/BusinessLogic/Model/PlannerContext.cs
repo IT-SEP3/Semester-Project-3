@@ -34,9 +34,10 @@ namespace BusinessLogic.Model
         {
             socketHandler.SendToDatabase("Login", user);
             string result = socketHandler.GetResponse();
-            if (result.Equals("OK"))
+            string[] resultSlpit = result.Split(";");
+            if (resultSlpit[0].Equals("OK"))
             {
-                return "Login successful";
+                return "Login successful;"+ resultSlpit[1];
             }
             else
             {
