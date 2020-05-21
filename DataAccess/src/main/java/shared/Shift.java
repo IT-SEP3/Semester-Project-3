@@ -9,9 +9,9 @@ public class Shift {
     private String description;
     private String status;
     private int manager_id;
-    private Date createdAt;
+    private String createdAt;
 
-    public Shift(int id, int user_id, String description, String status, int manager_id, Date createdAt) {
+    public Shift(int id, int user_id, String description, String status, int manager_id, String createdAt) {
         this.id = id;
         this.user_id = user_id;
         this.description = description;
@@ -60,11 +60,11 @@ public class Shift {
         this.manager_id = manager_id;
     }
 
-    public Date getCreatedAt() {
+    public String getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
 

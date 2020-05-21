@@ -1,12 +1,11 @@
 package persistence.shift;
 
 import shared.Shift;
+import shared.User;
 
 import java.util.ArrayList;
 
 public interface IShiftDAO {
 
-    String retrieveShifts(Shift shift);
-
-    ArrayList<Shift> getShifts(Shift shift);
+    ArrayList<Shift> getShifts(Shift shift, User user);
 }
