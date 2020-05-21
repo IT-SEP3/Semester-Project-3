@@ -1,6 +1,9 @@
-﻿using BusinessLogic.Model.Calendar;
-using BusinessLogic.Model.Login;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using BusinessLogic.Model.Calendar;
+using BusinessLogic.Model.Shared;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace BusinessLogic.Model
 {
@@ -27,7 +30,7 @@ namespace BusinessLogic.Model
             
         }
 
-        public string validateLogin(User user)
+        public string ValidateLogin(User user)
         {
             socketHandler.SendToDatabase("Login", user);
             string result = socketHandler.GetResponse();
@@ -41,10 +44,18 @@ namespace BusinessLogic.Model
             }
         }
 
-        public void GetAllShifts()
+        public async Task GetAllShifts(string username, string date)
         {
-            socketHandler.SendToDatabaseStringOnly("GetShifts; OR WHICHEVER COMMAND FROM JAVA SERVER");
-            socketHandler.GetResponse();
+            socketHandler.SendToDatabaseStringOnly("CalendarMonth;" + username + ";" + date);
+            List<Shift> shifts = JsonConvert.DeserializeObject<List<Shift>>(socketHandler.GetResponse());
+            await Shifts.AddRangeAsync(shifts);
+        }
+
+        public string postUser(User user)
+        {
+            socketHandler.SendToDatabase("Login", user);
+            string result = socketHandler.GetResponse();
+            return result;
         }
     }
 }

@@ -1,11 +1,11 @@
-﻿using BusinessLogic.Model.Login;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using BusinessLogic.Model;
+using BusinessLogic.Model.Shared;
 
 namespace BusinessLogic.Controllers
 {
@@ -25,7 +25,7 @@ namespace BusinessLogic.Controllers
        [HttpPost]
         public async Task<ActionResult<string>> ValidateUser(User user)
         {
-            return _context.validateLogin(user);
+            return _context.ValidateLogin(user);
         }
     }
 }

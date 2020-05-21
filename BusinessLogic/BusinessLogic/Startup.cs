@@ -1,6 +1,5 @@
 using BusinessLogic.Model;
 using BusinessLogic.Model.Calendar;
-using BusinessLogic.Model.Login;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;

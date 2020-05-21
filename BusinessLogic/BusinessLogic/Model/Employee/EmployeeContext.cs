@@ -1,4 +1,5 @@
-﻿using BusinessLogic.Model.Login;
+﻿
+using BusinessLogic.Model.Shared;
 
 namespace BusinessLogic.Controllers
 {

@@ -1,12 +1,10 @@
-﻿using System;
+﻿using BusinessLogic.Model;
+using BusinessLogic.Model.Calendar;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using BusinessLogic.Model;
-using BusinessLogic.Model.Calendar;
 
 namespace BusinessLogic.Controllers
 {
@@ -23,29 +21,16 @@ namespace BusinessLogic.Controllers
 
         // GET: api/Shifts
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Shift>>> GetShifts()
+        public async Task<ActionResult<IEnumerable<Shift>>> GetShifts([FromQuery (Name = "username")] string username, [FromQuery (Name = "date")] string date)
         {
+            await _context.GetAllShifts(username, date);
             return await _context.Shifts.ToListAsync();
-        }
-
-        // GET: api/Shifts/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Shift>> GetShift(int id)
-        {
-            var shift = await _context.Shifts.FindAsync(id);
-
-            if (shift == null)
-            {
-                return NotFound();
-            }
-
-            return shift;
         }
 
         // PUT: api/Shifts/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
+        /*[HttpPut("{id}")]
         public async Task<IActionResult> PutShift(int id, Shift shift)
         {
             if (id != shift.Id)
@@ -100,7 +85,7 @@ namespace BusinessLogic.Controllers
             await _context.SaveChangesAsync();
 
             return shift;
-        }
+        }*/
 
         private bool ShiftExists(int id)
         {
