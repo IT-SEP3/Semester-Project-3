@@ -1,7 +1,7 @@
 package clientNetworking.login;
 
 
-import clientNetworking.restEASY.HTTPHandler;
+import clientNetworking.resteasy.HTTPHandler;
 import com.google.gson.Gson;
 import shared.Shift;
 import shared.User;
@@ -12,14 +12,14 @@ public class LoginClientImpl implements LoginClient {
     private HTTPHandler httpHandler;
 
 
-    public LoginClientImpl(HTTPHandler httpHandler){
+    public LoginClientImpl(HTTPHandler httpHandler) {
         this.httpHandler = httpHandler;
         this.jsonSerializer = new Gson();
     }
 
     @Override
     public String Login(User loginCarrier) {
-        String PATH ="http://127.0.0.1:5000/api/Login";
+        String PATH = "http://127.0.0.1:5000/api/Login";
         String loginJson = jsonSerializer.toJson(loginCarrier);
         System.out.println(loginJson);
         response = httpHandler.PostToAPI(loginJson, PATH);

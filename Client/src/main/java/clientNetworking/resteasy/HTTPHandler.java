@@ -18,7 +18,7 @@ public class HTTPHandler {
 
     public String PostToAPI(String json, String URL) {
         Response response;
-        try{
+        try {
             client = new ResteasyClientBuilder().build();
             target = client.target(URL);
 
@@ -27,16 +27,16 @@ public class HTTPHandler {
                 throw new RuntimeException("Failed : HTTP error code : "
                         + response.getStatus());
             }
-        } catch (ProcessingException e){
+        } catch (ProcessingException e) {
             e.printStackTrace();
             return "Server not responding";
         }
         return response.readEntity(String.class);
     }
 
-    public String GetFromAPI(String URL){
+    public String GetFromAPI(String URL) {
         String value = "";
-        try{
+        try {
             client = new ResteasyClientBuilder().build();
             target = client.target(URL);
 
@@ -44,7 +44,7 @@ public class HTTPHandler {
             value = response.readEntity(String.class);
             System.out.println(value);
 
-        } catch (ProcessingException e){
+        } catch (ProcessingException e) {
             e.fillInStackTrace();
             return "Server not responding";
         }
