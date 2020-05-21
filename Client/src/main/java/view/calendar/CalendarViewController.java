@@ -189,7 +189,7 @@ public class CalendarViewController {
             Calendar cal2 = Calendar.getInstance();
             cal.setTime(date);
             int monthNumber=cal.get(Calendar.MONTH);
-            calendarViewModel.setCalendar(monthNumber,2020);
+            calendarViewModel.setCalendar(monthNumber+1,2020);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -206,7 +206,7 @@ public class CalendarViewController {
             int monthNumber=cal.get(Calendar.MONTH);
             calendarViewModel.getCalendar(monthNumber + "-" + 2020);//monthsBox.getValue());
             calendarViewModel.clearCalendar();
-            calendarViewModel.setCalendar(monthNumber, 2020);
+            calendarViewModel.setCalendar(monthNumber+1, 2020);
         } catch (ParseException e) {
             e.printStackTrace();
         }
