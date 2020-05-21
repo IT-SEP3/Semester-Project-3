@@ -2,13 +2,11 @@ package main.java.persistence.users;
 
 import exceptions.DataConnectionException;
 import persistence.database.IDBConnection;
+import shared.User;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import shared.User;
-
-public class UserDAO {
+public class UserDAO implements IUserDAO {
 
     private final IDBConnection databaseConnection;
     PreparedStatement preparedStatement = null;
@@ -17,7 +15,8 @@ public class UserDAO {
         this.databaseConnection = databaseConnection;
     }
 
-    public boolean addEmployee(User user) {
+    @Override
+    public String addEmployee(User user) {
 
         String sql = "INSERT INTO " + databaseConnection.getUserTable() + "(username, password, firstName, lastName, email, status, accessLevel) VALUES ('" + user.getUsername() + "', '" + user.getPassword() + "', '" + user.getFname() + "', '" + user.getLname() + "', '" + user.getEmail() + "', '" + user.getStatus() + "', '" + user.getAccessLevel() + "')";
 
@@ -26,11 +25,11 @@ public class UserDAO {
             preparedStatement.executeUpdate();
         } catch (SQLException | DataConnectionException throwables) {
             throwables.printStackTrace();
-            return false;
+            return "User '" + user.getUsername() + "' succesfully added";
         }
         finally {
             databaseConnection.closeConnection();
         }
-        return true;
+        return null;
     }
 }
