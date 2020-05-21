@@ -12,7 +12,7 @@ public class ClientFactory {
     private HTTPHandler httpHandler;
     private LoginClient loginClient;
     private CalendarClient calendarClient;
-    private AddUserClient addShiftClient;
+    private AddUserClient addUserClient;
 
 
     public ClientFactory(HTTPHandler httpHandler) {
@@ -32,9 +32,9 @@ public class ClientFactory {
     }
 
     public AddUserClient addShiftClient() {
-        if (addShiftClient == null)
-            addShiftClient = new AddUserClientImpl(httpHandler);
-        return addShiftClient;
+        if (addUserClient == null)
+            addUserClient = new AddUserClientImpl(httpHandler);
+        return addUserClient;
     }
 
 }
