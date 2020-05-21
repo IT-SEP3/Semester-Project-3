@@ -2,8 +2,6 @@ package clientNetworking;
 
 import clientNetworking.addShift.AddShiftClient;
 import clientNetworking.addShift.AddShiftClientImpl;
-import clientNetworking.addUser.AddUserClient;
-import clientNetworking.addUser.AddUserClientImpl;
 import clientNetworking.calendar.CalendarClient;
 import clientNetworking.calendar.CalendarClientImpl;
 import clientNetworking.login.LoginClient;
@@ -19,7 +17,7 @@ public class ClientFactory {
     private LoginClient loginClient;
     private CalendarClient calendarClient;
     private AddShiftClient addShiftClient;
-    private AddUserClient addUserClient;
+
 
     public ClientFactory(HTTPHandler httpHandler) {
         this.httpHandler = httpHandler;
@@ -43,9 +41,4 @@ public class ClientFactory {
         return addShiftClient;
     }
 
-    public AddUserClient addUserClient() {
-        if (addUserClient == null)
-            addUserClient = new AddUserClientImpl(httpHandler);
-        return addUserClient;
-    }
 }
