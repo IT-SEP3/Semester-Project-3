@@ -1,16 +1,11 @@
 package clientNetworking;
 
 import clientNetworking.addShift.AddShiftClient;
-import clientNetworking.addShift.AddShiftClientImpl;
 import clientNetworking.calendar.CalendarClient;
 import clientNetworking.calendar.CalendarClientImpl;
 import clientNetworking.login.LoginClient;
 import clientNetworking.login.LoginClientImpl;
 import clientNetworking.resteasy.HTTPHandler;
-import com.google.gson.Gson;
-import model.login.LoginModel;
-import model.login.LoginModelImpl;
-import shared.User;
 
 public class ClientFactory {
     private HTTPHandler httpHandler;
@@ -37,7 +32,7 @@ public class ClientFactory {
 
     public AddShiftClient addShiftClient() {
         if (addShiftClient == null)
-            addShiftClient = new AddShiftClientImpl(httpHandler);
+            addShiftClient = new clientNetworking.addShift.AddUserClientImpl(httpHandler);
         return addShiftClient;
     }
 
