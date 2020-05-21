@@ -2,9 +2,11 @@ package clientNetworking.calendar;
 
 import clientNetworking.HTTPHandler;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import shared.Shift;
 import shared.User;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class CalendarClientImpl implements CalendarClient{
@@ -19,10 +21,11 @@ public class CalendarClientImpl implements CalendarClient{
     }
 
     @Override // date format xx-xxxx
-    public ArrayList<Shift> getCalendarShifts(String userID, String month) {
+    public ArrayList<Shift> getCalendarShifts(int userID, String month) {
+        Type listType = new TypeToken<ArrayList<Shift>>(){}.getType();
         String PATH ="http://127.0.0.1:5000/api/Shifts/?username=" +  userID + "&date=" + month;
         response = httpHandler.GetFromAPI(PATH);
-        ArrayList<Shift> shifts = jsonSerializer.fromJson(response, ArrayList<Shift>.class);
+        ArrayList<Shift> shifts = jsonSerializer.fromJson(response, listType);
         return shifts;
     }
 

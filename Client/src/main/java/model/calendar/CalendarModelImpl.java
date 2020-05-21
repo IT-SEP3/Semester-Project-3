@@ -44,7 +44,7 @@ public class CalendarModelImpl implements CalendarModel {
 
     @Override
     public void getCalendar(String timeStamp) {
-        shifts = calendarClient.getCalendarShifts(loginModel.getCurrentUser().getUserName(), timeStamp);
+        shifts = calendarClient.getCalendarShifts(loginModel.getCurrentUser().getUserId(), timeStamp);
     }
 
     @Override
