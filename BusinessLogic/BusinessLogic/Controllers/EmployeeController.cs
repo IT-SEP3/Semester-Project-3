@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BusinessLogic.Model;
 using BusinessLogic.Model.Shared;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,44 +13,25 @@ namespace BusinessLogic.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
-        private EmployeeContext context ;
-        public EmployeeController()
+        private readonly PlannerContext _context;
+
+        public EmployeeController(PlannerContext context)
         {
-            context = new EmployeeContext();
+            _context = context;
         }
 
-        
 
         // POST: api/Employee
         [HttpPost]
-        public String Post(User user)
+        public async Task<ActionResult<string>> Post(User user)
         {
-            return context.postUser(user);
-        }
-        /*
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-        // GET: api/Employee/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
-        {
-            return "value";
+            return _context.postUser(user);
         }
 
-        // PUT: api/Employee/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<string>> GetEmployee(int id)
         {
+            return  _context.getEmployee(id);
         }
-
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
-        */
     }
 }

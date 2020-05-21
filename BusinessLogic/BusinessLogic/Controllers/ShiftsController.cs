@@ -2,6 +2,7 @@
 using BusinessLogic.Model.Calendar;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,10 +22,9 @@ namespace BusinessLogic.Controllers
 
         // GET: api/Shifts
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Shift>>> GetShifts([FromQuery (Name = "username")] string username, [FromQuery (Name = "date")] string date)
+        public async Task<String> GetShifts([FromQuery (Name = "username")] string username, [FromQuery (Name = "date")] string date)
         {
-            await _context.GetAllShifts(username, date);
-            return await _context.Shifts.ToListAsync();
+            return _context.GetAllShifts(username, date);
         }
 
         // PUT: api/Shifts/5

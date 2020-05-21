@@ -6,17 +6,17 @@ import java.util.Date;
 public class Shift {
 
     private int id;
-    private int user_id;
-    private String description;
-    private String status;
-    private int manager_id;
     private LocalDate date;
+    private int user_id;
+    private int manager_id;
+    private String description;
 
-    public Shift(int id, int user_id, String description, String status, int manager_id, LocalDate date) {
+
+
+    public Shift(int id, int user_id, String description, int manager_id, LocalDate date) {
         this.id = id;
         this.user_id = user_id;
         this.description = description;
-        this.status = status;
         this.manager_id = manager_id;
         this.date = date;
     }
@@ -45,14 +45,6 @@ public class Shift {
         this.description = description;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public int getManager_id() {
         return manager_id;
     }
@@ -75,7 +67,6 @@ public class Shift {
                 "id=" + id +
                 ", user_id=" + user_id +
                 ", description='" + description + '\'' +
-                ", status='" + status + '\'' +
                 ", manager_id=" + manager_id +
                 '}';
     }

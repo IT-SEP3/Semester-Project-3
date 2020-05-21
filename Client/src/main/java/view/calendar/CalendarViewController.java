@@ -21,12 +21,7 @@ public class CalendarViewController {
 
     private ViewHandler viewHandler;
     private CalendarViewModel calendarViewModel;
-    //ObservableList<String> months = FXCollections.observableArrayList("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
 
-    @FXML
-    private ComboBox<String> chooseMonth = new ComboBox();
-
-    // date label first number is row second is column
     @FXML
     private Label date1x1 = new Label();
     @FXML
@@ -112,9 +107,14 @@ public class CalendarViewController {
     @FXML
     private Label date6x7 = new Label();
 
+    @FXML
+    private ComboBox<String> monthsBox;
+
+
 
     public void init(CalendarViewModel vm, ViewHandler vh){
         calendarViewModel = vm;
+        viewHandler = vh;
         date1x1.textProperty().bindBidirectional(calendarViewModel.getProperyList(0));
         date1x2.textProperty().bindBidirectional(calendarViewModel.getProperyList(1));
         date1x3.textProperty().bindBidirectional(calendarViewModel.getProperyList(2));
@@ -158,47 +158,74 @@ public class CalendarViewController {
         date6x6.textProperty().bindBidirectional(calendarViewModel.getProperyList(40));
         date6x7.textProperty().bindBidirectional(calendarViewModel.getProperyList(41));;
 
-        //chooseMonth.setItems(months);
         Calendar cal = Calendar.getInstance();
-        chooseMonth.setValue(new SimpleDateFormat("MMMM").format(cal.getTime()));
+        monthsBox.setValue(new SimpleDateFormat("MMMM").format(cal.getTime()));
 
-        chooseMonth.getItems().add("January");
-        chooseMonth.getItems().add("February");
-        chooseMonth.getItems().add("March");
-        chooseMonth.getItems().add("April");
-        chooseMonth.getItems().add("May");
-        chooseMonth.getItems().add("June");
-        chooseMonth.getItems().add("July");
-        chooseMonth.getItems().add("August");
-        chooseMonth.getItems().add("September");
-        chooseMonth.getItems().add("October");
-        chooseMonth.getItems().add("November");
-        chooseMonth.getItems().add("December");
+        monthsBox.getItems().add("January");
+        monthsBox.getItems().add("February");
+        monthsBox.getItems().add("March");
+        monthsBox.getItems().add("April");
+        monthsBox.getItems().add("May");
+        monthsBox.getItems().add("June");
+        monthsBox.getItems().add("July");
+        monthsBox.getItems().add("August");
+        monthsBox.getItems().add("September");
+        monthsBox.getItems().add("October");
+        monthsBox.getItems().add("November");
+        monthsBox.getItems().add("December");
 
 
 
-        //calendarViewModel.getUser();
-        //String timeStamp = new SimpleDateFormat("MM-yyyy").format(Calendar.getInstance().getTime());
-        //calendarViewModel.getCalendar(timeStamp);
-        calendarViewModel.setCalendar();
+        //Calendar calYear = Calendar.getInstance();
+        //chooseYear.setValue(new SimpleDateFormat("yyyy").format(calYear.getTime()));
+        //chooseYear.getItems().setAll("2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026");
+
+
+        calendarViewModel.getUser();
+        String timeStamp = new SimpleDateFormat("MM-yyyy").format(Calendar.getInstance().getTime());
+        calendarViewModel.getCalendar(timeStamp);
+        try{
+            Date date = new SimpleDateFormat("MMM").parse(monthsBox.getValue());
+            Calendar cal2 = Calendar.getInstance();
+            cal.setTime(date);
+            int monthNumber=cal.get(Calendar.MONTH);
+            calendarViewModel.setCalendar(monthNumber,2020);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @FXML
-    void onSelect(ActionEvent event) {
+    void onSelectMonth(ActionEvent event) {
+        System.out.println("Trying to change month");
         try{
-            Date date = new SimpleDateFormat("MMM").parse(chooseMonth.getValue());//put your month name here
+            Date date = new SimpleDateFormat("MMM").parse(monthsBox.getValue());
             Calendar cal = Calendar.getInstance();
             cal.setTime(date);
             int monthNumber=cal.get(Calendar.MONTH);
-            calendarViewModel.getCalendar(monthNumber + "-2020");
-            calendarViewModel.setCalendar();
+            calendarViewModel.getCalendar(monthNumber + "-" + 2020);//monthsBox.getValue());
+            calendarViewModel.clearCalendar();
+            calendarViewModel.setCalendar(monthNumber, 2020);
         } catch (ParseException e) {
             e.printStackTrace();
         }
     }
 
+
+/*
     @FXML
-    void onCreateEmployee(ActionEvent event) {
-//        viewHandler.openCreateEmployeeView();
+    void onSelect(ActionEvent event) {
+        try{
+            Date date = new SimpleDateFormat("MMM").parse(chooseMonth.getValue());
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(date);
+            int monthNumber=cal.get(Calendar.MONTH);
+            calendarViewModel.getCalendar(monthNumber + "-" + chooseMonth.getValue());
+            calendarViewModel.setCalendar();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
+    */
 }

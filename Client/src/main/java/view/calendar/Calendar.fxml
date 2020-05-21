@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
@@ -337,15 +336,14 @@
                   </VBox>
                   <VBox prefHeight="900.0" prefWidth="218.0">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="217.0" text="Select Month">
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="229.0" text="Menu">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
                         <AnchorPane prefHeight="826.0" prefWidth="217.0">
                            <children>
-                              <ComboBox fx:id="chooseMonth" onAction="#onSelect" prefHeight="44.0" prefWidth="226.0" />
-                              <Button layoutX="60.0" layoutY="99.0" mnemonicParsing="false" text="Create Employee" />
+                              <ComboBox fx:id="monthsBox" layoutX="34.0" layoutY="2.0" onAction="#onSelectMonth" prefWidth="150.0" />
                            </children></AnchorPane>
                      </children>
                   </VBox>

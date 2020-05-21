@@ -1,6 +1,6 @@
 package shared;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 public class User {
     private int id;
@@ -10,15 +10,13 @@ public class User {
     private String lname;
     private String email;
     private String status;
-    private Date employmentDate;
+    private LocalDate employmentDate;
     private String accessLevel;
 
-
-
-    public User(String username, String password, int id, String fname, String lname, String email, String status, Date employmentDate, String accessLevel) {
+    public User(int id, String username, String password, String fname, String lname, String email, String status, LocalDate employmentDate, String accessLevel) {
+        this.id = id;
         this.username = username;
         this.password = password;
-        this.id = id;
         this.fname = fname;
         this.lname = lname;
         this.email = email;
@@ -27,7 +25,10 @@ public class User {
         this.accessLevel = accessLevel;
     }
 
-    public User(String username, String password) {
+
+
+
+    public User(String username, String password){
         this.username = username;
         this.password = password;
     }
@@ -80,11 +81,11 @@ public class User {
         this.status = status;
     }
 
-    public Date getEmploymentDate() {
+    public LocalDate getEmploymentDate() {
         return employmentDate;
     }
 
-    public void setEmploymentDate(Date employmentDate) {
+    public void setEmploymentDate(LocalDate employmentDate) {
         this.employmentDate = employmentDate;
     }
 
