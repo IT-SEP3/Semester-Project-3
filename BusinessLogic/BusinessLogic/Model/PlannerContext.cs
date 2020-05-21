@@ -45,9 +45,9 @@ namespace BusinessLogic.Model
             }
         }
 
-        public async Task GetAllShifts(string username, string date)
+        public async Task GetAllShifts(string UserId, string date)
         {
-            socketHandler.SendToDatabaseStringOnly("CalendarMonth;" + username + ";" + date);
+            socketHandler.SendToDatabaseStringOnly("CalendarMonth;" + UserId + ";" + date);
             List<Shift> shifts = JsonConvert.DeserializeObject<List<Shift>>(socketHandler.GetResponse());
             await Shifts.AddRangeAsync(shifts);
         }

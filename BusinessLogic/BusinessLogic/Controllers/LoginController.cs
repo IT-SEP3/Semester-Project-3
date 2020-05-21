@@ -22,7 +22,7 @@ namespace BusinessLogic.Controllers
 
 
         // POST: api/Login
-       [HttpPost]
+        [HttpPost]
         public async Task<ActionResult<string>> ValidateUser(User user)
         {
             return _context.ValidateLogin(user);

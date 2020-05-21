@@ -24,7 +24,12 @@ public class CalendarViewController {
     //ObservableList<String> months = FXCollections.observableArrayList("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
 
     @FXML
-    private ComboBox<String> chooseMonth = new ComboBox();
+    private ComboBox<String> chooseMonth;
+
+    @FXML
+    private ComboBox<String> chooseYear;
+
+
 
     // date label first number is row second is column
     @FXML
@@ -114,6 +119,8 @@ public class CalendarViewController {
 
 
     public void init(CalendarViewModel vm, ViewHandler vh){
+        chooseMonth = new ComboBox();
+        chooseYear = new ComboBox();
         calendarViewModel = vm;
         date1x1.textProperty().bindBidirectional(calendarViewModel.getProperyList(0));
         date1x2.textProperty().bindBidirectional(calendarViewModel.getProperyList(1));
@@ -158,7 +165,6 @@ public class CalendarViewController {
         date6x6.textProperty().bindBidirectional(calendarViewModel.getProperyList(40));
         date6x7.textProperty().bindBidirectional(calendarViewModel.getProperyList(41));;
 
-        //chooseMonth.setItems(months);
         Calendar cal = Calendar.getInstance();
         chooseMonth.setValue(new SimpleDateFormat("MMMM").format(cal.getTime()));
 
@@ -175,6 +181,9 @@ public class CalendarViewController {
         chooseMonth.getItems().add("November");
         chooseMonth.getItems().add("December");
 
+        Calendar calYear = Calendar.getInstance();
+        chooseYear.setValue(new SimpleDateFormat("yyyy").format(calYear.getTime()));
+        chooseYear.getItems().addAll("2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026");
 
 
         //calendarViewModel.getUser();
@@ -186,11 +195,11 @@ public class CalendarViewController {
     @FXML
     void onSelect(ActionEvent event) {
         try{
-            Date date = new SimpleDateFormat("MMM").parse(chooseMonth.getValue());//put your month name here
+            Date date = new SimpleDateFormat("MMM").parse(chooseMonth.getValue());
             Calendar cal = Calendar.getInstance();
             cal.setTime(date);
             int monthNumber=cal.get(Calendar.MONTH);
-            calendarViewModel.getCalendar(monthNumber + "-2020");
+            calendarViewModel.getCalendar(monthNumber + "-" + chooseMonth.getValue());
             calendarViewModel.setCalendar();
         } catch (ParseException e) {
             e.printStackTrace();

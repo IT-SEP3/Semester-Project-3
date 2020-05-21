@@ -337,13 +337,14 @@
                   </VBox>
                   <VBox prefHeight="900.0" prefWidth="218.0">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="217.0" text="Select Month">
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="217.0" text="Select Month And Year">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
                         <AnchorPane prefHeight="826.0" prefWidth="217.0">
                            <children>
+                              <ComboBox fx:id="chooseYear" layoutY="44.0" onAction="#onSelectYear" prefHeight="44.0" prefWidth="226.0" />
                               <ComboBox fx:id="chooseMonth" onAction="#onSelect" prefHeight="44.0" prefWidth="226.0" />
                               <Button layoutX="60.0" layoutY="99.0" mnemonicParsing="false" text="Create Employee" />
                            </children></AnchorPane>

@@ -8,7 +8,6 @@ namespace BusinessLogic.Model.Calendar
 {
     public class Shift
     {
-
         public int Id { get; set; }
         public DateTime CreatedTime { get; set; }
         public string Description { get; set; }
