@@ -6,7 +6,7 @@ import shared.User;
 import java.util.ArrayList;
 
 public interface CalendarClient {
-    ArrayList<Shift> getCalendarShifts(String username, String month);
+    ArrayList<Shift> getCalendarShifts(int userId, String month);
     String getResponse();
     User getUser(String currentUser);
 }

@@ -57,7 +57,9 @@ CREATE TABLE Shift (
                        description VARCHAR(10000),
                        status VARCHAR(255),
                        Manager_ID INTEGER REFERENCES Users(Users_ID),
-                       createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                       day int,
+                       month int,
+                       year int,
                        PRIMARY KEY(Shift_ID)
 
 );

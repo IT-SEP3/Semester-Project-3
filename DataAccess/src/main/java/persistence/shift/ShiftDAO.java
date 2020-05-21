@@ -3,17 +3,13 @@ package persistence.shift;
 import exceptions.DataConnectionException;
 import persistence.database.IDBConnection;
 import shared.Shift;
-import shared.User;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class ShiftDAO implements IShiftDAO {
 
@@ -57,22 +53,13 @@ public class ShiftDAO implements IShiftDAO {
     }
 
     @Override
-    public String postShift(Shift shift) {
-/*
+    public void postShift(Shift shift) {
+        System.out.println("IN get shift");
         try {
-            String sql = "INSERT INTO Users (username, password, firstName, lastName, email, status, accessLevel) +" +
-                    "VALUE('"+ shift.getId() +"', '"+ shift.getUser_id() +"', '"+ shift.getDescription() +"', '"+ shift.ge +"', '"+  +"', '"+  +"', '"+  +"')";
+            String sql = "INSERT INTO Shift (Shift_ID, Users_ID, description, status, Manager_ID, day, month, year) +" +
+                    "VALUE('"+ shift.getId() +"', '"+ shift.getUser_id() +"', '"+ shift.getDescription() +"', '"+ shift.getStatus() +"', '"+ shift.getManager_id() +"', '"+ shift.getDate().getDayOfMonth() +"', '"+ shift.getDate().getMonthValue() +"', '"+ shift.getDate().getYear() +"')";
             preparedStatement = databaseConnection.createPreparedStatement(sql);
             resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                String userName = resultSet.getString("username");
-                String password = resultSet.getString("password");
-
-                resultUser = new User(userName, password);
-                if (resultUser.getPassword().equals(user.getPassword()) && resultUser.getUsername().equals(user.getUsername())) {
-                    conclusion = "OK";
-                }
-            }
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -81,9 +68,7 @@ public class ShiftDAO implements IShiftDAO {
         } finally {
             databaseConnection.closeConnection();
         }
-        return conclusion;
-         */
-        return null;
+        //return conclusion;
     }
 
 
