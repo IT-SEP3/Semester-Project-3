@@ -28,7 +28,7 @@ public class ShiftDAO implements IShiftDAO {
         ArrayList<Shift> shifts = new ArrayList<>();
 
         try {
-            String sql = "SELECT * FROM " + databaseConnection.getShiftTable() + " WHERE users_ID = " + userID + " AND month = " + Integer.parseInt(month) + " AND year = " + Integer.parseInt(year) + ";";
+            String sql = "SELECT * FROM " + databaseConnection.getShiftTable() + " WHERE users_ID = " + Integer.parseInt(userID) + " AND month = " + Integer.parseInt(month) + " AND year = " + Integer.parseInt(year) + ";";
             preparedStatement = databaseConnection.createPreparedStatement(sql);
             resultSet = preparedStatement.executeQuery();
             while ( resultSet.next()) {
