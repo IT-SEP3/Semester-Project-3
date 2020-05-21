@@ -15,7 +15,7 @@ public class LoginModelImpl implements LoginModel {
     @Override
     public void login(String username, String password) {
         User loginCarrier = new User(username,String.valueOf(password.hashCode()));
-        String answer = loginClient.Login(loginCarrier);
+        String answer = loginClient.login(loginCarrier);
         if(answer.equals("Login successful")){
             currentUser = loginCarrier;
         }

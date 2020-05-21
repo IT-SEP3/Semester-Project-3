@@ -5,7 +5,7 @@ import shared.User;
 
 
 public interface AddUserClient {
-    String AddUser(User user);
+    String addUser(User user);
 
     String getResponse();
 }

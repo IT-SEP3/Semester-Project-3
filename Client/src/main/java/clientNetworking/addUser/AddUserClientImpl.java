@@ -15,12 +15,12 @@ public class AddUserClientImpl implements AddUserClient {
     }
 
     @Override
-    public String AddUser(User user) {
+    public String addUser(User user) {
         // in future added path to Employees where Manager can add user
         String PATH = "http://127.0.0.1:5000/api/Calendar/Employees/AddUser";
         String newUserJson = jsonSerializer.toJson(user);
         System.out.println(newUserJson);
-        response = httpHandler.PostToAPI(newUserJson, PATH);
+        response = httpHandler.postToAPI(newUserJson, PATH);
         return response;
     }
 

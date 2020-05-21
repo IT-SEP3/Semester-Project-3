@@ -16,7 +16,7 @@ public class HTTPHandler {
     public HTTPHandler() {
     }
 
-    public String PostToAPI(String json, String URL) {
+    public String postToAPI(String json, String URL) {
         Response response;
         try {
             client = new ResteasyClientBuilder().build();
@@ -34,7 +34,7 @@ public class HTTPHandler {
         return response.readEntity(String.class);
     }
 
-    public String GetFromAPI(String URL) {
+    public String getFromAPI(String URL) {
         String value = "";
         try {
             client = new ResteasyClientBuilder().build();

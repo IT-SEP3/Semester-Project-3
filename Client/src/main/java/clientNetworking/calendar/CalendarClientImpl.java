@@ -19,7 +19,7 @@ public class CalendarClientImpl implements CalendarClient {
     public Shift[] getCalendarShifts(String username, String month) {
         String PATH = "http://127.0.0.1:5000/api/Shifts/?username=" + username + "&date=" + month;
         String TestPATH = "http://127.0.0.1:5000/api/Login/?username=" + username + "&date=" + month;
-        response = httpHandler.GetFromAPI(TestPATH);
+        response = httpHandler.getFromAPI(TestPATH);
 
         return new Shift[0];
     }

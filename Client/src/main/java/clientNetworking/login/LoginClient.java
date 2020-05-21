@@ -5,7 +5,7 @@ import shared.Shift;
 import shared.User;
 
 public interface LoginClient {
-    String Login(User loginCarrier);
+    String login(User loginCarrier);
 
     String getResponse();
 }
