@@ -1,17 +1,18 @@
 package persistence;
 
-import persistence.calendar.CalendarDAO;
-import persistence.calendar.ICalendarDAO;
 import persistence.database.IDBConnection;
 import persistence.login.ILoginDAO;
 import persistence.login.LoginDAO;
-import persistence.shifts.IShiftDAO;
-import persistence.shifts.ShiftDAO;
+import persistence.shift.IShiftDAO;
+import persistence.shift.ShiftDAO;
 
 public class DAOFactory {
+
+
+public class DAOFactory {
+
     private IDBConnection connect;
     private ILoginDAO login;
-    private ICalendarDAO calendar;
     private IShiftDAO shift;
 
     public DAOFactory(IDBConnection connect) {
@@ -24,11 +25,6 @@ public class DAOFactory {
         return login;
     }
 
-    public ICalendarDAO getCalendar() {
-        if(calendar == null)
-            calendar = new CalendarDAO(connect);
-        return calendar;
-    }
 
     public IShiftDAO getShift() {
         if(shift == null)
