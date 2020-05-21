@@ -22,6 +22,7 @@ public class LoginClientImpl implements LoginClient {
         String loginJson = jsonSerializer.toJson(loginCarrier);
         System.out.println(loginJson);
         response = httpHandler.PostToAPI(loginJson, PATH);
+
         return response;
     }
 

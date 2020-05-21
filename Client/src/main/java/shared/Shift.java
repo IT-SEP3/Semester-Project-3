@@ -1,10 +1,9 @@
 package shared;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Shift implements Serializable {
+public class Shift {
     private LocalDate date;
     private String title;
 

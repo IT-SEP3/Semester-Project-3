@@ -35,7 +35,7 @@ INSERT INTO Users (username, password, firstName, lastName, email, status, acces
     VALUE('Niklas', '549190650', 'Niklas', 'Krogh', '281335@via.dk', 'ACTIVE', 'MANAGER');
 
 INSERT INTO Users (username, password, firstName, lastName, email, status, accessLevel)
-    VALUE('Rokas', 'password', 'Rokas', 'Barasa', '285047@via.dk', 'ACTIVE', 'EMPLOYEE');
+    VALUE('Rokas', '92668751', 'Rokas', 'Barasa', '285047@via.dk', 'ACTIVE', 'EMPLOYEE');
 
 SELECT * FROM Users;
 

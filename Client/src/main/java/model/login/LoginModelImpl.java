@@ -7,6 +7,7 @@ import shared.User;
 public class LoginModelImpl implements LoginModel {
     public LoginClient loginClient;
     private User currentUser;
+    private String response;
 
     public LoginModelImpl(LoginClient loginClient) {
         this.loginClient = loginClient;
@@ -19,13 +20,14 @@ public class LoginModelImpl implements LoginModel {
         String[] splitAnswer = answer.split(";");
         if(splitAnswer[0].equals("Login successful")){
             currentUser = loginCarrier;
+            response = splitAnswer[0];
             currentUser.setID(Integer.parseInt(splitAnswer[1]));
         }
     }
 
     @Override
     public String loginResponse() {
-        return loginClient.getResponse();
+        return response;
     }
 
     @Override
