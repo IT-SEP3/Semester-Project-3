@@ -24,25 +24,27 @@ public class ShiftDAO implements IShiftDAO {
     }
 
     @Override
-    public ArrayList<Shift> getShifts(Shift shift, User user) {
+    public ArrayList<Shift> getShifts(String userID, String month, String year) {
         ArrayList<Shift> shifts = new ArrayList<>();
 
         try {
-            String sql = "SELECT * FROM " + databaseConnection.getShiftTable() + " WHERE users_ID = " + user.getId() + ";";
+            String sql = "SELECT * FROM " + databaseConnection.getShiftTable() + " WHERE users_ID = " + Integer.parseInt(userID) + " AND month = " + Integer.parseInt(month) + " AND year = " + Integer.parseInt(year) + ";";
             preparedStatement = databaseConnection.createPreparedStatement(sql);
             resultSet = preparedStatement.executeQuery();
             while ( resultSet.next()) {
-                int shiftID = resultSet.getInt("Shift_ID");
-                int userID = resultSet.getInt("Users_ID");
+                int shift_ID = resultSet.getInt("Shift_ID");
+                int user_ID = resultSet.getInt("Users_ID");
                 String description = resultSet.getString("description");
                 String status = resultSet.getString("status");
                 int managerID = resultSet.getInt("Manager_ID");
-                Date createdAt = resultSet.getTimestamp("createdAt");
+                int day = resultSet.getInt("day");
+                int month = resultSet.getInt("month");
+                int year = resultSet.getInt("year");
 
                 DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-                String date = dateFormat.format(createdAt);
+                String date = dateFormat.format();
 
-                shifts.add(new Shift(shiftID, userID, description, status, managerID, date));
+                shifts.add(new Shift(shift_ID, user_ID, description, status, managerID, date));
             }
         } catch (DataConnectionException | SQLException e) {
             e.printStackTrace();

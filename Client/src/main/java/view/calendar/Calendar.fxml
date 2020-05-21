@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
@@ -344,6 +345,7 @@
                         <AnchorPane prefHeight="826.0" prefWidth="217.0">
                            <children>
                               <ComboBox fx:id="chooseMonth" onAction="#onSelect" prefHeight="44.0" prefWidth="226.0" />
+                              <Button layoutX="60.0" layoutY="99.0" mnemonicParsing="false" text="Create Employee" />
                            </children></AnchorPane>
                      </children>
                   </VBox>
