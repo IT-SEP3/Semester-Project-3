@@ -8,4 +8,6 @@ import java.util.ArrayList;
 public interface IShiftDAO {
 
     ArrayList<Shift> getShifts(Shift shift, User user);
+
+    String postShift(Shift shift);
 }

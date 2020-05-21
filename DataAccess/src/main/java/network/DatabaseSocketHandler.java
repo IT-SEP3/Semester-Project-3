@@ -46,9 +46,9 @@ public class DatabaseSocketHandler implements Runnable {
                     sendToClient(confirmation);
                 }
                 else if(recievedPieces[0].equals("CalendarMonth")) {
-                    //Shift[] shiftsForMonth = daoFactory.getCalendar().getMonthOfShiftsByManager(recievedPieces[1], recievedPieces[2]); // Inputs are :Username for first input, month in somekind of 05/2020 format
-                    //String shiftsJson = gson.toJson(shiftsForMonth);
-                    //sendToClient(shiftsJson);
+                    Shift[] shiftsForMonth = daoFactory.getShift().getShifts(recievedPieces[1], recievedPieces[2]); // Inputs are :Username for first input, month in somekind of 05/2020 format
+                    String shiftsJson = gson.toJson(shiftsForMonth);
+                    sendToClient(shiftsJson);
                 }
                 else if(recievedPieces[0].equals("Something")) {
 

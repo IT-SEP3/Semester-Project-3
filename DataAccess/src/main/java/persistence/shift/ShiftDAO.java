@@ -51,4 +51,32 @@ public class ShiftDAO implements IShiftDAO {
         }
         return shifts;
     }
+
+    @Override
+    public String postShift(Shift shift) {
+
+        try {
+            String sql = "INSERT INTO Users (username, password, firstName, lastName, email, status, accessLevel) +" +
+                    "VALUE('"+ shift.getId() +"', '"+ shift.getUser_id() +"', '"+ shift.getDescription() +"', '"+ shift.ge +"', '"+  +"', '"+  +"', '"+  +"')";
+            preparedStatement = databaseConnection.createPreparedStatement(sql);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String userName = resultSet.getString("username");
+                String password = resultSet.getString("password");
+
+                resultUser = new User(userName, password);
+                if (resultUser.getPassword().equals(user.getPassword()) && resultUser.getUsername().equals(user.getUsername())) {
+                    conclusion = "OK";
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (DataConnectionException e) {
+            e.printStackTrace();
+        } finally {
+            databaseConnection.closeConnection();
+        }
+        return conclusion;
+    }
 }
