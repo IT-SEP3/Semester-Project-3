@@ -21,5 +21,5 @@ public interface IDBConnection {
 
     String getUserTable();
 
-    String getCalendarTable();
+    String getShiftTable();
 }

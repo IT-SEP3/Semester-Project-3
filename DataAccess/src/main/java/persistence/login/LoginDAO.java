@@ -54,14 +54,14 @@ public class LoginDAO implements ILoginDAO {
         return user;
     }
 
-    public int getId() {
+    public int getID(User user) {
         try {
 
-            String query = "SELECT Id FROM users";
+            String query = "SELECT Users_ID, username FROM " + databaseConnection.getUserTable() + " WHERE username = " + user.getUsername() + ";";
             preparedStatement = databaseConnection.createPreparedStatement(query);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                int id = resultSet.getInt("id");
+                int id = resultSet.getInt("Users_ID");
 
                 System.out.println(id);
                 ID = id;

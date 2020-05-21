@@ -1,3 +1,12 @@
+import exceptions.DataConnectionException;
+import persistence.database.DBConnection;
+import persistence.database.IDBConnection;
+import persistence.login.LoginDAO;
+import shared.User;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class RetrieveHashedPassword {

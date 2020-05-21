@@ -3,9 +3,9 @@ package shared;
 import java.sql.Date;
 
 public class User {
+    private int id;
     private String username;
     private String password;
-    private int id;
     private String fname;
     private String lname;
     private String email;
