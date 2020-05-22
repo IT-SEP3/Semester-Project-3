@@ -86,7 +86,7 @@ public class ShiftDAO implements IShiftDAO {
 
     @Override
     public String postShift(Shift shift) {
-        String result = "Success";
+        String result = "OK";
         try {
 
             String sql = "INSERT INTO Shift (Shift_ID, Users_ID, description, Manager_ID, day, month, year) +" +
