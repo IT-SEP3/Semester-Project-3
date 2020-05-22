@@ -39,38 +39,45 @@ public class DatabaseSocketHandler implements Runnable {
 
                 inFromClient.read(receivedBytes, 0, len);
                 String received = new String(receivedBytes, 0, len);
-                String[] recievedPieces = received.split(";");
+                String[] receivedPieces = received.split(";");
 
-                if(recievedPieces[0].equals("Login")){
-                    User login = gson.fromJson(recievedPieces[1], User.class);
+                if(receivedPieces[0].equals("Login")){
+                    User login = gson.fromJson(receivedPieces[1], User.class);
                     String confirmation = daoFactory.getLogin().validateLogin(login);
                     sendToClient(confirmation);
                 }
-                else if(recievedPieces[0].equals("CalendarMonth")) {
-                    String[] date = recievedPieces[2].split("-");
+
+                else if(receivedPieces[0].equals("CalendarMonth")) {
+                    String[] date = receivedPieces[2].split("-");
                     ArrayList<Shift> shiftsForMonth = new ArrayList<>();
                     // Inputs are :Username for first input, month in somekind of 05/2020 format
-                    if(recievedPieces[3].equals("EMPLOYEE")){
+                    if(receivedPieces[3].equals("EMPLOYEE")){
                         System.out.println("Getting employee");
-                        shiftsForMonth = daoFactory.getShift().getShifts(recievedPieces[1], date[0], date[1]);
-                    }else if(recievedPieces[3].equals("MANAGER")){
+                        shiftsForMonth = daoFactory.getShift().getShifts(receivedPieces[1], date[0], date[1]);
+                    }else if(receivedPieces[3].equals("MANAGER")){
                         System.out.println("Getting manager");
-                        shiftsForMonth = daoFactory.getShift().getShiftsManager(recievedPieces[1], date[0], date[1]);
+                        shiftsForMonth = daoFactory.getShift().getShiftsManager(receivedPieces[1], date[0], date[1]);
                     } else {
                         System.out.println("Problem in determening access level");
                     }
+
                     String shiftsJson = gson.toJson(shiftsForMonth);
                     sendToClient(shiftsJson);
                 }
-                else if(recievedPieces[0].equals("GetUser")) {
+                else if(receivedPieces[0].equals("GetUser")) {
                     System.out.println("trying to get user data");
-                    User user = daoFactory.getEmployee().getUser(recievedPieces[1]);
+                    User user = daoFactory.getEmployee().getUser(receivedPieces[1]);
                     String userJson = gson.toJson(user);
                     sendToClient(userJson);
                 }
-                else if(recievedPieces[0].equals("AddUser")) {
-                    User new_user = gson.fromJson(recievedPieces[1], User.class);
+                else if(receivedPieces[0].equals("PostUser")) {
+                    User new_user = gson.fromJson(receivedPieces[1], User.class);
                     String addResponse = daoFactory.getEmployee().addEmployee(new_user);
+                    sendToClient(addResponse);
+                }
+                else if (receivedPieces[0].equals("PostShift")) {
+                    Shift new_shift = gson.fromJson(receivedPieces[1], Shift.class);
+                    String addResponse = daoFactory.getShift().postShift(new_shift);
                     sendToClient(addResponse);
                 }
             }

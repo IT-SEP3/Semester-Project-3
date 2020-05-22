@@ -78,6 +78,30 @@ namespace BusinessLogic.Model
             
         }
 
+        public string postShift(Shift shift)
+        {
+            socketHandler.SendToDatabase("PostShift", shift);
+            string result = socketHandler.GetResponse();
+            if (result.Equals("OK"))
+            {
+                //If ok it post and returns if post was succesful
+                socketHandler.SendToDatabase("PostShift;Confirmed", shift);
+                result = socketHandler.GetResponse();
+                if (result.Equals("OK"))
+                {
+                    return "Success";
+                }
+                else
+                {
+                    return "Failed";
+                }
+            }
+            else
+            {
+                return "Database already has this shift in it";
+            }
+        }
+
         public String getUser(int id)
         {
             socketHandler.SendToDatabaseStringOnly("GetUser;" + id);

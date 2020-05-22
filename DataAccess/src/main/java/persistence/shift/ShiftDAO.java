@@ -4,6 +4,7 @@ import exceptions.DataConnectionException;
 import persistence.database.IDBConnection;
 import shared.Shift;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,6 +17,7 @@ public class ShiftDAO implements IShiftDAO {
     private final IDBConnection databaseConnection;
     private PreparedStatement preparedStatement = null;
     private ResultSet resultSet = null;
+    private Shift resultShift = null;
 
     public ShiftDAO(IDBConnection databaseConnection) {
         this.databaseConnection = databaseConnection;
@@ -84,12 +86,36 @@ public class ShiftDAO implements IShiftDAO {
 
     @Override
     public String postShift(Shift shift) {
-        String result = "Success";
+        String result = "OK";
         try {
+
             String sql = "INSERT INTO Shift (Shift_ID, Users_ID, description, Manager_ID, day, month, year) +" +
-                    "VALUE('" + shift.getId() + "', '" + shift.getUser_id() + "', '" + shift.getDescription() + "', '" + shift.getManager_id() + "', '" + shift.getDate().getDayOfMonth() + "', '" + shift.getDate().getMonthValue() + "', '" + shift.getDate().getYear() + "')";
+                    "VALUE('" + shift.getId() + "', '" + shift.getUser_id() + "', '"
+                    + shift.getDescription() + "', '" + shift.getManager_id() + "', '"
+                    + shift.getDate().getDayOfMonth() + "', '" + shift.getDate().getMonthValue()
+                    + "', '" + shift.getDate().getYear() + "')";
+
+            while (resultSet.next()) {
+                int shiftId = resultSet.getInt("Shift_ID");
+                int userId = resultSet.getInt("Users_ID");
+                String description = resultSet.getString("description");
+                int managerId = resultSet.getInt("Manager_ID");
+                int day = resultSet.getInt("day");
+                int month = resultSet.getInt("month");
+                int year = resultSet.getInt("year");
+
+                String dateString = day + "-" + month + "-" + year;
+                System.out.println(dateString);
+                LocalDate date = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("d-M-yyyy"));;
+
+                resultShift = new Shift(shiftId, userId, description, managerId,date);
+                if (shift.getUser_id() == userId && date == shift.getDate())
+                    result = "Failed";
+            }
+
             preparedStatement = databaseConnection.createPreparedStatement(sql);
             resultSet = preparedStatement.executeQuery();
+
         } catch (SQLException | DataConnectionException e) {
             e.printStackTrace();
             result = "Failed";

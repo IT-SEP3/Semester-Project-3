@@ -37,7 +37,7 @@ public class LoginDAO implements ILoginDAO {
 
                 resultUser = new User(userName, password);
                 if (resultUser.getPassword().equals(user.getPassword()) && resultUser.getUsername().equals(user.getUsername())) {
-                    conclusion = "OK;"+ id;
+                    conclusion = "OK;" + id;
                 }
             }
 
