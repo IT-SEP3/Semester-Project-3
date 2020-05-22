@@ -28,24 +28,20 @@ public class ViewHandler {
 
     public void openLoginView() {
         FXMLLoader loader = new FXMLLoader();
-        if(loginScene == null) {
-            Parent root = getRootByPath("Login/Login.fxml", loader);
-            LoginViewController controller = loader.getController();
-            controller.init(viewModelFactory.getLoginViewModel(), this);
-            loginScene = new Scene(root);
-        }
+        Parent root = getRootByPath("Login/Login.fxml", loader);
+        LoginViewController controller = loader.getController();
+        controller.init(viewModelFactory.getLoginViewModel(), this);
+        loginScene = new Scene(root);
         mainStage.setTitle("Login");
         mainStage.setScene(loginScene);
     }
 
     public void openCalendarView() {
         FXMLLoader loader = new FXMLLoader();
-        if (calendarScene == null) {
-            Parent root = getRootByPath("calendar/Calendar.fxml", loader);
-            CalendarViewController controller = loader.getController();
-            controller.init(viewModelFactory.getCalendarViewModel(), this);
-            calendarScene = new Scene(root);
-        }
+        Parent root = getRootByPath("calendar/Calendar.fxml", loader);
+        CalendarViewController controller = loader.getController();
+        controller.init(viewModelFactory.getCalendarViewModel(), this);
+        calendarScene = new Scene(root);
         mainStage.setTitle("Calendar");
         mainStage.setScene(calendarScene);
     }

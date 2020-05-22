@@ -1,12 +1,14 @@
 package model.calendar;
 
 import shared.Shift;
+import shared.User;
 
 import java.util.ArrayList;
 
 public interface ICalendarModel {
+    User getUserFromModel();
+    User getUserfromDatabase(int userId);
     void getCalendar(String timeStamp);
-    void getUser();
-    ArrayList<Shift> getShifts();
-    Shift getShift(int i);
+    void getCurrentUser();
+    ArrayList<Shift> getModelShifts();
 }

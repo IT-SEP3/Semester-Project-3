@@ -22,6 +22,8 @@ public class LoginModel implements ILoginModel {
             currentUser = loginCarrier;
             response = splitAnswer[0];
             currentUser.setId(Integer.parseInt(splitAnswer[1]));
+        }else{
+            response = answer;
         }
     }
 

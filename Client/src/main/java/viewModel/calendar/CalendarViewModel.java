@@ -1,8 +1,11 @@
 package viewModel.calendar;
 
+import javafx.beans.property.Property;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import model.calendar.ICalendarModel;
+import shared.Shift;
+import shared.User;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -14,49 +17,51 @@ import java.util.Date;
 
 public class CalendarViewModel {
 
-    private final ICalendarModel model;
-    private final StringProperty date1x1;
-    private final StringProperty date1x2;
-    private final StringProperty date1x3;
-    private final StringProperty date1x4;
-    private final StringProperty date1x5;
-    private final StringProperty date1x6;
-    private final StringProperty date1x7;
-    private final StringProperty date2x1;
-    private final StringProperty date2x2;
-    private final StringProperty date2x3;
-    private final StringProperty date2x4;
-    private final StringProperty date2x5;
-    private final StringProperty date2x6;
-    private final StringProperty date2x7;
-    private final StringProperty date3x1;
-    private final StringProperty date3x2;
-    private final StringProperty date3x3;
-    private final StringProperty date3x4;
-    private final StringProperty date3x5;
-    private final StringProperty date3x6;
-    private final StringProperty date3x7;
-    private final StringProperty date4x1;
-    private final StringProperty date4x2;
-    private final StringProperty date4x3;
-    private final StringProperty date4x4;
-    private final StringProperty date4x5;
-    private final StringProperty date4x6;
-    private final StringProperty date4x7;
-    private final StringProperty date5x1;
-    private final StringProperty date5x2;
-    private final StringProperty date5x3;
-    private final StringProperty date5x4;
-    private final StringProperty date5x5;
-    private final StringProperty date5x6;
-    private final StringProperty date5x7;
-    private final StringProperty date6x1;
-    private final StringProperty date6x2;
-    private final StringProperty date6x3;
-    private final StringProperty date6x4;
-    private final StringProperty date6x5;
-    private final StringProperty date6x6;
-    private final StringProperty date6x7;
+    private  ICalendarModel model;
+    private  StringProperty date1x1;
+    private  StringProperty date1x2;
+    private  StringProperty date1x3;
+    private  StringProperty date1x4;
+    private  StringProperty date1x5;
+    private  StringProperty date1x6;
+    private  StringProperty date1x7;
+    private  StringProperty date2x1;
+    private  StringProperty date2x2;
+    private  StringProperty date2x3;
+    private  StringProperty date2x4;
+    private  StringProperty date2x5;
+    private  StringProperty date2x6;
+    private  StringProperty date2x7;
+    private  StringProperty date3x1;
+    private  StringProperty date3x2;
+    private  StringProperty date3x3;
+    private  StringProperty date3x4;
+    private  StringProperty date3x5;
+    private  StringProperty date3x6;
+    private  StringProperty date3x7;
+    private  StringProperty date4x1;
+    private  StringProperty date4x2;
+    private  StringProperty date4x3;
+    private  StringProperty date4x4;
+    private  StringProperty date4x5;
+    private  StringProperty date4x6;
+    private  StringProperty date4x7;
+    private  StringProperty date5x1;
+    private  StringProperty date5x2;
+    private  StringProperty date5x3;
+    private  StringProperty date5x4;
+    private  StringProperty date5x5;
+    private  StringProperty date5x6;
+    private  StringProperty date5x7;
+    private  StringProperty date6x1;
+    private  StringProperty date6x2;
+    private  StringProperty date6x3;
+    private  StringProperty date6x4;
+    private  StringProperty date6x5;
+    private  StringProperty date6x6;
+    private  StringProperty date6x7;
+    private  StringProperty user;
+    private  StringProperty access;
     private final ArrayList<StringProperty> dates;
 
     public CalendarViewModel(ICalendarModel model) {
@@ -104,6 +109,8 @@ public class CalendarViewModel {
         date6x5 = new SimpleStringProperty();
         date6x6 = new SimpleStringProperty();
         date6x7 = new SimpleStringProperty();
+        user = new SimpleStringProperty();
+        access = new SimpleStringProperty();
         dates.add(date1x1);
         dates.add(date1x2);
         dates.add(date1x3);
@@ -146,46 +153,44 @@ public class CalendarViewModel {
         dates.add(date6x5);
         dates.add(date6x6);
         dates.add(date6x7);
+        dates.add(user);
+        dates.add(access);
     }
 
     public void getCalendar(String timeStamp) {
         model.getCalendar(timeStamp);
     }
 
-    public void getUser() {
-        model.getUser();
-    }
-
     public StringProperty getProperyList(int i) {
         return dates.get(i);
     }
 
+    public void getUser() {
+        model.getCurrentUser();
+        user.set("User: " + model.getUserFromModel().getUsername());
+        access.set("Access: " + model.getUserFromModel().getAccessLevel());
+    }
+
+    public void clearCalendar() {
+        for (int i = 0; i < 42; i++) {
+            dates.get(i).set("");
+        }
+    }
+
     public void setCalendar(int month, int year) {
         String firstDayOfMonth = "01-" + month + "-" + year;
-        System.out.println(firstDayOfMonth);
         String dayOfWeek = returnWeekDay(firstDayOfMonth);
-        System.out.println(dayOfWeek);
         int dayOfWeekInt = dayToIntday(dayOfWeek);
-        System.out.println(dayOfWeekInt);
         int dayMax = getLastDayOfMonth(firstDayOfMonth);
-        System.out.println(dayMax);
 
         //Setts all days of the month. the numbers on days
         for (int i = 1; i < dayMax + 1; i++) {
             dates.get(dayOfWeekInt + i - 1).set(i + "");
         }
         //Sets acctual shifts
-        for (int i = 0; i < model.getShifts().size(); i++) {
-            int dayMonth = model.getShift(i).getDate().getDayOfMonth();
-            dates.get(dayOfWeekInt + dayMonth - 1).set(dates.get(dayOfWeekInt + dayMonth - 1).get() + "\n" + model.getShift(i).getUser_id());
-        }
-    }
-
-
-
-    public void clearCalendar() {
-        for (int i = 0; i < 42; i++) {
-            dates.get(i).set("");
+        for (int i = 0; i < model.getModelShifts().size(); i++) {
+            int dayMonth = model.getModelShifts().get(i).getDate().getDayOfMonth();
+            dates.get(dayOfWeekInt + dayMonth - 1).set(dates.get(dayOfWeekInt + dayMonth - 1).get() + "\n" + getShiftFormating(model.getModelShifts().get(i)));
         }
     }
 
@@ -238,5 +243,17 @@ public class CalendarViewModel {
         LocalDate convertedDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("d-M-yyyy"));
         int maxMonthDay = convertedDate.getMonth().length(convertedDate.isLeapYear());
         return maxMonthDay;
+    }
+
+    public String getShiftFormating(Shift shift){
+        if(model.getUserFromModel().getAccessLevel().equals("EMPLOYEE")){
+            return model.getUserFromModel().getFname() + " " + model.getUserFromModel().getLname() + "\n" + shift.getDescription();
+        } else if(model.getUserFromModel().getAccessLevel().equals("MANAGER")){
+            System.out.println("Getting users for manager calendar");
+            User user = model.getUserfromDatabase(shift.getUser_id());
+            return user.getFname() + " " + user.getLname() + "\n" + shift.getDescription();
+        }else{
+            return "User not found";
+        }
     }
 }

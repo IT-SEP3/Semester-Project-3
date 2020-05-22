@@ -11,9 +11,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class CalendarViewController {
-    private ViewHandler viewHandler;
-    private CalendarViewModel calendarViewModel;
-
     @FXML
     private Label date1x1 = new Label();
     @FXML
@@ -98,12 +95,16 @@ public class CalendarViewController {
     private Label date6x6 = new Label();
     @FXML
     private Label date6x7 = new Label();
-
+    @FXML
+    private Label user;
+    @FXML
+    private Label access;
     @FXML
     private ComboBox<String> monthsBox;
-
     @FXML
     private ComboBox<String> yearBox;
+    private ViewHandler viewHandler;
+    private CalendarViewModel calendarViewModel;
 
 
     public void init(CalendarViewModel vm, ViewHandler vh) {
@@ -151,7 +152,8 @@ public class CalendarViewController {
         date6x5.textProperty().bindBidirectional(calendarViewModel.getProperyList(39));
         date6x6.textProperty().bindBidirectional(calendarViewModel.getProperyList(40));
         date6x7.textProperty().bindBidirectional(calendarViewModel.getProperyList(41));
-
+        user.textProperty().bindBidirectional(calendarViewModel.getProperyList(42));
+        access.textProperty().bindBidirectional(calendarViewModel.getProperyList(43));
         monthsBox.getItems().add("January");
         monthsBox.getItems().add("February");
         monthsBox.getItems().add("March");
@@ -220,6 +222,11 @@ public class CalendarViewController {
         calendarViewModel.getUser();
         calendarViewModel.getCalendar(monthNumber +"-"+ 2020);
         calendarViewModel.setCalendar(monthNumber, 2020);
+    }
+
+    @FXML
+    void logOut(ActionEvent event) {
+        viewHandler.openLoginView();
     }
 
     @FXML

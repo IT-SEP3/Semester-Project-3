@@ -25,17 +25,22 @@ public class CalendarModel implements ICalendarModel {
     }
 
     @Override
-    public void getUser() {
+    public void getCurrentUser() {
         currentUser = calendarClient.getUser( Integer.toString(loginModel.getCurrentUser().getId()));
         System.out.println("User recieved"+ currentUser.getAccessLevel());
     }
 
     @Override
-    public Shift getShift(int i) {
-        return shifts.get(i);
+    public ArrayList<Shift> getModelShifts() {
+        return shifts;
     }
 
-    public ArrayList<Shift> getShifts() {
-        return shifts;
+    @Override
+    public User getUserFromModel(){
+        return currentUser;
+    }
+    @Override
+    public User getUserfromDatabase(int userId) {
+        return calendarClient.getUser( Integer.toString(userId));
     }
 }
