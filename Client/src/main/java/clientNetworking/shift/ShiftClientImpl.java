@@ -18,7 +18,7 @@ public class ShiftClientImpl implements ShiftClient{
         String PATH ="http://127.0.0.1:5000/api/Shift";
         String shiftJson = jsonSerializer.toJson(shift);
         System.out.println(shiftJson);
-        response = httpHandler.PostToAPI(shiftJson, PATH);
+        response = httpHandler.postToAPI(shiftJson, PATH);
         return response;
     }
 

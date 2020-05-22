@@ -24,7 +24,7 @@ public class CalendarClientImpl implements CalendarClient{
     public ArrayList<Shift> getCalendarShifts(int userID, String month) {
         Type listType = new TypeToken<ArrayList<Shift>>(){}.getType();
         String PATH ="http://127.0.0.1:5000/api/Shifts/?username=" +  userID + "&date=" + month;
-        response = httpHandler.GetFromAPI(PATH);
+        response = httpHandler.getFromAPI(PATH);
         ArrayList<Shift> shifts = jsonSerializer.fromJson(response, listType);
         return shifts;
     }
@@ -37,7 +37,7 @@ public class CalendarClientImpl implements CalendarClient{
     @Override
     public User getUser(String Id) {
         String PATH ="http://127.0.0.1:5000/api/Employee/" +Id;
-        response = httpHandler.GetFromAPI(PATH);
+        response = httpHandler.getFromAPI(PATH);
         User user = jsonSerializer.fromJson(response, User.class);
         return user;
     }
