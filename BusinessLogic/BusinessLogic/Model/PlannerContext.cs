@@ -46,9 +46,9 @@ namespace BusinessLogic.Model
             }
         }
 
-        public string GetAllShifts(string UserId, string date)
+        public string GetAllShifts(string UserId, string AccessLevel, string date)
         {
-            socketHandler.SendToDatabaseStringOnly("CalendarMonth;" + UserId + ";" + date);
+            socketHandler.SendToDatabaseStringOnly("CalendarMonth;" + UserId + ";" + date + ";" + AccessLevel);
             string shifts = socketHandler.GetResponse();
             return shifts;
         }
