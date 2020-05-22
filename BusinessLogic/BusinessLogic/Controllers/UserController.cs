@@ -23,15 +23,15 @@ namespace BusinessLogic.Controllers
 
         // POST: api/Employee
         [HttpPost]
-        public async Task<ActionResult<string>> postUser(User user)
+        public async Task<ActionResult<string>> PostUser(User user)
         {
-            return _context.postUser(user);
+            return _context.PostUser(user);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<string>> getUser(int id)
+        public async Task<ActionResult<string>> GetUser(int id)
         {
-            return  _context.getUser(id);
+            return  _context.GetUser(id);
         }
     }
 }

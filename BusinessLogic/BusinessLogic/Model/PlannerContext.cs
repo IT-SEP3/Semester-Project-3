@@ -53,7 +53,7 @@ namespace BusinessLogic.Model
             return shifts;
         }
 
-        public string postUser(User user)
+        public string PostUser(User user)
         {
             //Check if there is one in database 
             socketHandler.SendToDatabase("PostUser", user);
@@ -78,7 +78,7 @@ namespace BusinessLogic.Model
             
         }
 
-        public string postShift(Shift shift)
+        public string PostShift(Shift shift)
         {
             socketHandler.SendToDatabase("PostShift", shift);
             string result = socketHandler.GetResponse();
@@ -102,7 +102,7 @@ namespace BusinessLogic.Model
             }
         }
 
-        public String getUser(int id)
+        public String GetUser(int id)
         {
             socketHandler.SendToDatabaseStringOnly("GetUser;" + id);
             return socketHandler.GetResponse();
