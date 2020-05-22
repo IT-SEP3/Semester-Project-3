@@ -1,23 +1,24 @@
-package Network;
+package network;
 
-import Model.DatabaseModel;
-import Shared.Shift;
-import Shared.User;
+import persistence.DAOFactory;
+import shared.Shift;
+import shared.User;
 import com.google.gson.Gson;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class DatabaseSocketHandler implements Runnable {
     private Socket socket;
     private OutputStream outToClient;
     private InputStream inFromClient;
-    private DatabaseModel model;
+    private DAOFactory daoFactory;
     private Gson gson;
 
-    public DatabaseSocketHandler(Socket socket, DatabaseModel model){
+    public DatabaseSocketHandler(Socket socket, DAOFactory daoFactory){
         this.socket = socket;
-        this.model = model;
+        this.daoFactory = daoFactory;
         gson = new Gson();
         try {
             inFromClient = socket.getInputStream();
@@ -38,20 +39,46 @@ public class DatabaseSocketHandler implements Runnable {
 
                 inFromClient.read(receivedBytes, 0, len);
                 String received = new String(receivedBytes, 0, len);
-                String[] recievedPieces = received.split(";");
+                String[] receivedPieces = received.split(";");
 
-                if(recievedPieces[0].equals("Login")){
-                    User login = gson.fromJson(recievedPieces[1], User.class);
-                    String confirmation = model.Login(login);
+                if(receivedPieces[0].equals("Login")){
+                    User login = gson.fromJson(receivedPieces[1], User.class);
+                    String confirmation = daoFactory.getLogin().validateLogin(login);
                     sendToClient(confirmation);
                 }
-                else if(recievedPieces[0].equals("CalendarMonth")) {
-                    Shift[] shiftsForMonth = model.getMonthOfShiftsByManager(recievedPieces[1], recievedPieces[2]); // Inputs are :Username for first input, month in somekind of 05/2020 format
+
+                else if(receivedPieces[0].equals("CalendarMonth")) {
+                    String[] date = receivedPieces[2].split("-");
+                    ArrayList<Shift> shiftsForMonth = new ArrayList<>();
+                    // Inputs are :Username for first input, month in somekind of 05/2020 format
+                    if(receivedPieces[3].equals("EMPLOYEE")){
+                        System.out.println("Getting employee");
+                        shiftsForMonth = daoFactory.getShift().getShifts(receivedPieces[1], date[0], date[1]);
+                    }else if(receivedPieces[3].equals("MANAGER")){
+                        System.out.println("Getting manager");
+                        shiftsForMonth = daoFactory.getShift().getShiftsManager(receivedPieces[1], date[0], date[1]);
+                    } else {
+                        System.out.println("Problem in determening access level");
+                    }
+
                     String shiftsJson = gson.toJson(shiftsForMonth);
                     sendToClient(shiftsJson);
                 }
-                else if(recievedPieces[0].equals("Something")) {
-
+                else if(receivedPieces[0].equals("GetUser")) {
+                    System.out.println("trying to get user data");
+                    User user = daoFactory.getEmployee().getUser(receivedPieces[1]);
+                    String userJson = gson.toJson(user);
+                    sendToClient(userJson);
+                }
+                else if(receivedPieces[0].equals("PostUser")) {
+                    User new_user = gson.fromJson(receivedPieces[1], User.class);
+                    String addResponse = daoFactory.getEmployee().addEmployee(new_user);
+                    sendToClient(addResponse);
+                }
+                else if (receivedPieces[0].equals("PostShift")) {
+                    Shift new_shift = gson.fromJson(receivedPieces[1], Shift.class);
+                    String addResponse = daoFactory.getShift().postShift(new_shift);
+                    sendToClient(addResponse);
                 }
             }
         }catch (Exception e){ //VIOLATION OF SOLID

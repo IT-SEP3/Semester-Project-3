@@ -28,9 +28,10 @@ public class LoginViewController {
         viewModel.login();
         System.out.println(response.getText());
         if(response.getText().equals("Login successful")){
-            //viewHandler.openCalendarView();
+            viewHandler.openCalendarView();
             System.out.println("trying to change to calendar");
         }
+
     }
 
     public void init(LoginViewModel vm, ViewHandler vh) {

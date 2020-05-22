@@ -142,3 +142,4 @@ msbuild.wrn
 # Visual Studio
 .vs/
 DateAccess/.idea/workspace.xml
+DataAccess/.idea/sqldialects.xml

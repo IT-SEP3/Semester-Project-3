@@ -1,12 +1,8 @@
-import Model.DatabaseModel;
-import Model.DatabaseModelImpl;
-import Network.DatabaseSocketHandler;
 import exceptions.DataConnectionException;
+import network.DatabaseSocketHandler;
+import persistence.DAOFactory;
 import persistence.database.DBConnection;
 import persistence.database.IDBConnection;
-import persistence.login.ILoginDAO;
-import persistence.login.LoginDAO;
-
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -15,8 +11,7 @@ public class JavaServer {
 
     public static void main(String[] args){
         IDBConnection connect = new DBConnection();
-        ILoginDAO loginDao = new LoginDAO(connect);
-        DatabaseModel model = new DatabaseModelImpl(loginDao);
+        DAOFactory DAOFactory = new DAOFactory(connect);
         System.out.println("Server started");
         try {
             connect.getConnection();
@@ -24,7 +19,7 @@ public class JavaServer {
             int i = 0;
             while(true){
                 Socket connectionSocket = serverSocket.accept();
-                DatabaseSocketHandler c = new DatabaseSocketHandler(connectionSocket, model);
+                DatabaseSocketHandler c = new DatabaseSocketHandler(connectionSocket, DAOFactory);
                 new Thread(c, "Business Server " + i).start();
                 System.out.println("Connected to Business server " + i);
                 i++;

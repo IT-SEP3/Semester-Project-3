@@ -1,21 +1,30 @@
 package model;
 
 
-import clientNetworking.Client;
+import clientNetworking.ClientFactory;
+import model.calendar.ICalendarModel;
+import model.calendar.CalendarModel;
+import model.login.ILoginModel;
 import model.login.LoginModel;
-import model.login.LoginModelImpl;
 
 public class ModelFactory {
-    private Client client;
-    private LoginModel loginModel;
+    private ClientFactory clientFactory;
+    private ILoginModel loginModel;
+    private ICalendarModel calendarModel;
 
-    public ModelFactory(Client c) {
-        client = c;
+    public ModelFactory(ClientFactory c) {
+        clientFactory = c;
     }
 
-    public LoginModel userModel() {
+    public ILoginModel loginModel() {
         if(loginModel == null)
-            loginModel = new LoginModelImpl(client);
+            loginModel = new LoginModel(clientFactory.loginClient());
         return loginModel;
+    }
+
+    public ICalendarModel calendarModel() {
+        if(calendarModel == null)
+            calendarModel = new CalendarModel(clientFactory.calendarClient(), loginModel());
+        return calendarModel;
     }
 }

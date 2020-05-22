@@ -1,4 +1,4 @@
-﻿namespace BusinessLogic.Model.Login
+﻿namespace BusinessLogic.Model.Shared
 {
     public class User
     {
