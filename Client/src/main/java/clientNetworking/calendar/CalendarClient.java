@@ -36,7 +36,7 @@ public class CalendarClient implements ICalendarClient {
 
     @Override
     public User getUser(String Id) {
-        String PATH ="http://127.0.0.1:5000/api/Employee/" +Id;
+        String PATH ="http://127.0.0.1:5000/api/User/" +Id;
         response = httpHandler.getFromAPI(PATH);
         User user = jsonSerializer.fromJson(response, User.class);
         return user;

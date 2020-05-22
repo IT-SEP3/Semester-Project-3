@@ -14,18 +14,54 @@ import java.util.Date;
 
 public class CalendarViewModel {
 
-    private ICalendarModel model;
-    private StringProperty date1x1 , date1x2, date1x3, date1x4, date1x5, date1x6, date1x7,
-            date2x1, date2x2, date2x3, date2x4, date2x5, date2x6, date2x7,
-            date3x1, date3x2, date3x3, date3x4, date3x5, date3x6, date3x7,
-            date4x1, date4x2, date4x3, date4x4, date4x5, date4x6, date4x7,
-            date5x1, date5x2, date5x3, date5x4, date5x5, date5x6, date5x7,
-            date6x1, date6x2, date6x3, date6x4, date6x5, date6x6, date6x7;
-    private ArrayList<StringProperty> dates;
+    private final ICalendarModel model;
+    private final StringProperty date1x1;
+    private final StringProperty date1x2;
+    private final StringProperty date1x3;
+    private final StringProperty date1x4;
+    private final StringProperty date1x5;
+    private final StringProperty date1x6;
+    private final StringProperty date1x7;
+    private final StringProperty date2x1;
+    private final StringProperty date2x2;
+    private final StringProperty date2x3;
+    private final StringProperty date2x4;
+    private final StringProperty date2x5;
+    private final StringProperty date2x6;
+    private final StringProperty date2x7;
+    private final StringProperty date3x1;
+    private final StringProperty date3x2;
+    private final StringProperty date3x3;
+    private final StringProperty date3x4;
+    private final StringProperty date3x5;
+    private final StringProperty date3x6;
+    private final StringProperty date3x7;
+    private final StringProperty date4x1;
+    private final StringProperty date4x2;
+    private final StringProperty date4x3;
+    private final StringProperty date4x4;
+    private final StringProperty date4x5;
+    private final StringProperty date4x6;
+    private final StringProperty date4x7;
+    private final StringProperty date5x1;
+    private final StringProperty date5x2;
+    private final StringProperty date5x3;
+    private final StringProperty date5x4;
+    private final StringProperty date5x5;
+    private final StringProperty date5x6;
+    private final StringProperty date5x7;
+    private final StringProperty date6x1;
+    private final StringProperty date6x2;
+    private final StringProperty date6x3;
+    private final StringProperty date6x4;
+    private final StringProperty date6x5;
+    private final StringProperty date6x6;
+    private final StringProperty date6x7;
+    private final ArrayList<StringProperty> dates;
 
     public CalendarViewModel(ICalendarModel model) {
         this.model = model;
-        dates = new ArrayList<StringProperty>();
+        dates = new ArrayList<>();
         date1x1 = new SimpleStringProperty();
         date1x2 = new SimpleStringProperty();
         date1x3 = new SimpleStringProperty();
@@ -120,24 +156,56 @@ public class CalendarViewModel {
         model.getUser();
     }
 
+    public StringProperty getProperyList(int i) {
+        return dates.get(i);
+    }
+
     public void setCalendar(int month, int year) {
-        String firstDayOfMonthTest="";
-        try {
-            firstDayOfMonthTest= "01-"+ month + "-" + year;
-        } catch (IndexOutOfBoundsException e){
-            System.out.println("No shifts in that month");
+        String firstDayOfMonth = "01-" + month + "-" + year;
+        System.out.println(firstDayOfMonth);
+        String dayOfWeek = returnWeekDay(firstDayOfMonth);
+        System.out.println(dayOfWeek);
+        int dayOfWeekInt = dayToIntday(dayOfWeek);
+        System.out.println(dayOfWeekInt);
+        int dayMax = getLastDayOfMonth(firstDayOfMonth);
+        System.out.println(dayMax);
+
+        //Setts all days of the month. the numbers on days
+        for (int i = 1; i < dayMax + 1; i++) {
+            dates.get(dayOfWeekInt + i - 1).set(i + "");
         }
-        String finalDay = "default";
+        //Sets acctual shifts
+        for (int i = 0; i < model.getShifts().size(); i++) {
+            int dayMonth = model.getShift(i).getDate().getDayOfMonth();
+            dates.get(dayOfWeekInt + dayMonth - 1).set(dates.get(dayOfWeekInt + dayMonth - 1).get() + "\n" + model.getShift(i).getUser_id());
+        }
+    }
+
+
+
+    public void clearCalendar() {
+        for (int i = 0; i < 42; i++) {
+            dates.get(i).set("");
+        }
+    }
+
+    public String returnWeekDay(String date){
+        String day = "default";
         try {
-            SimpleDateFormat format1=new SimpleDateFormat("d-M-yyyy");
-            Date dt1 = format1.parse(firstDayOfMonthTest);
-            DateFormat format2=new SimpleDateFormat("EEEE");
-            finalDay = format2.format(dt1);
+            SimpleDateFormat format1 = new SimpleDateFormat("d-M-yyyy");
+            Date dt1 = format1.parse(date);
+            DateFormat format2 = new SimpleDateFormat("EEEE");
+            day = format2.format(dt1);
         } catch (ParseException e) {
             e.printStackTrace();
+            System.out.println("date was badly formated");
         }
+        return day;
+    }
+
+    public int dayToIntday(String day){
         int dayOfweekCounter;
-        switch (finalDay) {
+        switch (day) {
             case "Monday":
                 dayOfweekCounter = 0;
                 break;
@@ -163,25 +231,12 @@ public class CalendarViewModel {
                 dayOfweekCounter = 0;
                 break;
         }
-        LocalDate convertedDate = LocalDate.parse(firstDayOfMonthTest, DateTimeFormatter.ofPattern("d-M-yyyy"));
+        return dayOfweekCounter;
+    }
+
+    public int getLastDayOfMonth(String date){
+        LocalDate convertedDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("d-M-yyyy"));
         int maxMonthDay = convertedDate.getMonth().length(convertedDate.isLeapYear());
-        for (int i = 1; i < maxMonthDay+1; i++) {
-            dates.get(dayOfweekCounter+ i-1).set(i+"");
-        }
-
-        for (int i = 0; i < model.getShifts().size(); i++) {
-            int dayMonth = model.getShift(i).getDate().getDayOfMonth();
-            dates.get(dayOfweekCounter+dayMonth-1).set(dates.get(dayOfweekCounter+dayMonth-1).get() + "\n" + model.getShift(i).getUser_id());
-        }
-    }
-
-    public StringProperty getProperyList(int i) {
-        return dates.get(i);
-    }
-
-    public void clearCalendar() {
-        for (int i = 0; i < 42; i++) {
-            dates.get(i).set("");
-        }
+        return maxMonthDay;
     }
 }

@@ -31,6 +31,7 @@ public class LoginViewController {
             viewHandler.openCalendarView();
             System.out.println("trying to change to calendar");
         }
+
     }
 
     public void init(LoginViewModel vm, ViewHandler vh) {

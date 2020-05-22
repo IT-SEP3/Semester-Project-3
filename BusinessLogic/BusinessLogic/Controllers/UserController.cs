@@ -31,7 +31,7 @@ namespace BusinessLogic.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<string>> getUser(int id)
         {
-            return  _context.getEmployee(id);
+            return  _context.getUser(id);
         }
     }
 }
