@@ -1,6 +1,6 @@
-package main.java.persistence;
+package persistence;
 
-import main.java.persistence.employee.IEmployeeDAO;
+import persistence.employee.IEmployeeDAO;
 import persistence.database.IDBConnection;
 import persistence.employee.EmployeeDAO;
 import persistence.login.ILoginDAO;

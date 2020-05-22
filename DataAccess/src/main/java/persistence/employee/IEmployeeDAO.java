@@ -1,4 +1,4 @@
-package main.java.persistence.employee;
+package persistence.employee;
 
 import shared.User;
 

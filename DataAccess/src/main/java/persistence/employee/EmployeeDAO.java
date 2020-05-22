@@ -1,7 +1,6 @@
 package persistence.employee;
 
 import exceptions.DataConnectionException;
-import main.java.persistence.employee.IEmployeeDAO;
 import persistence.database.IDBConnection;
 import shared.User;
 
