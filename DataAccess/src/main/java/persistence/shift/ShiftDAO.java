@@ -53,22 +53,20 @@ public class ShiftDAO implements IShiftDAO {
     }
 
     @Override
-    public void postShift(Shift shift) {
-        System.out.println("IN get shift");
+    public String postShift(Shift shift) {
+        String result = "Success";
         try {
             String sql = "INSERT INTO Shift (Shift_ID, Users_ID, description, Manager_ID, day, month, year) +" +
-                    "VALUE('"+ shift.getId() +"', '"+ shift.getUser_id() +"', '"+ shift.getDescription() +"', '"+ shift.getManager_id() +"', '"+ shift.getDate().getDayOfMonth() +"', '"+ shift.getDate().getMonthValue() +"', '"+ shift.getDate().getYear() +"')";
+                    "VALUE('" + shift.getId() + "', '" + shift.getUser_id() + "', '" + shift.getDescription() + "', '" + shift.getManager_id() + "', '" + shift.getDate().getDayOfMonth() + "', '" + shift.getDate().getMonthValue() + "', '" + shift.getDate().getYear() + "')";
             preparedStatement = databaseConnection.createPreparedStatement(sql);
             resultSet = preparedStatement.executeQuery();
-
-        } catch (SQLException e) {
+        } catch (SQLException | DataConnectionException e) {
             e.printStackTrace();
-        } catch (DataConnectionException e) {
-            e.printStackTrace();
+            result = "Failed";
         } finally {
             databaseConnection.closeConnection();
         }
-        //return conclusion;
+        return result;
     }
 
 
