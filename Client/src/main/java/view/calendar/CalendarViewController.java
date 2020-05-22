@@ -102,6 +102,10 @@ public class CalendarViewController {
     @FXML
     private ComboBox<String> monthsBox;
 
+    @FXML
+    private ComboBox<String> yearBox;
+
+
     public void init(CalendarViewModel vm, ViewHandler vh) {
         calendarViewModel = vm;
         viewHandler = vh;
@@ -163,10 +167,17 @@ public class CalendarViewController {
         Calendar cal = Calendar.getInstance();
         monthsBox.setValue(new SimpleDateFormat("MMMM").format(cal.getTime()));
 
+        yearBox.getItems().add("2019");
+        yearBox.getItems().add("2020");
+        yearBox.getItems().add("2021");
+        yearBox.getItems().add("2022");
+        yearBox.getItems().add("2023");
+        yearBox.getItems().add("2024");
+        yearBox.getItems().add("2025");
+        yearBox.getItems().add("2026");
 
-        //Calendar calYear = Calendar.getInstance();
-        //chooseYear.setValue(new SimpleDateFormat("yyyy").format(calYear.getTime()));
-        //chooseYear.getItems().setAll("2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026");
+        Calendar calYear = Calendar.getInstance();
+        yearBox.setValue(new SimpleDateFormat("yyyy").format(calYear.getTime()));
         int monthNumber = 0;
         switch (monthsBox.getValue()) {
             case "January":
@@ -252,9 +263,9 @@ public class CalendarViewController {
                 monthNumber = 12;
                 break;
         }
-        calendarViewModel.getCalendar(monthNumber + "-" + 2020);
+        calendarViewModel.getCalendar(monthNumber + "-" + yearBox.getValue());
         calendarViewModel.clearCalendar();
-        calendarViewModel.setCalendar(monthNumber, 2020);
+        calendarViewModel.setCalendar(monthNumber, Integer.parseInt(yearBox.getValue()));
     }
 
 }
