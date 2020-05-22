@@ -11,11 +11,11 @@ namespace BusinessLogic.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EmployeeController : ControllerBase
+    public class UserController : ControllerBase
     {
         private readonly PlannerContext _context;
 
-        public EmployeeController(PlannerContext context)
+        public UserController(PlannerContext context)
         {
             _context = context;
         }
@@ -23,15 +23,15 @@ namespace BusinessLogic.Controllers
 
         // POST: api/Employee
         [HttpPost]
-        public async Task<ActionResult<string>> Post(User user)
+        public async Task<ActionResult<string>> postUser(User user)
         {
             return _context.postUser(user);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<string>> GetEmployee(int id)
+        public async Task<ActionResult<string>> getUser(int id)
         {
-            return  _context.getEmployee(id);
+            return  _context.getUser(id);
         }
     }
 }

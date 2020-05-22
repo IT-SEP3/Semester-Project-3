@@ -35,7 +35,7 @@ INSERT INTO Users (username, password, firstName, lastName, email, status, acces
     VALUE('Anders', '1234', 'Anders', 'Sønderby', '264247@via.dk', 'ACTIVE', 'EMPLOYEE', 16, 03, 2020  );
 
 INSERT INTO Users (username, password, firstName, lastName, email, status, accessLevel, dayEmployment, monthEmployment, yearEmployment)
-    VALUE('David', '4321', 'David', 'Nguyen', '251771@via.dk', 'INACTIVE', 'EMPLOYEE', 16, 03, 2020  );
+    VALUE('David', '3556498', 'David', 'Nguyen', '251771@via.dk', 'INACTIVE', 'EMPLOYEE', 16, 03, 2020  );
 
 INSERT INTO Users (username, password, firstName, lastName, email, status, accessLevel, dayEmployment, monthEmployment, yearEmployment)
     VALUE('Niklas', '549190650', 'Niklas', 'Krogh', '281335@via.dk', 'ACTIVE', 'MANAGER', 16, 03, 2020  );

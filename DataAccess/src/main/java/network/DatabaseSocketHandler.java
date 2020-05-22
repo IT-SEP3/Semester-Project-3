@@ -46,10 +46,21 @@ public class DatabaseSocketHandler implements Runnable {
                     String confirmation = daoFactory.getLogin().validateLogin(login);
                     sendToClient(confirmation);
                 }
+
                 else if(receivedPieces[0].equals("CalendarMonth")) {
                     String[] date = receivedPieces[2].split("-");
-                    ArrayList<Shift> shiftsForMonth = daoFactory.getShift().getShifts(receivedPieces[1], date[0], date[1]);
+                    ArrayList<Shift> shiftsForMonth = new ArrayList<>();
                     // Inputs are :Username for first input, month in somekind of 05/2020 format
+                    if(receivedPieces[3].equals("EMPLOYEE")){
+                        System.out.println("Getting employee");
+                        shiftsForMonth = daoFactory.getShift().getShifts(receivedPieces[1], date[0], date[1]);
+                    }else if(receivedPieces[3].equals("MANAGER")){
+                        System.out.println("Getting manager");
+                        shiftsForMonth = daoFactory.getShift().getShiftsManager(receivedPieces[1], date[0], date[1]);
+                    } else {
+                        System.out.println("Problem in determening access level");
+                    }
+
                     String shiftsJson = gson.toJson(shiftsForMonth);
                     sendToClient(shiftsJson);
                 }

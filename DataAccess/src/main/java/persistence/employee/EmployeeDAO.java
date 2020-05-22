@@ -21,15 +21,36 @@ public class EmployeeDAO implements IEmployeeDAO {
         this.databaseConnection = databaseConnection;
     }
 
+    public String userExists(User user) {
+        String sql = "SELECT 1 FROM " + databaseConnection.getUserTable() + "WHERE username =" + user.getUsername();
+
+        try {
+            preparedStatement = databaseConnection.createPreparedStatement(sql);
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next() == false) {
+                return "OK";
+            } else {
+                return "User exists already";
+            }
+
+        } catch (SQLException | DataConnectionException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return null;
+    }
+
     @Override
     public String addEmployee(User user) {
+
 
         String sql = "INSERT INTO " + databaseConnection.getUserTable() + "(username, password, firstName, lastName, email, status, accessLevel) VALUES ('" + user.getUsername() + "', '" + user.getPassword() + "', '" + user.getFname() + "', '" + user.getLname() + "', '" + user.getEmail() + "', '" + user.getStatus() + "', '" + user.getAccessLevel() + "')";
 
         try {
             preparedStatement = databaseConnection.createPreparedStatement(sql);
             preparedStatement.executeUpdate();
-            return "User '" + user.getUsername() + "' succesfully added";
+            return "OK";
         } catch (SQLException | DataConnectionException throwables) {
             throwables.printStackTrace();
         }

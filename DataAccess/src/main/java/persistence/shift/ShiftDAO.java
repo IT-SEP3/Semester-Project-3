@@ -55,6 +55,36 @@ public class ShiftDAO implements IShiftDAO {
     }
 
     @Override
+    public ArrayList<Shift> getShiftsManager(String managerID, String monthRequest, String yearRequest) {
+        ArrayList<Shift> shifts = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM " + databaseConnection.getShiftTable() + " WHERE Manager_ID = " + Integer.parseInt(managerID) + " AND month = " + Integer.parseInt(monthRequest) + " AND year = " + Integer.parseInt(yearRequest) + ";";
+            preparedStatement = databaseConnection.createPreparedStatement(sql);
+            resultSet = preparedStatement.executeQuery();
+            while ( resultSet.next()) {
+                int shift_ID = resultSet.getInt("Shift_ID");
+                int user_ID = resultSet.getInt("Users_ID");
+                String description = resultSet.getString("description");
+                int manager_ID = resultSet.getInt("Manager_ID");
+                int day = resultSet.getInt("day");
+                int month = resultSet.getInt("month");
+                int year = resultSet.getInt("year");
+
+                String dateString = day + "-" + month + "-" + year;
+                System.out.println(dateString);
+                LocalDate date = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("d-M-yyyy"));;
+
+                shifts.add(new Shift(shift_ID, user_ID, description, manager_ID, date));
+            }
+        } catch (DataConnectionException | SQLException e) {
+            e.printStackTrace();
+        } finally {
+            databaseConnection.closeConnection();
+        }
+        return shifts;
+    }
+
+    @Override
     public String postShift(Shift shift) {
         String result = "Success";
         try {

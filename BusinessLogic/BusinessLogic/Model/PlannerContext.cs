@@ -46,21 +46,39 @@ namespace BusinessLogic.Model
             }
         }
 
-        public string GetAllShifts(string UserId, string date)
+        public string GetAllShifts(string UserId, string AccessLevel, string date)
         {
-            socketHandler.SendToDatabaseStringOnly("CalendarMonth;" + UserId + ";" + date);
+            socketHandler.SendToDatabaseStringOnly("CalendarMonth;" + UserId + ";" + date + ";" + AccessLevel);
             string shifts = socketHandler.GetResponse();
             return shifts;
         }
 
         public string postUser(User user)
         {
-            socketHandler.SendToDatabase("Login", user);
+            //Check if there is one in database 
+            socketHandler.SendToDatabase("PostUser", user);
             string result = socketHandler.GetResponse();
-            return result;
+            if (result.Equals("OK")){
+                //If ok it post and returns if post was succesful
+                socketHandler.SendToDatabase("PostUser;Confirmed", user);
+                result = socketHandler.GetResponse();
+                if (result.Equals("OK"))
+                {
+                    return "Success";
+                }
+                else
+                {
+                    return "Failed";
+                }
+            }
+            else
+            {
+                return "Database already has this user in it";
+            }
+            
         }
 
-        public String getEmployee(int id)
+        public String getUser(int id)
         {
             socketHandler.SendToDatabaseStringOnly("GetUser;" + id);
             return socketHandler.GetResponse();

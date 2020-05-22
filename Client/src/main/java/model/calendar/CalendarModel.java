@@ -21,7 +21,7 @@ public class CalendarModel implements ICalendarModel {
 
     @Override
     public void getCalendar(String timeStamp) {
-        shifts = calendarClient.getCalendarShifts(loginModel.getCurrentUser().getId(), timeStamp);
+        shifts = calendarClient.getCalendarShifts(currentUser.getId(), currentUser.getAccessLevel() ,  timeStamp);
     }
 
     @Override
