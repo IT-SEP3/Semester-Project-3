@@ -1,38 +1,38 @@
 package clientNetworking;
 
+import clientNetworking.calendar.ICalendarClient;
 import clientNetworking.calendar.CalendarClient;
-import clientNetworking.calendar.CalendarClientImpl;
+import clientNetworking.login.ILoginClient;
 import clientNetworking.login.LoginClient;
-import clientNetworking.login.LoginClientImpl;
+import clientNetworking.shift.IShiftClient;
 import clientNetworking.shift.ShiftClient;
-import clientNetworking.shift.ShiftClientImpl;
 
 public class ClientFactory {
     private HTTPHandler httpHandler;
-    private LoginClient loginClient;
-    private CalendarClient calendarClient;
-    private ShiftClient shiftClient;
+    private ILoginClient loginClient;
+    private ICalendarClient calendarClient;
+    private IShiftClient shiftClient;
 
 
     public ClientFactory(HTTPHandler httpHandler){
         this.httpHandler = httpHandler;
     }
 
-    public LoginClient loginClient() {
+    public ILoginClient loginClient() {
         if(loginClient == null)
-            loginClient = new LoginClientImpl(httpHandler);
+            loginClient = new LoginClient(httpHandler);
         return loginClient;
     }
 
-    public CalendarClient calendarClient(){
+    public ICalendarClient calendarClient(){
         if(calendarClient == null)
-            calendarClient = new CalendarClientImpl(httpHandler);
+            calendarClient = new CalendarClient(httpHandler);
         return calendarClient;
     }
 
-    public ShiftClient shiftClient(){
+    public IShiftClient shiftClient(){
         if(shiftClient == null)
-            shiftClient = new ShiftClientImpl(httpHandler);
+            shiftClient = new ShiftClient(httpHandler);
         return shiftClient;
     }
 }

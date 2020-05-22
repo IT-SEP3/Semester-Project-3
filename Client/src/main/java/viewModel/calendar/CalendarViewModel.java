@@ -1,25 +1,20 @@
 package viewModel.calendar;
 
-import javafx.beans.property.Property;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import model.calendar.CalendarModel;
-import model.login.LoginModel;
-import shared.Shift;
+import model.calendar.ICalendarModel;
 
-import java.awt.*;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 
 public class CalendarViewModel {
 
-    private CalendarModel model;
+    private ICalendarModel model;
     private StringProperty date1x1 , date1x2, date1x3, date1x4, date1x5, date1x6, date1x7,
             date2x1, date2x2, date2x3, date2x4, date2x5, date2x6, date2x7,
             date3x1, date3x2, date3x3, date3x4, date3x5, date3x6, date3x7,
@@ -28,7 +23,7 @@ public class CalendarViewModel {
             date6x1, date6x2, date6x3, date6x4, date6x5, date6x6, date6x7;
     private ArrayList<StringProperty> dates;
 
-    public CalendarViewModel(CalendarModel model) {
+    public CalendarViewModel(ICalendarModel model) {
         this.model = model;
         dates = new ArrayList<StringProperty>();
         date1x1 = new SimpleStringProperty();
