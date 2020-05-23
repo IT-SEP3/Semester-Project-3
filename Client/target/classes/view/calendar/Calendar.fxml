@@ -349,7 +349,7 @@
                               <Button fx:id="logOff" layoutX="136.0" layoutY="100.0" mnemonicParsing="false" onAction="#logOut" text="LogOut" />
                               <Label fx:id="user" layoutX="25.0" layoutY="95.0" text="User: " />
                               <Label fx:id="access" layoutX="14.0" layoutY="116.0" text="Access: " />
-                              <Button layoutX="83.0" layoutY="304.0" mnemonicParsing="false" onAction="#onCreateUser" text="Create User" />
+                              <Button fx:id="createEmployee" layoutX="83.0" layoutY="304.0" mnemonicParsing="false" onAction="#onCreateUser" text="Create User" />
                            </children></AnchorPane>
                      </children>
                   </VBox>

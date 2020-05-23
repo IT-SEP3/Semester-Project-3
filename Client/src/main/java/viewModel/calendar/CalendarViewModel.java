@@ -1,8 +1,6 @@
 package viewModel.calendar;
 
-import javafx.beans.property.Property;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 import model.calendar.ICalendarModel;
 import shared.Shift;
 import shared.User;
@@ -62,6 +60,7 @@ public class CalendarViewModel {
     private  StringProperty date6x7;
     private  StringProperty user;
     private  StringProperty access;
+    private  BooleanProperty buttons;
     private final ArrayList<StringProperty> dates;
 
     public CalendarViewModel(ICalendarModel model) {
@@ -111,6 +110,7 @@ public class CalendarViewModel {
         date6x7 = new SimpleStringProperty();
         user = new SimpleStringProperty();
         access = new SimpleStringProperty();
+        buttons = new SimpleBooleanProperty();
         dates.add(date1x1);
         dates.add(date1x2);
         dates.add(date1x3);
@@ -255,5 +255,17 @@ public class CalendarViewModel {
         }else{
             return "User not found";
         }
+    }
+
+    public void setFunctionalityDifferences() {
+        if(model.getUserFromModel().getAccessLevel().equals("EMPLOYEE")){
+            buttons.set(false);
+        }else {
+            buttons.set(true);
+        }
+    }
+
+    public BooleanProperty getButtonsProperty(){
+        return buttons;
     }
 }

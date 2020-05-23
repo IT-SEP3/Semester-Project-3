@@ -1,13 +1,18 @@
 package viewModel.createUser;
 
+import javafx.beans.property.Property;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import model.createUser.CreateUserModel;
+import javafx.scene.paint.Color;
 import model.createUser.ICreateUserModel;
+
+import javafx.scene.paint.Paint;
 
 public class CreateUserViewModel {
 
     private StringProperty username, password, fname, lname, email, createEmployeeResponse, status, accesslevel;
+    private Property<Paint> paintProperty;
     private ICreateUserModel model;
 
     public CreateUserViewModel(ICreateUserModel model) {
@@ -20,6 +25,11 @@ public class CreateUserViewModel {
         createEmployeeResponse = new SimpleStringProperty();
         status = new SimpleStringProperty();
         accesslevel = new SimpleStringProperty();
+        paintProperty = new SimpleObjectProperty<Paint>();
+    }
+
+    public Property<Paint> getPaintProperty(){
+        return paintProperty;
     }
 
     public void submitEmployee() {
@@ -73,5 +83,9 @@ public class CreateUserViewModel {
 
     public StringProperty accesslevelProperty() {
         return accesslevel;
+    }
+
+    public void setAllRed() {
+        paintProperty.setValue(Color.RED);
     }
 }

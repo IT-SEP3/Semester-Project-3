@@ -68,10 +68,13 @@ public class CreateUserController {
 
         accesslevelComboBox.getItems().add("EMPLOYEE");
         accesslevelComboBox.getItems().add("MANAGER");
+
+        labelPassword.textFillProperty().bindBidirectional(createUserViewModel.getPaintProperty());
+        createUserViewModel.setAllRed();
     }
 
     public void onSubmitButton(ActionEvent event) {
-        if(usernameTextField.getText().isEmpty() || passwordTextField.getText().isEmpty() || firstnameTextField.getText().isEmpty()
+        if(usernameTextField.getText() == null || passwordTextField.getText().isEmpty() || firstnameTextField.getText().isEmpty()
                 || lastnameTextField.getText().isEmpty() || emailTextField.getText().isEmpty() || statusComboBox.getSelectionModel().isEmpty()
                 || accesslevelComboBox.getSelectionModel().isEmpty()) {
             setEmptyFieldsRed();
