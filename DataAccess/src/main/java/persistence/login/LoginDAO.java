@@ -23,7 +23,14 @@ public class LoginDAO implements ILoginDAO {
 
     @Override
     public String validateLogin(User user) {
+        /*
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        User resultUser = null;
+        String conclusion = "NOT";
         conclusion= "NOT";
+
+         */
         System.out.println("Trying to login");
         try {
             String sql = "SELECT Users_ID, username, password FROM " + databaseConnection.getSchemaName() + "." + databaseConnection.getUserTable() +

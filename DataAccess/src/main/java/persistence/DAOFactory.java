@@ -9,7 +9,6 @@ import persistence.shift.IShiftDAO;
 import persistence.shift.ShiftDAO;
 
 public class DAOFactory {
-
     private IDBConnection connect;
     private ILoginDAO login;
     private IShiftDAO shift;

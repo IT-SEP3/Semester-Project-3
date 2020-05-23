@@ -17,12 +17,12 @@ public class ShiftDAO implements IShiftDAO {
     private final IDBConnection databaseConnection;
     private PreparedStatement preparedStatement = null;
     private ResultSet resultSet = null;
-    private Shift resultShift = null;
 
     public ShiftDAO(IDBConnection databaseConnection) {
         this.databaseConnection = databaseConnection;
     }
 
+    //CHANGES FROM ANDERS BRANCH
     @Override
     public ArrayList<Shift> getShifts(String userID, String monthRequest, String yearRequest) {
         ArrayList<Shift> shifts = new ArrayList<>();
@@ -35,15 +35,20 @@ public class ShiftDAO implements IShiftDAO {
                 int shift_ID = resultSet.getInt("Shift_ID");
                 int user_ID = resultSet.getInt("Users_ID");
                 String description = resultSet.getString("description");
+                //String status = resultSet.getString("status");
                 int managerID = resultSet.getInt("Manager_ID");
                 int day = resultSet.getInt("day");
                 int month = resultSet.getInt("month");
                 int year = resultSet.getInt("year");
 
+                //DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+                //String date = dateFormat.format();
+
                 String dateString = day + "-" + month + "-" + year;
                 System.out.println(dateString);
                 LocalDate date = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("d-M-yyyy"));;
 
+                //shifts.add(new Shift(shift_ID, user_ID, description, status, managerID, date));
                 shifts.add(new Shift(shift_ID, user_ID, description, managerID, date));
             }
         } catch (DataConnectionException | SQLException e) {
@@ -86,6 +91,7 @@ public class ShiftDAO implements IShiftDAO {
 
     @Override
     public String postShift(Shift shift) {
+        Shift shiftResult;
         String result = "OK";
         try {
 
@@ -108,7 +114,7 @@ public class ShiftDAO implements IShiftDAO {
                 System.out.println(dateString);
                 LocalDate date = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("d-M-yyyy"));;
 
-                resultShift = new Shift(shiftId, userId, description, managerId,date);
+                shiftResult = new Shift(shiftId, userId, description, managerId,date);
                 if (shift.getUser_id() == userId && date == shift.getDate())
                     result = "Failed";
             }
