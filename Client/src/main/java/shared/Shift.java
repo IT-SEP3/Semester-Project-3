@@ -20,6 +20,13 @@ public class Shift {
         this.date = date;
     }
 
+    public Shift(int user_id, String description, int manager_id, LocalDate date) {
+        this.user_id = user_id;
+        this.description = description;
+        this.manager_id = manager_id;
+        this.date = date;
+    }
+
     public int getId() {
         return id;
     }
@@ -64,9 +71,10 @@ public class Shift {
     public String toString() {
         return "Shift{" +
                 "id=" + id +
+                ", date=" + date +
                 ", user_id=" + user_id +
-                ", description='" + description + '\'' +
                 ", manager_id=" + manager_id +
+                ", description='" + description + '\'' +
                 '}';
     }
 }

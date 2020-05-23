@@ -2,13 +2,17 @@ package viewModel;
 
 
 import model.ModelFactory;
+import viewModel.addshift.AddShiftViewModel;
 import viewModel.calendar.CalendarViewModel;
+import viewModel.createUser.CreateUserViewModel;
 import viewModel.login.LoginViewModel;
 
 public class ViewModelFactory {
     private ModelFactory modelFactory;
     private LoginViewModel loginViewModel;
     private CalendarViewModel calendarViewModel;
+    private CreateUserViewModel userViewModel;
+    private AddShiftViewModel addShiftViewModel;
 
     public ViewModelFactory(ModelFactory modelFactory) {
         this.modelFactory = modelFactory;
@@ -24,5 +28,17 @@ public class ViewModelFactory {
         if(calendarViewModel == null)
             calendarViewModel = new CalendarViewModel(modelFactory.calendarModel());
         return calendarViewModel;
+    }
+
+    public CreateUserViewModel getUserViewModel() {
+        if (userViewModel == null)
+            userViewModel = new CreateUserViewModel(modelFactory.createUserModel());
+        return userViewModel;
+    }
+
+    public AddShiftViewModel getAddShiftViewModel() {
+        if (addShiftViewModel == null)
+            addShiftViewModel = new AddShiftViewModel(modelFactory.addShiftModel());
+        return addShiftViewModel;
     }
 }

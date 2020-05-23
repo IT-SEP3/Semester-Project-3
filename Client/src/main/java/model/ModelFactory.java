@@ -2,8 +2,12 @@ package model;
 
 
 import clientNetworking.ClientFactory;
+import model.addshift.AddShiftModel;
+import model.addshift.IAddShiftModel;
 import model.calendar.ICalendarModel;
 import model.calendar.CalendarModel;
+import model.createUser.CreateUserModel;
+import model.createUser.ICreateUserModel;
 import model.login.ILoginModel;
 import model.login.LoginModel;
 
@@ -11,6 +15,8 @@ public class ModelFactory {
     private ClientFactory clientFactory;
     private ILoginModel loginModel;
     private ICalendarModel calendarModel;
+    private ICreateUserModel createUserModel;
+    private IAddShiftModel addShiftModel;
 
     public ModelFactory(ClientFactory c) {
         clientFactory = c;
@@ -26,5 +32,17 @@ public class ModelFactory {
         if(calendarModel == null)
             calendarModel = new CalendarModel(clientFactory.calendarClient(), loginModel());
         return calendarModel;
+    }
+
+    public ICreateUserModel createUserModel() {
+        if (createUserModel == null)
+            createUserModel = new CreateUserModel(clientFactory.createUserClient());
+        return createUserModel;
+    }
+
+    public IAddShiftModel addShiftModel() {
+        if (addShiftModel == null)
+            addShiftModel = new AddShiftModel(clientFactory.shiftClient(), loginModel());
+        return addShiftModel;
     }
 }
