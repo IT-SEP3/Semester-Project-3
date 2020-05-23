@@ -27,10 +27,25 @@ namespace BusinessLogic.Controllers
             return _context.GetAllShifts(username, accessLevel, date);
         }
 
+
+        // GET: api/Shifts/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Shift>> GetShift(int id)
+        {
+            var shift = await _context.Shifts.FindAsync(id);
+
+            if (shift == null)
+            {
+                return NotFound();
+            }
+
+            return shift;
+        }
+
         // PUT: api/Shifts/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        /*[HttpPut("{id}")]
+        [HttpPut("{id}")]
         public async Task<IActionResult> PutShift(int id, Shift shift)
         {
             if (id != shift.Id)
@@ -85,7 +100,7 @@ namespace BusinessLogic.Controllers
             await _context.SaveChangesAsync();
 
             return shift;
-        }*/
+        }
 
         private bool ShiftExists(int id)
         {
