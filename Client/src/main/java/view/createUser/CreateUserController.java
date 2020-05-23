@@ -71,27 +71,27 @@ public class CreateUserController {
     }
 
     public void onSubmitButton(ActionEvent event) {
-        labelUsername.setTextFill(usernameTextField.getText().isEmpty() ? Color.RED : Color.BLACK);
-        labelPassword.setTextFill(passwordTextField.getText().isEmpty() ? Color.RED : Color.BLACK);
-        labelFirstname.setTextFill(firstnameTextField.getText().isEmpty() ? Color.RED : Color.BLACK);
-        labelLastname.setTextFill(lastnameTextField.getText().isEmpty() ? Color.RED : Color.BLACK);
-        labelEmail.setTextFill(emailTextField.getText().isEmpty() ? Color.RED : Color.BLACK);
-
-        labelStatus.setTextFill(statusComboBox.getValue().contains("Choose a status") ? Color.RED : Color.BLACK);
-        labelAccesslevel.setTextFill(accesslevelComboBox.getValue().contains("Choose accesslevel") ? Color.RED : Color.BLACK);
-
         if(usernameTextField.getText().isEmpty() || passwordTextField.getText().isEmpty() || firstnameTextField.getText().isEmpty()
-                || lastnameTextField.getText().isEmpty() || emailTextField.getText().isEmpty() || statusComboBox.getValue().contains("Choose a status")
-                || accesslevelComboBox.getValue().contains("Choose accesslevel")) {
+                || lastnameTextField.getText().isEmpty() || emailTextField.getText().isEmpty() || statusComboBox.getSelectionModel().isEmpty()
+                || accesslevelComboBox.getSelectionModel().isEmpty()) {
+            setEmptyFieldsRed();
             response.setText("Please fill the required fields...");
-            return;
+        } else {
+            createUserViewModel.submitEmployee();
+            //TODO make sure it is connected to the HTTPHandler and can be transffered to the server.
+            System.out.println(response.getText());
+
+            // Opens the calendar after all the information have been added to the database, else writing something went wrong.
+            if(response.getText().equals("OK")){
+                viewHandler.openCalendarView();
+                System.out.println("trying to change to calendar");
+            } else {
+                response.setText("Connection to database couldn't be established...");
+                System.out.println("Connection to database couldn't be established...");
+            }
         }
-        createUserViewModel.submitEmployee();
-        System.out.println(response.getText());
-        if(response.getText().equals("OK")){
-            viewHandler.openCalendarView();
-            System.out.println("trying to change to calendar");
-        }
+
+
     }
 
     public void onCancelButton(ActionEvent event) {
@@ -119,5 +119,16 @@ public class CreateUserController {
     public void accesslevelComboBox(ActionEvent event) {
         String selectedValue = accesslevelComboBox.getValue();
         labelAccesslevelString.setText(selectedValue);
+    }
+
+    private void setEmptyFieldsRed() {
+        labelUsername.setTextFill(usernameTextField.getText().isEmpty() ? Color.RED : Color.BLACK);
+        labelPassword.setTextFill(passwordTextField.getText().isEmpty() ? Color.RED : Color.BLACK);
+        labelFirstname.setTextFill(firstnameTextField.getText().isEmpty() ? Color.RED : Color.BLACK);
+        labelLastname.setTextFill(lastnameTextField.getText().isEmpty() ? Color.RED : Color.BLACK);
+        labelEmail.setTextFill(emailTextField.getText().isEmpty() ? Color.RED : Color.BLACK);
+
+        labelStatus.setTextFill(statusComboBox.getSelectionModel().isEmpty() ? Color.RED : Color.BLACK);
+        labelAccesslevel.setTextFill(accesslevelComboBox.getSelectionModel().isEmpty() ? Color.RED : Color.BLACK);
     }
 }

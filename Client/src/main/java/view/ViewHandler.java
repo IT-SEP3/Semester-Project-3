@@ -2,6 +2,7 @@ package view;
 
 
 import view.calendar.CalendarViewController;
+import view.createUser.CreateUserController;
 import view.login.LoginViewController;
 import viewModel.ViewModelFactory;
 import javafx.fxml.FXMLLoader;
@@ -47,16 +48,16 @@ public class ViewHandler {
         mainStage.setScene(calendarScene);
     }
 
-    public void openCreateEmployeeView() {
+    public void openCreateUserView() {
         FXMLLoader loader = new FXMLLoader();
         if (createUser == null) {
             Parent root = getRootByPath("createUser/CreateUser.fxml", loader);
-            CalendarViewController controller = loader.getController();
-            controller.init(viewModelFactory.getCalendarViewModel(), this);
+            CreateUserController controller = loader.getController();
+            controller.init(viewModelFactory.getUserViewModel(), this);
             createUser = new Scene(root);
+            mainStage.setTitle("Create User");
+            mainStage.setScene(createUser);
         }
-        mainStage.setTitle("Create User");
-        mainStage.setScene(createUser);
     }
 
     private Parent getRootByPath(String path, FXMLLoader loader) {
