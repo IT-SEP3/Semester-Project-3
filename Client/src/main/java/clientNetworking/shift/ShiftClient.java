@@ -15,6 +15,7 @@ public class ShiftClient implements IShiftClient {
 
     public ShiftClient(HTTPHandler httpHandler) {
         this.httpHandler = httpHandler;
+        this.jsonSerializer = new Gson();
     }
 
     @Override

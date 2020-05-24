@@ -28,6 +28,7 @@ public class CreateUserViewModel {
         paintProperty = new SimpleObjectProperty<Paint>();
     }
 
+    //TODO This method does not work properly in the vm.
     public Property<Paint> getPaintProperty(){
         return paintProperty;
     }

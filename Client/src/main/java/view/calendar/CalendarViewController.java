@@ -243,6 +243,10 @@ public class CalendarViewController {
         viewHandler.openCreateUserView();
     }
 
+    public void onAddShift(ActionEvent event) {
+        viewHandler.openAddShiftView();
+    }
+
     @FXML
     void onSelectMonth(ActionEvent event) {
         int monthNumber = 0;
@@ -288,4 +292,6 @@ public class CalendarViewController {
         calendarViewModel.clearCalendar();
         calendarViewModel.setCalendar(monthNumber, Integer.parseInt(yearBox.getValue()));
     }
+
+
 }

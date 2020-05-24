@@ -1,6 +1,7 @@
 package view;
 
 
+import view.addshift.AddShiftController;
 import view.calendar.CalendarViewController;
 import view.createUser.CreateUserController;
 import view.login.LoginViewController;
@@ -17,6 +18,7 @@ public class ViewHandler {
     private Scene loginScene;
     private Scene calendarScene;
     private Scene createUser;
+    private Scene addShift;
 
     public ViewHandler(Stage stage, ViewModelFactory vmf) {
         viewModelFactory = vmf;
@@ -57,6 +59,18 @@ public class ViewHandler {
             createUser = new Scene(root);
             mainStage.setTitle("Create User");
             mainStage.setScene(createUser);
+        }
+    }
+
+    public void openAddShiftView() {
+        FXMLLoader loader = new FXMLLoader();
+        if (addShift == null) {
+            Parent root = getRootByPath("addshift/AddShift.fxml", loader);
+            AddShiftController controller = loader.getController();
+            controller.init(viewModelFactory.getAddShiftViewModel(), this);
+            addShift = new Scene(root);
+            mainStage.setTitle("Add Shift");
+            mainStage.setScene(addShift);
         }
     }
 
