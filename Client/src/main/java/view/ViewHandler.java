@@ -52,14 +52,12 @@ public class ViewHandler {
 
     public void openCreateUserView() {
         FXMLLoader loader = new FXMLLoader();
-        if (createUser == null) {
-            Parent root = getRootByPath("createUser/CreateUser.fxml", loader);
-            CreateUserController controller = loader.getController();
-            controller.init(viewModelFactory.getUserViewModel(), this);
-            createUser = new Scene(root);
-            mainStage.setTitle("Create User");
-            mainStage.setScene(createUser);
-        }
+        Parent root = getRootByPath("createUser/CreateUser.fxml", loader);
+        CreateUserController controller = loader.getController();
+        controller.init(viewModelFactory.getUserViewModel(), this);
+        createUser = new Scene(root);
+        mainStage.setTitle("Create User");
+        mainStage.setScene(createUser);
     }
 
     public void openAddShiftView() {

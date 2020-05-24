@@ -54,6 +54,7 @@ public class CreateUserController {
 
     public void init(CreateUserViewModel vm, ViewHandler vh) {
         createUserViewModel = vm;
+        viewHandler = vh;
         usernameTextField.textProperty().bindBidirectional(vm.usernameProperty());
         passwordTextField.textProperty().bindBidirectional(vm.passwordProperty());
         firstnameTextField.textProperty().bindBidirectional(vm.firstnameProperty());
@@ -93,8 +94,6 @@ public class CreateUserController {
                 System.out.println("Connection to database couldn't be established...");
             }
         }
-
-
     }
 
     public void onCancelButton(ActionEvent event) {

@@ -91,30 +91,16 @@ public class ShiftDAO implements IShiftDAO {
         if(operation.equals("Check")){
             try {
                 String sql = "SELECT Users_ID, Manager_ID, description, day, month, year FROM "
-                        + databaseConnection.getShiftTable() + " WHERE Manager_ID = " + shift.getManager_id() +";";
+                        + databaseConnection.getShiftTable() + " WHERE Manager_ID = " + shift.getManager_id() +" AND Users_ID = "+ shift.getUser_id() + "AND description = '" + shift.getDescription() +"';";
                 PreparedStatement preparedStatement = databaseConnection.createPreparedStatement(sql);
                 ResultSet resultSet = preparedStatement.executeQuery();
 
-                while (resultSet.next()) {
-                    int userId = resultSet.getInt("Users_ID");
-                    int managerId = resultSet.getInt("Manager_ID");
-                    String description = resultSet.getString("description");
-                    int day = resultSet.getInt("day");
-                    int month = resultSet.getInt("month");
-                    int year = resultSet.getInt("year");
-
-                    String dateString = day + "-" + month + "-" + year;
-                    System.out.println(dateString);
-                    LocalDate date = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("d-M-yyyy"));;
-
-                    //When the shifts are equal it returns NOT as in not to continue
-                    if(userId == shift.getUser_id() && managerId == shift.getManager_id() && description.equals(shift.getDescription()) && date.equals(shift.getDate())) {
-                        databaseConnection.closeConnection();
-                        return "NOT";
-                    } else {
-                        databaseConnection.closeConnection();
-                        return "OK";
-                    }
+                if(resultSet.next()){
+                    databaseConnection.closeConnection();
+                    return "NOT";
+                } else{
+                    databaseConnection.closeConnection();
+                    return "YES";
                 }
             } catch (DataConnectionException| SQLException e) {
                 e.printStackTrace();
@@ -131,7 +117,7 @@ public class ShiftDAO implements IShiftDAO {
                         + "', '" + shift.getDate().getMonthValue()
                         + "', '" + shift.getDate().getYear() + "')";
                 PreparedStatement preparedStatement = databaseConnection.createPreparedStatement(sql);
-                ResultSet resultSet = preparedStatement.executeQuery();
+                preparedStatement.executeQuery();
                 databaseConnection.closeConnection();
                 return "OK";
             } catch (DataConnectionException | SQLException e) {
@@ -141,7 +127,5 @@ public class ShiftDAO implements IShiftDAO {
                 return "NOT";
             }
         }
-        //Completely unneeded, every outcome already has a return statement.
-        return "Not";
     }
 }

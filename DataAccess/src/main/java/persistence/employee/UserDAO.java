@@ -23,36 +23,18 @@ public class UserDAO implements IUserDAO {
         if(operation.equals("Check")){
             try {
                 String sql = "SELECT username, password, firstName, lastName, email, status, accessLevel, dayEmployment, monthEmployment, yearEmployment FROM "
-                        + databaseConnection.getShiftTable() + " WHERE username = " + user.getUsername() + "AND password = " + user.getPassword() + "AND accessLevel = " + user.getAccessLevel()+ ";";
+                        + databaseConnection.getUserTable() + " WHERE username = '" + user.getUsername() + "' AND password = '" + user.getPassword() + "' AND accessLevel = '" + user.getAccessLevel() + "';";
                 PreparedStatement preparedStatement = databaseConnection.createPreparedStatement(sql);
                 ResultSet resultSet = preparedStatement.executeQuery();
-
-                while (resultSet.next()) {
-                    String username = resultSet.getString("username");
-                    String password = resultSet.getString("password");
-                    String name = resultSet.getString("firstName");
-                    String lastname = resultSet.getString("lastName");
-                    String email = resultSet.getString("email");
-                    String status = resultSet.getString("status");
-                    int day = resultSet.getInt("dayEmployment");
-                    int month = resultSet.getInt("monthEmployment");
-                    int year = resultSet.getInt("yearEmployment");
-                    String accessLevel = resultSet.getString("accessLevel");
-
-
-                    String dateString = day + "-" + month + "-" + year;
-                    System.out.println(dateString);
-                    LocalDate date = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("dd-M-yyyy"));;
-
-                    //When the users are equal it returns NOT as in not to continue withc posting
-                    if(username.equals(user.getUsername()) && password.equals(user.getPassword()) && accessLevel.equals(user.getAccessLevel())) {
-                        databaseConnection.closeConnection();
-                        return "NOT";
-                    } else {
-                        databaseConnection.closeConnection();
-                        return "OK";
-                    }
+                System.out.println("Got the result");
+                if(resultSet.next()){
+                    databaseConnection.closeConnection();
+                    return "NOT";
+                } else {
+                    databaseConnection.closeConnection();
+                    return "OK";
                 }
+
             } catch (DataConnectionException| SQLException e) {
                 e.printStackTrace();
                 System.out.println("Problem in database");
@@ -67,7 +49,7 @@ public class UserDAO implements IUserDAO {
                         + user.getUsername() + "', '" + user.getPassword() + "', '" + user.getFname() + "', '" + user.getLname() + "', '" + user.getEmail() + "', '" + user.getStatus() + "', '" + user.getAccessLevel() + "')";
 
                 PreparedStatement preparedStatement = databaseConnection.createPreparedStatement(sql);
-                ResultSet resultSet = preparedStatement.executeQuery();
+                preparedStatement.execute();
                 databaseConnection.closeConnection();
 
                 return "OK";
@@ -78,10 +60,6 @@ public class UserDAO implements IUserDAO {
                 return "NOT";
             }
         }
-        //Completely unneeded, every outcome already has a return statement.
-        databaseConnection.closeConnection();
-        return "Not";
-
     }
 
     @Override

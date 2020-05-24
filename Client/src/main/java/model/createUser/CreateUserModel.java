@@ -6,6 +6,7 @@ import shared.User;
 public class CreateUserModel implements ICreateUserModel {
 
     public ICreateUserClient iCreateUserClient;
+    public String response;
     private User userInfo;
 
     public CreateUserModel(ICreateUserClient iCreateUserClient) {
@@ -18,12 +19,14 @@ public class CreateUserModel implements ICreateUserModel {
         String answer = iCreateUserClient.createUser(createUserCarrier);
         if (answer.equals("OK")) {
             userInfo = createUserCarrier;
+            response = answer;
         }
     }
 
     @Override
     public String createUserResponse() {
-        return iCreateUserClient.getResponse();
+        System.out.println(response);
+        return response;
     }
 
     @Override

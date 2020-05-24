@@ -37,10 +37,11 @@ public class CreateUserViewModel {
         if(username.get() != null && !username.get().isEmpty() && password.get() != null && !password.get().isEmpty()
                 && fname.get() != null && !fname.get().isEmpty() && lname.get() != null && !lname.get().isEmpty()
                 && email.get() != null && !email.get().isEmpty()) {
-            model.createUser(username.getValue(), password.getValue(), fname.getValue(), lname.getValue(),
+                    model.createUser(username.getValue(), password.getValue(), fname.getValue(), lname.getValue(),
                     email.getValue(), status.getValue(), accesslevel.getValue());
             String response = model.createUserResponse();
-            createEmployeeResponse.setValue(response);
+            System.out.println(response);
+            createEmployeeResponse.set(response);
         }
     }
 
