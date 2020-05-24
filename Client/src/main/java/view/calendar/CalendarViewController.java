@@ -106,6 +106,8 @@ public class CalendarViewController {
     private ComboBox<String> yearBox;
     @FXML
     private Button createEmployee;
+    @FXML
+    private Button createShift;
     private ViewHandler viewHandler;
     private CalendarViewModel calendarViewModel;
 
@@ -160,6 +162,7 @@ public class CalendarViewController {
         access.textProperty().bindBidirectional(calendarViewModel.getProperyList(43));
         //Button accesibility for different access levels
         createEmployee.visibleProperty().bindBidirectional(calendarViewModel.getButtonsProperty());
+        createShift.visibleProperty().bindBidirectional(calendarViewModel.getButtonsProperty());
 
         //Combobox year and month population
         monthsBox.getItems().add("January");

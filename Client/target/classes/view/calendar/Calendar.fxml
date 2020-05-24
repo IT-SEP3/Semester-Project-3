@@ -350,6 +350,7 @@
                               <Label fx:id="user" layoutX="25.0" layoutY="95.0" text="User: " />
                               <Label fx:id="access" layoutX="14.0" layoutY="116.0" text="Access: " />
                               <Button fx:id="createEmployee" layoutX="83.0" layoutY="304.0" mnemonicParsing="false" onAction="#onCreateUser" text="Create User" />
+                              <Button fx:id="createShift" layoutX="70.0" layoutY="401.0" mnemonicParsing="false" onAction="#onAddShift" text="Add Shift" />
                            </children></AnchorPane>
                      </children>
                   </VBox>

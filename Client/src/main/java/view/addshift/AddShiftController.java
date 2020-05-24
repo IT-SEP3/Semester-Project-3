@@ -28,7 +28,7 @@ public class AddShiftController {
         viewHandler = vh;
         descriptionTextField.textProperty().bindBidirectional(vm.descriptionProperty());
         response.textProperty().bindBidirectional(vm.responseProperty());
-        employeeComboBox.getItems().addAll(vm.getUsers());
+        //employeeComboBox.getItems().addAll(vm.getUsers());
     }
 
     public void onSubmitButton(ActionEvent event) {
