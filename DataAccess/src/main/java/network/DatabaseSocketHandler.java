@@ -74,13 +74,14 @@ public class DatabaseSocketHandler implements Runnable {
 
                 else if(receivedPieces[0].equals("PostUser")) {
                     System.out.println(received);
-                    System.out.println(receivedPieces[1]);
+
                     if(!receivedPieces[1].equals("Confirmed")){
                         User new_user = gson.fromJson(receivedPieces[1], User.class);
                         String addResponse = daoFactory.getUserDAO().addUser(new_user,"Check");
                         sendToClient(addResponse);
                     } else {
                         User new_user = gson.fromJson(receivedPieces[2], User.class);
+                        System.out.println(receivedPieces[2]);
                         System.out.println();
                         String addResponse = daoFactory.getUserDAO().addUser(new_user,"Post");
                         sendToClient(addResponse);

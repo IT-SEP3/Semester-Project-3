@@ -3,6 +3,7 @@ package persistence.shift;
 import exceptions.DataConnectionException;
 import persistence.database.IDBConnection;
 import shared.Shift;
+import shared.User;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;

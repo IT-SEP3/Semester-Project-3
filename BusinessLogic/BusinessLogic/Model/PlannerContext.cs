@@ -55,7 +55,7 @@ namespace BusinessLogic.Model
             string result = socketHandler.GetResponse();
             if (result.Equals("OK")){
                 //If ok it post and returns if post was succesful
-                socketHandler.SendToDatabase("PostUser;Confirmed;", user);
+                socketHandler.SendToDatabase("PostUser;Confirmed", user);
                 result = socketHandler.GetResponse();
                 if (result.Equals("OK"))
                 {

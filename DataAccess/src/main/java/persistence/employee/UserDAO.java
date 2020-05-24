@@ -7,8 +7,10 @@ import shared.User;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 
 public class UserDAO implements IUserDAO {
     private final IDBConnection databaseConnection;
@@ -44,9 +46,12 @@ public class UserDAO implements IUserDAO {
 
         } else {
             try {
+                Calendar cal = Calendar.getInstance();
+                String dateString = new SimpleDateFormat("dd-MM-yyyy").format(cal.getTime());
+                String[] dateSplit = dateString.split("-");
                 String sql = "INSERT INTO " + databaseConnection.getUserTable()
-                        + "(username, password, firstName, lastName, email, status, accessLevel) VALUES ('"
-                        + user.getUsername() + "', '" + user.getPassword() + "', '" + user.getFname() + "', '" + user.getLname() + "', '" + user.getEmail() + "', '" + user.getStatus() + "', '" + user.getAccessLevel() + "')";
+                        + "(username, password, firstName, lastName, email, status, accessLevel, dayEmployment, monthEmployment, yearEmployment) VALUES ('"
+                        + user.getUsername() + "', '" + user.getPassword().hashCode() + "', '" + user.getFname() + "', '" + user.getLname() + "', '" + user.getEmail() + "', '" + user.getStatus() + "', '" + user.getAccessLevel() + "', '"+ dateSplit[0] +"', '" + dateSplit[1] +"', '"+ dateSplit[2] +"')";
 
                 PreparedStatement preparedStatement = databaseConnection.createPreparedStatement(sql);
                 preparedStatement.execute();
