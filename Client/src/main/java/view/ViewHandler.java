@@ -4,6 +4,7 @@ package view;
 import view.addshift.AddShiftController;
 import view.calendar.CalendarViewController;
 import view.createUser.CreateUserController;
+import view.employeeList.EmployeeListController;
 import view.login.LoginViewController;
 import viewModel.ViewModelFactory;
 import javafx.fxml.FXMLLoader;
@@ -82,6 +83,15 @@ public class ViewHandler {
             mainStage.setTitle("Add Shift");
             mainStage.setScene(addShift);
         }
+    }
+    public void openEmployeeListViewOld() {
+        FXMLLoader loader = new FXMLLoader();
+        Parent root = getRootByPath("employeeList/EmployeeList.fxml", loader);
+        EmployeeListController controller = loader.getController();
+        controller.init(viewModelFactory.getEmployeeListViewModel(), this);
+        calendarScene = new Scene(root);
+        mainStage.setTitle("Calendar");
+        mainStage.setScene(calendarScene);
     }
 
     private Parent getRootByPath(String path, FXMLLoader loader) {

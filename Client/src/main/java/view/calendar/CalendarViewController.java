@@ -256,6 +256,11 @@ public class CalendarViewController {
     }
 
     @FXML
+    void onEmployeeList(ActionEvent event) {
+        viewHandler.openEmployeeListViewOld();
+    }
+
+    @FXML
     void onSelectMonth(ActionEvent event) {
         int monthNumber = 0;
         switch (monthsBox.getValue()) {

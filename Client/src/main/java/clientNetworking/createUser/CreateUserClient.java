@@ -5,10 +5,12 @@ import clientNetworking.HTTPHandler;
 import com.google.gson.Gson;
 import shared.User;
 
+import javax.xml.ws.spi.http.HttpHandler;
+
 public class CreateUserClient implements ICreateUserClient {
     private Gson jsonSerializer;
     private String response;
-    private clientNetworking.HTTPHandler httpHandler;
+    private HTTPHandler httpHandler;
 
     public CreateUserClient(HTTPHandler httpHandler) {
         this.httpHandler = httpHandler;

@@ -5,20 +5,21 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import shared.User;
 import view.ViewHandler;
+import viewModel.employeeList.EmployeeListViewModel;
 import viewModel.login.LoginViewModel;
 
 public class EmployeeListController {
 
     @FXML
-    private ListView<User> employeeList;
+    private ListView<String> employeeList;
     private ViewHandler viewHandler;
-    private LoginViewModel viewModel;
+    private EmployeeListViewModel viewModel;
 
-    public void init(LoginViewModel vm, ViewHandler vh) {
+    public void init(EmployeeListViewModel vm, ViewHandler vh) {
         viewHandler = vh;
         viewModel = vm;
         employeeList = new ListView<>();
-        vm.clearProperties();
+        employeeList.getItems().addAll(vm.populateListView());
     }
 
 

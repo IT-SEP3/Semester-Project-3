@@ -5,6 +5,7 @@ import model.ModelFactory;
 import viewModel.addshift.AddShiftViewModel;
 import viewModel.calendar.CalendarViewModel;
 import viewModel.createUser.CreateUserViewModel;
+import viewModel.employeeList.EmployeeListViewModel;
 import viewModel.login.LoginViewModel;
 
 public class ViewModelFactory {
@@ -13,6 +14,7 @@ public class ViewModelFactory {
     private CalendarViewModel calendarViewModel;
     private CreateUserViewModel userViewModel;
     private AddShiftViewModel addShiftViewModel;
+    private EmployeeListViewModel employeeListViewModel;
 
     public ViewModelFactory(ModelFactory modelFactory) {
         this.modelFactory = modelFactory;
@@ -40,5 +42,11 @@ public class ViewModelFactory {
         if (addShiftViewModel == null)
             addShiftViewModel = new AddShiftViewModel(modelFactory.addShiftModel());
         return addShiftViewModel;
+    }
+
+    public EmployeeListViewModel getEmployeeListViewModel() {
+        if (employeeListViewModel == null)
+            employeeListViewModel = new EmployeeListViewModel(modelFactory.employeeListModel());
+        return employeeListViewModel;
     }
 }

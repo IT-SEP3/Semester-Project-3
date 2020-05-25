@@ -121,7 +121,7 @@ namespace BusinessLogic.Model
             socketHandler.SendToDatabaseStringOnly("GetUsersIDName;");
             return socketHandler.GetResponse();
         }
-        public string GetUsers(int managerId)
+        public string GetUsersByManager(int managerId)
         {
             socketHandler.SendToDatabaseStringOnly("GetManagedUsers;" + managerId);
             string users = socketHandler.GetResponse();
