@@ -33,20 +33,16 @@ public class ShiftDAO implements IShiftDAO {
                 int shift_ID = resultSet.getInt("Shift_ID");
                 int user_ID = resultSet.getInt("Users_ID");
                 String description = resultSet.getString("description");
-                //String status = resultSet.getString("status");
                 int managerID = resultSet.getInt("Manager_ID");
                 int day = resultSet.getInt("day");
                 int month = resultSet.getInt("month");
                 int year = resultSet.getInt("year");
 
-                //DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-                //String date = dateFormat.format();
-
                 String dateString = day + "-" + month + "-" + year;
                 System.out.println(dateString);
                 LocalDate date = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("d-M-yyyy"));;
 
-                //shifts.add(new Shift(shift_ID, user_ID, description, status, managerID, date));
+
                 shifts.add(new Shift(shift_ID, user_ID, description, managerID, date));
             }
         } catch (DataConnectionException | SQLException e) {
