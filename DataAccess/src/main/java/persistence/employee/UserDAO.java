@@ -19,7 +19,6 @@ public class UserDAO implements IUserDAO {
         this.databaseConnection = databaseConnection;
     }
 
-
     @Override
     public String addUser(User user, String operation) {
         if(operation.equals("Check")){

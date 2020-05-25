@@ -37,6 +37,7 @@ public class AddShiftController {
             response.setText("Please fill out the required fields to create a shift");
         } else {
             addShiftViewModel.submitShift(shiftDatePicker.getValue(), employeeComboBox.getValue());
+            viewHandler.openCalendarViewOld();
         }
     }
 
@@ -44,7 +45,7 @@ public class AddShiftController {
         addShiftViewModel.clearFields();
         employeeComboBox.getSelectionModel().select(0);
         shiftDatePicker.getEditor().clear();
-        viewHandler.openCalendarView();
+        viewHandler.openCalendarViewOld();
     }
 
     public void onResetButton(ActionEvent event) {

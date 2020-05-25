@@ -87,7 +87,7 @@ public class CreateUserController {
 
             // Opens the calendar after all the information have been added to the database, else writing something went wrong.
             if(response.getText().equals("OK")){
-                viewHandler.openCalendarView();
+                viewHandler.openCalendarViewOld();
                 System.out.println("trying to change to calendar");
             } else {
                 response.setText("Connection to database couldn't be established...");
@@ -98,7 +98,7 @@ public class CreateUserController {
 
     public void onCancelButton(ActionEvent event) {
         createUserViewModel.clearFields();
-        viewHandler.openCalendarView();
+        viewHandler.openCalendarViewOld();
     }
 
     public void onResetButton(ActionEvent event) {
