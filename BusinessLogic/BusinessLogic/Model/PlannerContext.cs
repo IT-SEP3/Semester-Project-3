@@ -81,7 +81,8 @@ namespace BusinessLogic.Model
 
         public string PostShift(Shift shift)
         {
-
+            //Due to c# having no interoperability between DateTime or plugin class Localdate and java Date
+            //and localDate we decided to just skip deserialization in the c# client
             socketHandler.SendToDatabase("PostShift", shift);
             string result = socketHandler.GetResponse();
             if (result.Equals("OK"))

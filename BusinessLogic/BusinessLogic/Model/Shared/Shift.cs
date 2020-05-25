@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BusinessLogic.Model.Shared;
-using NodaTime;
 
 namespace BusinessLogic.Model.Calendar
 {

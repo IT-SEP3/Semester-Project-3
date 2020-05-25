@@ -92,6 +92,7 @@ public class DatabaseSocketHandler implements Runnable {
                 }
 
                 else if (receivedPieces[0].equals("PostShift")) {
+                    System.out.println(received);
                     if(!receivedPieces[1].equals("Confirmed")){
                         Shift new_shift = gson.fromJson(receivedPieces[1], Shift.class);
                         String addResponse = daoFactory.getShiftDAO().postShift(new_shift,"Check");

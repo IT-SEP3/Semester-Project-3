@@ -17,11 +17,11 @@ public class CreateUserClient implements ICreateUserClient {
 
     @Override
     public String createUser(User createUserCarrier) {
-        String PATH ="http://127.0.0.1:5000/api/User"; //TODO change the path so the actual path.
+        String PATH ="http://127.0.0.1:5000/api/User";
         String createEmployeeJson = jsonSerializer.toJson(createUserCarrier);
         System.out.println(createEmployeeJson);
         response = httpHandler.postToAPI(createEmployeeJson, PATH);
-
+        System.out.println(response);
         return response;
     }
 

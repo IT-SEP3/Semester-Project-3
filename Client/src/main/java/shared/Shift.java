@@ -5,10 +5,10 @@ import java.time.LocalDate;
 public class Shift {
 
     private int id;
-    private LocalDate date;
     private int user_id;
     private int manager_id;
     private String description;
+    private LocalDate date;
 
 
 

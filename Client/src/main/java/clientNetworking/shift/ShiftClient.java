@@ -23,6 +23,7 @@ public class ShiftClient implements IShiftClient {
     public String postShift(Shift shift) {
         String PATH ="http://127.0.0.1:5000/api/Shifts";
         String shiftJson = jsonSerializer.toJson(shift);
+
         System.out.println(shiftJson);
         response = httpHandler.postToAPI(shiftJson, PATH);
         return response;

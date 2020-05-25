@@ -42,6 +42,7 @@ namespace BusinessLogic.Controllers
         [HttpPost]
         public async Task<ActionResult<String>> PostShift(Shift shift)
         {
+            Console.WriteLine(shift);
             return _context.PostShift(shift);
         }
     }
