@@ -36,7 +36,7 @@ public class ShiftClient implements IShiftClient {
 
     @Override
     public ArrayList<User> getUsers() {
-        String PATH ="http://127.0.0.1:5000/api/user";
+        String PATH ="http://127.0.0.1:5000/api/user/id-name";
         System.out.println("Getting users available for shifts");
         response = httpHandler.getFromAPI(PATH);
 
