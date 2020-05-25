@@ -47,13 +47,13 @@ namespace BusinessLogic.Model
             string shifts = socketHandler.GetResponse();
             return shifts;
         }
-
+        /*
         public string GetUser(int id)
         {
             socketHandler.SendToDatabaseStringOnly("GetUser;" + id);
             return socketHandler.GetResponse();
         }
-
+        */
         public string PostUser(User user)
         {
             //Check if there is one in database
