@@ -5,8 +5,8 @@ import shared.User;
 
 public class CreateUserModel implements ICreateUserModel {
 
-    public ICreateUserClient iCreateUserClient;
-    public String response;
+    private ICreateUserClient iCreateUserClient;
+    private String response;
     private User userInfo;
 
     public CreateUserModel(ICreateUserClient iCreateUserClient) {
