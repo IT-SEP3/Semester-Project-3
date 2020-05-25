@@ -35,7 +35,7 @@ namespace BusinessLogic.Model
             }
         }
 
-        internal String GetShift(int id)
+        internal string GetShift(int id)
         {
             socketHandler.SendToDatabaseStringOnly("GetShift;" + id);
             return socketHandler.GetResponse();
@@ -98,9 +98,15 @@ namespace BusinessLogic.Model
             }
         }
 
-        public String GetUser(int id)
+        public string GetUser(int id)
         {
             socketHandler.SendToDatabaseStringOnly("GetUser;" + id);
+            return socketHandler.GetResponse();
+        }
+
+        public string GetUsersIdName()
+        {
+            socketHandler.SendToDatabaseStringOnly("GetUsersIDName;");
             return socketHandler.GetResponse();
         }
     }

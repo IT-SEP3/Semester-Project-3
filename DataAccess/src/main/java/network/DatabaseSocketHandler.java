@@ -1,13 +1,16 @@
 package network;
 
+import com.google.gson.Gson;
 import persistence.DAOFactory;
 import shared.Shift;
 import shared.User;
-import com.google.gson.Gson;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseSocketHandler implements Runnable {
     private Socket socket;
@@ -95,9 +98,16 @@ public class DatabaseSocketHandler implements Runnable {
                         sendToClient(addResponse);
                     } else {
                         Shift new_shift = gson.fromJson(receivedPieces[2], Shift.class);
-                        String addResponse = daoFactory.getShiftDAO().postShift(new_shift,"Check");
+                        String addResponse = daoFactory.getShiftDAO().postShift(new_shift,"Post");
                         sendToClient(addResponse);
                     }
+                }
+
+                else if(receivedPieces[0].equals("GetUsersIDName")) {
+                    System.out.println("Trying to get users");
+                    List<User> users = daoFactory.getUserDAO().getUsersIdName();
+                    String userJson = gson.toJson(users);
+                    sendToClient(userJson);
                 }
             }
         }catch (Exception e){ //VIOLATION OF SOLID

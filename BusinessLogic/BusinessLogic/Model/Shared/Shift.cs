@@ -3,18 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BusinessLogic.Model.Shared;
+using NodaTime;
 
 namespace BusinessLogic.Model.Calendar
 {
     public class Shift
     {
-        public int Id { get; set; }
-        public DateTime CreatedTime { get; set; }
-        public string Description { get; set; }
-        public string Status { get; set; }
-        public int AssigneeId { get; set; }
-        public User Assignee { get; set; }
-        public int ManagerId { get; set; }
-        public User Manager { get; set; }
+        public int id { get; set; }
+        public int user_id { get; set; }
+        public string description { get; set; }
+        public int manager_id { get; set; }
+        public LocalDate date { get; set; }
+        
     }
 }

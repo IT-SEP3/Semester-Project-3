@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class UserDAO implements IUserDAO {
@@ -87,7 +88,6 @@ public class UserDAO implements IUserDAO {
                 int year = resultSet.getInt("yearEmployment");
                 String accessLevel = resultSet.getString("accessLevel");
 
-
                 String dateString = day + "-" + month + "-" + year;
                 System.out.println(dateString);
                 LocalDate date = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("dd-M-yyyy"));;
@@ -99,5 +99,31 @@ public class UserDAO implements IUserDAO {
             databaseConnection.closeConnection();
         }
         return user;
+    }
+
+    @Override
+    public ArrayList<User> getUsersIdName() {
+
+        String sql = "SELECT users_ID, firstName FROM " + databaseConnection.getUserTable() + ";";
+        ArrayList<User> users = new ArrayList<>();
+
+        try {
+            PreparedStatement preparedStatement = databaseConnection.createPreparedStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while ( resultSet.next()) {
+                int id = resultSet.getInt("users_ID");
+                String name = resultSet.getString("firstName");
+
+                users.add(new User(id, name));
+            }
+
+        } catch (DataConnectionException | SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            databaseConnection.closeConnection();
+        }
+
+        return users;
     }
 }

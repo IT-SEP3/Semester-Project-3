@@ -228,6 +228,10 @@ public class CalendarViewController {
             case "December":
                 monthNumber = 12;
                 break;
+
+            default:
+                monthNumber = 1;
+                break;
         }
         createEmployee.visibleProperty().bindBidirectional(calendarViewModel.getButtonsProperty());
         calendarViewModel.getUser();
