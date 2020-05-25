@@ -40,6 +40,7 @@ public class LoginViewController {
         userNameText.textProperty().bindBidirectional(vm.usernameProperty());
         passWordText.textProperty().bindBidirectional(vm.passwordProperty());
         response.textProperty().bindBidirectional(vm.loginResponseProperty());
+        vm.clearProperties();
     }
 
 

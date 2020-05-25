@@ -16,9 +16,9 @@ public class User {
 
 
     public User(int id, String username, String password, String fname, String lname, String email, String status, LocalDate employmentDate, String accessLevel) {
+        this.id = id;
         this.username = username;
         this.password = password;
-        this.id = id;
         this.fname = fname;
         this.lname = lname;
         this.email = email;
@@ -27,9 +27,24 @@ public class User {
         this.accessLevel = accessLevel;
     }
 
+    public User(String username, String password, String fname, String lname, String email, String status, String accessLevel) {
+        this.username = username;
+        this.password = password;
+        this.fname = fname;
+        this.lname = lname;
+        this.email = email;
+        this.status = status;
+        this.accessLevel = accessLevel;
+    }
+
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+    }
+
+    public User(int id, String fname) {
+        this.id = id;
+        this.fname = fname;
     }
 
     public String getUsername() {

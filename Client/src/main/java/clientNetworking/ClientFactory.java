@@ -2,6 +2,8 @@ package clientNetworking;
 
 import clientNetworking.calendar.ICalendarClient;
 import clientNetworking.calendar.CalendarClient;
+import clientNetworking.createUser.CreateUserClient;
+import clientNetworking.createUser.ICreateUserClient;
 import clientNetworking.login.ILoginClient;
 import clientNetworking.login.LoginClient;
 import clientNetworking.shift.IShiftClient;
@@ -12,6 +14,7 @@ public class ClientFactory {
     private ILoginClient loginClient;
     private ICalendarClient calendarClient;
     private IShiftClient shiftClient;
+    private ICreateUserClient createUserClient;
 
 
     public ClientFactory(HTTPHandler httpHandler){
@@ -34,5 +37,11 @@ public class ClientFactory {
         if(shiftClient == null)
             shiftClient = new ShiftClient(httpHandler);
         return shiftClient;
+    }
+
+    public ICreateUserClient createUserClient() {
+        if (createUserClient == null)
+            createUserClient = new CreateUserClient(httpHandler);
+        return createUserClient;
     }
 }

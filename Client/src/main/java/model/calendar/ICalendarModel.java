@@ -4,6 +4,7 @@ import shared.Shift;
 import shared.User;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public interface ICalendarModel {
     User getUserFromModel();

@@ -43,4 +43,10 @@ public class LoginViewModel {
             password.setValue(null);
         }
     }
+
+    public void clearProperties() {
+        password.set("");
+        username.set("");
+        loginResponse.set("");
+    }
 }

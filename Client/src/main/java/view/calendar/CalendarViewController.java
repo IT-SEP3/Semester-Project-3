@@ -2,6 +2,7 @@ package view.calendar;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import view.ViewHandler;
@@ -103,6 +104,10 @@ public class CalendarViewController {
     private ComboBox<String> monthsBox;
     @FXML
     private ComboBox<String> yearBox;
+    @FXML
+    private Button createEmployee;
+    @FXML
+    private Button createShift;
     private ViewHandler viewHandler;
     private CalendarViewModel calendarViewModel;
 
@@ -152,8 +157,14 @@ public class CalendarViewController {
         date6x5.textProperty().bindBidirectional(calendarViewModel.getProperyList(39));
         date6x6.textProperty().bindBidirectional(calendarViewModel.getProperyList(40));
         date6x7.textProperty().bindBidirectional(calendarViewModel.getProperyList(41));
+        //Menu side labels
         user.textProperty().bindBidirectional(calendarViewModel.getProperyList(42));
         access.textProperty().bindBidirectional(calendarViewModel.getProperyList(43));
+        //Button accesibility for different access levels
+        createEmployee.visibleProperty().bindBidirectional(calendarViewModel.getButtonsProperty());
+        createShift.visibleProperty().bindBidirectional(calendarViewModel.getButtonsProperty());
+
+        //Combobox year and month population
         monthsBox.getItems().add("January");
         monthsBox.getItems().add("February");
         monthsBox.getItems().add("March");
@@ -166,9 +177,6 @@ public class CalendarViewController {
         monthsBox.getItems().add("October");
         monthsBox.getItems().add("November");
         monthsBox.getItems().add("December");
-        Calendar cal = Calendar.getInstance();
-        monthsBox.setValue(new SimpleDateFormat("MMMM").format(cal.getTime()));
-
         yearBox.getItems().add("2019");
         yearBox.getItems().add("2020");
         yearBox.getItems().add("2021");
@@ -180,6 +188,8 @@ public class CalendarViewController {
 
         Calendar calYear = Calendar.getInstance();
         yearBox.setValue(new SimpleDateFormat("yyyy").format(calYear.getTime()));
+        Calendar cal = Calendar.getInstance();
+        monthsBox.setValue(new SimpleDateFormat("MMMM").format(cal.getTime()));
         int monthNumber = 0;
         switch (monthsBox.getValue()) {
             case "January":
@@ -219,7 +229,10 @@ public class CalendarViewController {
                 monthNumber = 12;
                 break;
         }
+        createEmployee.visibleProperty().bindBidirectional(calendarViewModel.getButtonsProperty());
         calendarViewModel.getUser();
+        calendarViewModel.setFunctionalityDifferences();
+        //Years not flexible, what if its 2021 now
         calendarViewModel.getCalendar(monthNumber +"-"+ 2020);
         calendarViewModel.setCalendar(monthNumber, 2020);
     }
@@ -227,6 +240,14 @@ public class CalendarViewController {
     @FXML
     void logOut(ActionEvent event) {
         viewHandler.openLoginView();
+    }
+
+    public void onCreateUser(ActionEvent event) {
+        viewHandler.openCreateUserView();
+    }
+
+    public void onAddShift(ActionEvent event) {
+        viewHandler.openAddShiftView();
     }
 
     @FXML
@@ -274,5 +295,6 @@ public class CalendarViewController {
         calendarViewModel.clearCalendar();
         calendarViewModel.setCalendar(monthNumber, Integer.parseInt(yearBox.getValue()));
     }
+
 
 }

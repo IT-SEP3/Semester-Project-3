@@ -16,21 +16,10 @@ namespace BusinessLogic.Model
         public PlannerContext(DbContextOptions<PlannerContext> options) : base(options)
         { }
 
-        // Unused for now
-        public DbSet<User> Users { get; set; }
-        public DbSet<Shift> Shifts { get; set; }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            // User
-            modelBuilder.Entity<User>()
-                .HasKey(c => c.username);
-
-            // Shift
-            modelBuilder.Entity<Shift>()
-                .HasKey(s => s.Id);
-            
+        {   
         }
+
         public string ValidateLogin(User user)
         {
             socketHandler.SendToDatabase("Login", user);
@@ -44,6 +33,12 @@ namespace BusinessLogic.Model
             {
                 return "Wrong username or password";
             }
+        }
+
+        internal String GetShift(int id)
+        {
+            socketHandler.SendToDatabaseStringOnly("GetShift;" + id);
+            return socketHandler.GetResponse();
         }
 
         public string GetAllShifts(string UserId, string AccessLevel, string date)
@@ -80,6 +75,7 @@ namespace BusinessLogic.Model
 
         public string PostShift(Shift shift)
         {
+
             socketHandler.SendToDatabase("PostShift", shift);
             string result = socketHandler.GetResponse();
             if (result.Equals("OK"))

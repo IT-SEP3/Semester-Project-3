@@ -1,7 +1,9 @@
 package view;
 
 
+import view.addshift.AddShiftController;
 import view.calendar.CalendarViewController;
+import view.createUser.CreateUserController;
 import view.login.LoginViewController;
 import viewModel.ViewModelFactory;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +17,8 @@ public class ViewHandler {
     private Stage mainStage;
     private Scene loginScene;
     private Scene calendarScene;
+    private Scene createUser;
+    private Scene addShift;
 
     public ViewHandler(Stage stage, ViewModelFactory vmf) {
         viewModelFactory = vmf;
@@ -44,6 +48,28 @@ public class ViewHandler {
         calendarScene = new Scene(root);
         mainStage.setTitle("Calendar");
         mainStage.setScene(calendarScene);
+    }
+
+    public void openCreateUserView() {
+        FXMLLoader loader = new FXMLLoader();
+        Parent root = getRootByPath("createUser/CreateUser.fxml", loader);
+        CreateUserController controller = loader.getController();
+        controller.init(viewModelFactory.getUserViewModel(), this);
+        createUser = new Scene(root);
+        mainStage.setTitle("Create User");
+        mainStage.setScene(createUser);
+    }
+
+    public void openAddShiftView() {
+        FXMLLoader loader = new FXMLLoader();
+        if (addShift == null) {
+            Parent root = getRootByPath("addshift/AddShift.fxml", loader);
+            AddShiftController controller = loader.getController();
+            controller.init(viewModelFactory.getAddShiftViewModel(), this);
+            addShift = new Scene(root);
+            mainStage.setTitle("Add Shift");
+            mainStage.setScene(addShift);
+        }
     }
 
     private Parent getRootByPath(String path, FXMLLoader loader) {

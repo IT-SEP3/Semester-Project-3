@@ -42,43 +42,62 @@ public class DatabaseSocketHandler implements Runnable {
                 String[] receivedPieces = received.split(";");
 
                 if(receivedPieces[0].equals("Login")){
+                    System.out.println(receivedPieces[1]);
                     User login = gson.fromJson(receivedPieces[1], User.class);
-                    String confirmation = daoFactory.getLogin().validateLogin(login);
+                    String confirmation = daoFactory.getLoginDAO().validateLogin(login);
                     sendToClient(confirmation);
                 }
 
                 else if(receivedPieces[0].equals("CalendarMonth")) {
                     String[] date = receivedPieces[2].split("-");
                     ArrayList<Shift> shiftsForMonth = new ArrayList<>();
-                    // Inputs are :Username for first input, month in somekind of 05/2020 format
+                    // Inputs are :Username for first input, month in MM-yyyy format
                     if(receivedPieces[3].equals("EMPLOYEE")){
                         System.out.println("Getting employee");
-                        shiftsForMonth = daoFactory.getShift().getShifts(receivedPieces[1], date[0], date[1]);
+                        shiftsForMonth = daoFactory.getShiftDAO().getShifts(receivedPieces[1], date[0], date[1]);
                     }else if(receivedPieces[3].equals("MANAGER")){
                         System.out.println("Getting manager");
-                        shiftsForMonth = daoFactory.getShift().getShiftsManager(receivedPieces[1], date[0], date[1]);
+                        shiftsForMonth = daoFactory.getShiftDAO().getShiftsManager(receivedPieces[1], date[0], date[1]);
                     } else {
                         System.out.println("Problem in determening access level");
                     }
-
                     String shiftsJson = gson.toJson(shiftsForMonth);
                     sendToClient(shiftsJson);
                 }
+
                 else if(receivedPieces[0].equals("GetUser")) {
                     System.out.println("trying to get user data");
-                    User user = daoFactory.getEmployee().getUser(receivedPieces[1]);
+                    User user = daoFactory.getUserDAO().getUser(receivedPieces[1]);
                     String userJson = gson.toJson(user);
                     sendToClient(userJson);
                 }
+
                 else if(receivedPieces[0].equals("PostUser")) {
-                    User new_user = gson.fromJson(receivedPieces[1], User.class);
-                    String addResponse = daoFactory.getEmployee().addEmployee(new_user);
-                    sendToClient(addResponse);
+                    System.out.println(received);
+
+                    if(!receivedPieces[1].equals("Confirmed")){
+                        User new_user = gson.fromJson(receivedPieces[1], User.class);
+                        String addResponse = daoFactory.getUserDAO().addUser(new_user,"Check");
+                        sendToClient(addResponse);
+                    } else {
+                        User new_user = gson.fromJson(receivedPieces[2], User.class);
+                        System.out.println(receivedPieces[2]);
+                        System.out.println();
+                        String addResponse = daoFactory.getUserDAO().addUser(new_user,"Post");
+                        sendToClient(addResponse);
+                    }
                 }
+
                 else if (receivedPieces[0].equals("PostShift")) {
-                    Shift new_shift = gson.fromJson(receivedPieces[1], Shift.class);
-                    String addResponse = daoFactory.getShift().postShift(new_shift);
-                    sendToClient(addResponse);
+                    if(!receivedPieces[1].equals("Confirmed")){
+                        Shift new_shift = gson.fromJson(receivedPieces[1], Shift.class);
+                        String addResponse = daoFactory.getShiftDAO().postShift(new_shift,"Check");
+                        sendToClient(addResponse);
+                    } else {
+                        Shift new_shift = gson.fromJson(receivedPieces[2], Shift.class);
+                        String addResponse = daoFactory.getShiftDAO().postShift(new_shift,"Check");
+                        sendToClient(addResponse);
+                    }
                 }
             }
         }catch (Exception e){ //VIOLATION OF SOLID
