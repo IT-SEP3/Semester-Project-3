@@ -10,6 +10,7 @@ import viewModel.calendar.CalendarViewModel;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class CalendarViewController {
     @FXML
@@ -187,9 +188,9 @@ public class CalendarViewController {
         yearBox.getItems().add("2026");
 
         Calendar calYear = Calendar.getInstance();
-        yearBox.setValue(new SimpleDateFormat("yyyy").format(calYear.getTime()));
+        yearBox.setValue(new SimpleDateFormat("yyyy", Locale.ENGLISH).format(calYear.getTime()));
         Calendar cal = Calendar.getInstance();
-        monthsBox.setValue(new SimpleDateFormat("MMMM").format(cal.getTime()));
+        monthsBox.setValue(new SimpleDateFormat("MMMM", Locale.ENGLISH).format(cal.getTime()));
         int monthNumber = 0;
         switch (monthsBox.getValue()) {
             case "January":
