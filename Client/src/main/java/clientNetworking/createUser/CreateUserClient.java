@@ -8,7 +8,7 @@ import shared.User;
 public class CreateUserClient implements ICreateUserClient {
     private Gson jsonSerializer;
     private String response;
-    private clientNetworking.HTTPHandler httpHandler;
+    private HTTPHandler httpHandler;
 
     public CreateUserClient(HTTPHandler httpHandler) {
         this.httpHandler = httpHandler;
@@ -27,6 +27,7 @@ public class CreateUserClient implements ICreateUserClient {
 
     @Override
     public String getResponse() {
+        System.out.println(response);
         return response;
     }
 }

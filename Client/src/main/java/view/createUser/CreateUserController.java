@@ -32,6 +32,8 @@ public class CreateUserController {
     @FXML
     private Label response;
     @FXML
+    private Label labelFillFields;
+    @FXML
     private Label labelUsername;
     @FXML
     private Label labelPassword;
@@ -69,26 +71,22 @@ public class CreateUserController {
 
         accesslevelComboBox.getItems().add("EMPLOYEE");
         accesslevelComboBox.getItems().add("MANAGER");
-
-        labelPassword.textFillProperty().bindBidirectional(createUserViewModel.getPaintProperty());
-        createUserViewModel.setAllRed();
     }
 
     public void onSubmitButton(ActionEvent event) {
-        if(usernameTextField.getText() == null || passwordTextField.getText().isEmpty() || firstnameTextField.getText().isEmpty()
+        if(usernameTextField.getText().isEmpty() || passwordTextField.getText().isEmpty() || firstnameTextField.getText().isEmpty()
                 || lastnameTextField.getText().isEmpty() || emailTextField.getText().isEmpty() || statusComboBox.getSelectionModel().isEmpty()
                 || accesslevelComboBox.getSelectionModel().isEmpty()) {
             setEmptyFieldsRed();
-            response.setText("Please fill the required fields...");
+            labelFillFields.setText("Please fill the required fields...");
         } else {
             createUserViewModel.submitEmployee();
-            //TODO make sure it is connected to the HTTPHandler and can be transffered to the server.
             System.out.println(response.getText());
+            System.out.println(response + "view");
 
-            // Opens the calendar after all the information have been added to the database, else writing something went wrong.
-            if(response.getText().equals("OK")){
+            if(response.getText().equals("Success")){
                 viewHandler.openCalendarView();
-                System.out.println("trying to change to calendar");
+                System.out.println("Changing to calendar");
             } else {
                 response.setText("Connection to database couldn't be established...");
                 System.out.println("Connection to database couldn't be established...");
