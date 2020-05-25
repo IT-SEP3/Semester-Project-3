@@ -3,9 +3,7 @@ package persistence.shift;
 import exceptions.DataConnectionException;
 import persistence.database.IDBConnection;
 import shared.Shift;
-import shared.User;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -85,10 +83,11 @@ public class ShiftDAO implements IShiftDAO {
 
     @Override
     public String postShift(Shift shift, String operation) {
+
         if(operation.equals("Check")){
             try {
                 String sql = "SELECT Users_ID, Manager_ID, description, day, month, year FROM "
-                        + databaseConnection.getShiftTable() + " WHERE Manager_ID = " + shift.getManager_id() +" AND Users_ID = "+ shift.getUser_id() + "AND description = '" + shift.getDescription() +"';";
+                        + databaseConnection.getShiftTable() + " WHERE Manager_ID = " + shift.getManager_id() +" AND Users_ID = "+ shift.getUser_id() + " AND description = '" + shift.getDescription() +"';";
                 PreparedStatement preparedStatement = databaseConnection.createPreparedStatement(sql);
                 ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -97,7 +96,7 @@ public class ShiftDAO implements IShiftDAO {
                     return "NOT";
                 } else{
                     databaseConnection.closeConnection();
-                    return "YES";
+                    return "OK";
                 }
             } catch (DataConnectionException| SQLException e) {
                 e.printStackTrace();
@@ -108,13 +107,13 @@ public class ShiftDAO implements IShiftDAO {
 
         } else {
             try {
-                String sql = "INSERT INTO Shift (Users_ID, Manager_ID, description, day, month, year) +" +
-                        "VALUE('" + shift.getUser_id() + "', '" + shift.getManager_id() + "','"
+                String sql = "INSERT INTO Shift (Users_ID, Manager_ID, description, day, month, year) " +
+                        "VALUES ('" + shift.getUser_id() + "', '" + shift.getManager_id() + "','"
                         + shift.getDescription() + "', '" + shift.getDate().getDayOfMonth()
                         + "', '" + shift.getDate().getMonthValue()
                         + "', '" + shift.getDate().getYear() + "')";
                 PreparedStatement preparedStatement = databaseConnection.createPreparedStatement(sql);
-                preparedStatement.executeQuery();
+                preparedStatement.execute();
                 databaseConnection.closeConnection();
                 return "OK";
             } catch (DataConnectionException | SQLException e) {

@@ -25,7 +25,10 @@ public class User {
         this.accessLevel = accessLevel;
     }
 
-
+    public User(int id, String firstName){
+        this.id = id;
+        this.fname = firstName;
+    }
 
 
     public User(String username, String password){

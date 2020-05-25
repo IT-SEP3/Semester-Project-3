@@ -17,7 +17,7 @@ namespace BusinessLogic.Model
         { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {   
+        {
         }
 
         public string ValidateLogin(User user)
@@ -56,7 +56,7 @@ namespace BusinessLogic.Model
 
         public string PostUser(User user)
         {
-            //Check if there is one in database 
+            //Check if there is one in database
             socketHandler.SendToDatabase("PostUser", user);
             string result = socketHandler.GetResponse();
             if (result.Equals("OK")){
@@ -76,7 +76,7 @@ namespace BusinessLogic.Model
             {
                 return "Database already has this user in it";
             }
-            
+
         }
 
         public string PostShift(Shift shift)
@@ -104,6 +104,16 @@ namespace BusinessLogic.Model
             }
         }
 
-        
+        public string GetUser(int id)
+        {
+            socketHandler.SendToDatabaseStringOnly("GetUser;" + id);
+            return socketHandler.GetResponse();
+        }
+
+        public string GetUsersIdName()
+        {
+            socketHandler.SendToDatabaseStringOnly("GetUsersIDName;");
+            return socketHandler.GetResponse();
+        }
     }
 }
