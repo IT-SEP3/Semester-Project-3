@@ -22,7 +22,7 @@ namespace BusinessLogic.Controllers
 
         // GET: api/Shifts
         [HttpGet]
-        public async Task<String> GetShifts([FromQuery (Name = "username")] string username, [FromQuery(Name = "accessLevel")] string accessLevel, [FromQuery (Name = "date")] string date)
+        public async Task<ActionResult<String>> GetShifts([FromQuery (Name = "username")] string username, [FromQuery(Name = "accessLevel")] string accessLevel, [FromQuery (Name = "date")] string date)
         {
             return _context.GetAllShifts(username, accessLevel, date);
         }
