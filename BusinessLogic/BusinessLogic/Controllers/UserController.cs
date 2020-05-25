@@ -41,5 +41,10 @@ namespace BusinessLogic.Controllers
         }
 
 
+        [HttpGet("{managerId}")]
+        public async Task<ActionResult<string>> GetUsers(int managerId)
+        {
+            return _context.GetUsers(managerId);
+        }
     }
 }

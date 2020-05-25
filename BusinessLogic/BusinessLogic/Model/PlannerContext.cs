@@ -35,6 +35,11 @@ namespace BusinessLogic.Model
             }
         }
 
+        internal ActionResult<string> GetUsers(object id)
+        {
+            throw new NotImplementedException();
+        }
+
         public string GetShift(int id)
         {
             socketHandler.SendToDatabaseStringOnly("GetShift;" + id);
@@ -115,6 +120,13 @@ namespace BusinessLogic.Model
         {
             socketHandler.SendToDatabaseStringOnly("GetUsersIDName;");
             return socketHandler.GetResponse();
+        }
+        public string GetUsers(int managerId)
+        {
+            socketHandler.SendToDatabaseStringOnly("GetManagedUsers;" + managerId);
+            string users = socketHandler.GetResponse();
+            return users;
+
         }
     }
 }
