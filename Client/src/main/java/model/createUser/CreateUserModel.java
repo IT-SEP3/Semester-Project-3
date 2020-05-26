@@ -6,10 +6,10 @@ import model.calendar.ICalendarModel;
 import shared.User;
 
 public class CreateUserModel implements ICreateUserModel {
-
-
-    public ICreateUserClient iCreateUserClient;
     private ICalendarModel calendarModel;
+    private ICreateUserClient iCreateUserClient;
+    private String response;
+
     private User userInfo;
 
     public CreateUserModel(ICalendarModel calendarModel, ICreateUserClient iCreateUserClient) {
