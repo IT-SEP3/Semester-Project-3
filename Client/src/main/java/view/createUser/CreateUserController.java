@@ -84,9 +84,11 @@ public class CreateUserController {
             System.out.println(response.getText());
             System.out.println(response + "view");
 
+
             if(response.getText().equals("Success")){
                 viewHandler.openCalendarView();
                 System.out.println("Changing to calendar");
+
             } else {
                 response.setText("Connection to database couldn't be established...");
                 System.out.println("Connection to database couldn't be established...");
@@ -96,7 +98,7 @@ public class CreateUserController {
 
     public void onCancelButton(ActionEvent event) {
         createUserViewModel.clearFields();
-        viewHandler.openCalendarView();
+        viewHandler.openCalendarViewOld();
     }
 
     public void onResetButton(ActionEvent event) {

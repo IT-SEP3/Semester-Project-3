@@ -4,9 +4,10 @@ import clientNetworking.HTTPHandler;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import shared.Shift;
+import shared.User;
 
 import java.lang.reflect.Type;
-import java.util.HashMap;
+import java.util.ArrayList;
 
 public class ShiftClient implements IShiftClient {
     private Gson jsonSerializer;
@@ -20,8 +21,9 @@ public class ShiftClient implements IShiftClient {
 
     @Override
     public String postShift(Shift shift) {
-        String PATH ="http://127.0.0.1:5000/api/Shift";
+        String PATH ="http://127.0.0.1:5000/api/Shifts";
         String shiftJson = jsonSerializer.toJson(shift);
+
         System.out.println(shiftJson);
         response = httpHandler.postToAPI(shiftJson, PATH);
         return response;
@@ -33,13 +35,13 @@ public class ShiftClient implements IShiftClient {
     }
 
     @Override
-    public HashMap<String, Integer> getUsers() {
-        String PATH ="http://127.0.0.1:5000/api/Shift/Users";
+    public ArrayList<User> getUsers() {
+        String PATH ="http://127.0.0.1:5000/api/user/id-name";
         System.out.println("Getting users available for shifts");
         response = httpHandler.getFromAPI(PATH);
 
-        Type type = new TypeToken<HashMap<String, String>>(){}.getType();
-        HashMap<String, Integer> userMap = jsonSerializer.fromJson(response, type);
-        return userMap;
+        Type type = new TypeToken<ArrayList<User>>(){}.getType();
+        ArrayList<User> userList = jsonSerializer.fromJson(response, type);
+        return userList;
     }
 }

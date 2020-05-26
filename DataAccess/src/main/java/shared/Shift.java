@@ -1,7 +1,6 @@
 package shared;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class Shift {
 
@@ -20,47 +19,21 @@ public class Shift {
         this.manager_id = manager_id;
         this.date = date;
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public int getUser_id() {
         return user_id;
-    }
-
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public int getManager_id() {
         return manager_id;
-    }
-
-    public void setManager_id(int manager_id) {
-        this.manager_id = manager_id;
     }
 
     public LocalDate getDate() {
         return date;
     }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
     @Override
     public String toString() {
         return "Shift{" +

@@ -8,6 +8,8 @@ import model.calendar.ICalendarModel;
 import model.calendar.CalendarModel;
 import model.createUser.CreateUserModel;
 import model.createUser.ICreateUserModel;
+import model.employeeList.EmployeeListModel;
+import model.employeeList.IEmployeeListModel;
 import model.login.ILoginModel;
 import model.login.LoginModel;
 
@@ -17,6 +19,7 @@ public class ModelFactory {
     private ICalendarModel calendarModel;
     private ICreateUserModel createUserModel;
     private IAddShiftModel addShiftModel;
+    private IEmployeeListModel employeeListModel;
 
     public ModelFactory(ClientFactory c) {
         clientFactory = c;
@@ -44,5 +47,11 @@ public class ModelFactory {
         if (addShiftModel == null)
             addShiftModel = new AddShiftModel(clientFactory.shiftClient(), loginModel());
         return addShiftModel;
+    }
+
+    public IEmployeeListModel employeeListModel() {
+        if (employeeListModel == null)
+            employeeListModel = new EmployeeListModel(calendarModel, clientFactory.employeeList());
+        return employeeListModel;
     }
 }

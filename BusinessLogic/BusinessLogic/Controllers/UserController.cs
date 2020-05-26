@@ -33,5 +33,18 @@ namespace BusinessLogic.Controllers
         {
             return  _context.GetUser(id);
         }
+
+        [HttpGet("id-name")]
+        public async Task<ActionResult<string>> GetUsersIdName()
+        {
+            return _context.GetUsersIdName();
+        }
+
+
+        [HttpGet]
+        public async Task<ActionResult<string>> GetUsers([FromQuery(Name = "managerId")] int managerId)
+        {
+            return _context.GetUsersByManager(managerId);
+        }
     }
 }
