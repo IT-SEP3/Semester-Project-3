@@ -24,7 +24,7 @@ public class UserDAO implements IUserDAO {
     public String addUser(User user, String operation) {
         if(operation.equals("Check")){
             try {
-                String sql = "SELECT username, password, firstName, lastName, email, status, accessLevel, dayEmployment, monthEmployment, yearEmployment FROM "
+                String sql = "SELECT username, manager_ID, password, firstName, lastName, email, status, accessLevel, dayEmployment, monthEmployment, yearEmployment FROM "
                         + databaseConnection.getUserTable() + " WHERE username = '" + user.getUsername() + "' AND password = '" + user.getPassword() + "' AND accessLevel = '" + user.getAccessLevel() + "';";
                 PreparedStatement preparedStatement = databaseConnection.createPreparedStatement(sql);
                 ResultSet resultSet = preparedStatement.executeQuery();
@@ -50,8 +50,8 @@ public class UserDAO implements IUserDAO {
                 String dateString = new SimpleDateFormat("dd-MM-yyyy").format(cal.getTime());
                 String[] dateSplit = dateString.split("-");
                 String sql = "INSERT INTO " + databaseConnection.getUserTable()
-                        + "(username, password, firstName, lastName, email, status, accessLevel, dayEmployment, monthEmployment, yearEmployment) VALUES ('"
-                        + user.getUsername() + "', '" + user.getPassword().hashCode() + "', '" + user.getFname() + "', '" + user.getLname() + "', '" + user.getEmail() + "', '" + user.getStatus() + "', '" + user.getAccessLevel() + "', '"+ dateSplit[0] +"', '" + dateSplit[1] +"', '"+ dateSplit[2] +"')";
+                        + "(manager_ID, username, password, firstName, lastName, email, status, accessLevel, dayEmployment, monthEmployment, yearEmployment) " +
+                        "VALUES ('" + user.getManagerID() + "', '" + user.getUsername() + "', '" + user.getPassword().hashCode() + "', '" + user.getFname() + "', '" + user.getLname() + "', '" + user.getEmail() + "', '" + user.getStatus() + "', '" + user.getAccessLevel() + "', '"+ dateSplit[0] +"', '" + dateSplit[1] +"', '"+ dateSplit[2] +"')";
 
                 PreparedStatement preparedStatement = databaseConnection.createPreparedStatement(sql);
                 preparedStatement.execute();
@@ -76,6 +76,7 @@ public class UserDAO implements IUserDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
             while ( resultSet.next()) {
                 int id = resultSet.getInt("users_ID");
+                int manager_id = resultSet.getInt("manager_ID");
                 String username = resultSet.getString("username");
                 String password = resultSet.getString("password");
                 String name = resultSet.getString("firstName");
@@ -90,7 +91,7 @@ public class UserDAO implements IUserDAO {
                 String dateString = day + "-" + month + "-" + year;
                 System.out.println(dateString);
                 LocalDate date = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("dd-M-yyyy"));;
-                user = new User(id,  username,  password,  name,  lastname,  email,  status,  date,  accessLevel);
+                user = new User(id, manager_id,  username,  password,  name,  lastname,  email,  status,  date,  accessLevel);
             }
         } catch (DataConnectionException | SQLException e) {
             e.printStackTrace();
