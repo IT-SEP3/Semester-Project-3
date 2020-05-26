@@ -116,19 +116,16 @@ namespace BusinessLogic.Model
             return socketHandler.GetResponse();
         }
 
-        public string GetUsersIdName()
+        public string GetUsersIdName(int managerId)
         {
-            socketHandler.SendToDatabaseStringOnly("GetUsersIDName;");
+            socketHandler.SendToDatabaseStringOnly("GetUsersIDName;" + managerId);
             return socketHandler.GetResponse();
         }
 
         public string GetUsersByManager(int managerId)
         {
-            //I NEED ALL USER WHO HAVE THIS MANAGER ID
-
             socketHandler.SendToDatabaseStringOnly("GetManagedUsers;" + managerId);
-            string users = socketHandler.GetResponse();
-            return users;
+            return socketHandler.GetResponse();
 
         }
     }

@@ -27,8 +27,9 @@ public class User {
         this.accessLevel = accessLevel;
     }
 
-    public User(int id, String firstName){
+    public User(int id, int managerID, String firstName){
         this.id = id;
+        this.managerID = managerID;
         this.fname = firstName;
     }
 
@@ -41,7 +42,6 @@ public class User {
     public int getManagerID() {
         return managerID;
     }
-
     public String getUsername() {
         return username;
     }
