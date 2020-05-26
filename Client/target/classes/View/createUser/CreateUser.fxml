@@ -55,5 +55,6 @@
         <Label fx:id="response" layoutX="50.0" layoutY="375.0" />
         <Label fx:id="labelStatusString" layoutX="100.0" layoutY="250.0" />
         <Label fx:id="labelAccesslevelString" layoutX="385.0" layoutY="250.0" />
+      <Label fx:id="labelFillFields" layoutX="301.0" layoutY="375.0" />
     </children>
 </AnchorPane>

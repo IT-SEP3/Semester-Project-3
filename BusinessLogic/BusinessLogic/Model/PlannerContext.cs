@@ -125,6 +125,7 @@ namespace BusinessLogic.Model
         public string GetUsersByManager(int managerId)
         {
             //I NEED ALL USER WHO HAVE THIS MANAGER ID
+
             socketHandler.SendToDatabaseStringOnly("GetManagedUsers;" + managerId);
             string users = socketHandler.GetResponse();
             return users;

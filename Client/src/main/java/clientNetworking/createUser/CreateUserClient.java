@@ -29,6 +29,7 @@ public class CreateUserClient implements ICreateUserClient {
 
     @Override
     public String getResponse() {
+        System.out.println(response);
         return response;
     }
 }
