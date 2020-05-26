@@ -11,6 +11,7 @@ public class DBConnection implements IDBConnection {
     private final String username = "root";
     private final String password = "9691cmsj"; //change to your password
 
+
     private final String schemaName;
     private final String userTableName;
     private final String shiftTableName;

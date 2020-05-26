@@ -6,7 +6,6 @@ import shared.User;
 public class CreateUserModel implements ICreateUserModel {
 
     public ICreateUserClient iCreateUserClient;
-    public String response;
     private User userInfo;
 
     public CreateUserModel(ICreateUserClient iCreateUserClient) {
@@ -14,19 +13,11 @@ public class CreateUserModel implements ICreateUserModel {
     }
 
     @Override
-    public void createUser(String username, String password, String fname, String lname, String email, String status, String accesslevel) {
+    public String createUser(String username, String password, String fname, String lname, String email, String status, String accesslevel) {
         User createUserCarrier = new User(username, password, fname, lname, email, status, accesslevel);
         String answer = iCreateUserClient.createUser(createUserCarrier);
-        if (answer.equals("OK")) {
-            userInfo = createUserCarrier;
-            response = answer;
-        }
-    }
-
-    @Override
-    public String createUserResponse() {
-        System.out.println(response);
-        return response;
+        System.out.println(answer);
+        return answer;
     }
 
     @Override

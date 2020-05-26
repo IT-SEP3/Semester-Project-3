@@ -1,18 +1,13 @@
 package viewModel.createUser;
 
-import javafx.beans.property.Property;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.scene.paint.Color;
 import model.createUser.ICreateUserModel;
 
-import javafx.scene.paint.Paint;
 
 public class CreateUserViewModel {
 
     private StringProperty username, password, fname, lname, email, createEmployeeResponse, status, accesslevel;
-    private Property<Paint> paintProperty;
     private ICreateUserModel model;
 
     public CreateUserViewModel(ICreateUserModel model) {
@@ -25,24 +20,12 @@ public class CreateUserViewModel {
         createEmployeeResponse = new SimpleStringProperty();
         status = new SimpleStringProperty();
         accesslevel = new SimpleStringProperty();
-        paintProperty = new SimpleObjectProperty<Paint>();
-    }
-
-    //TODO This method does not work properly in the vm.
-    public Property<Paint> getPaintProperty(){
-        return paintProperty;
     }
 
     public void submitEmployee() {
-        if(username.get() != null && !username.get().isEmpty() && password.get() != null && !password.get().isEmpty()
-                && fname.get() != null && !fname.get().isEmpty() && lname.get() != null && !lname.get().isEmpty()
-                && email.get() != null && !email.get().isEmpty()) {
-                    model.createUser(username.getValue(), password.getValue(), fname.getValue(), lname.getValue(),
-                    email.getValue(), status.getValue(), accesslevel.getValue());
-            String response = model.createUserResponse();
-            System.out.println(response);
-            createEmployeeResponse.set(response);
-        }
+            String API_reponse = model.createUser(username.getValue(), password.getValue(), fname.getValue(), lname.getValue(),
+                email.getValue(), status.getValue(), accesslevel.getValue());
+            createEmployeeResponse.setValue(API_reponse);
     }
 
     public void clearFields() {
@@ -85,9 +68,5 @@ public class CreateUserViewModel {
 
     public StringProperty accesslevelProperty() {
         return accesslevel;
-    }
-
-    public void setAllRed() {
-        paintProperty.setValue(Color.RED);
     }
 }
