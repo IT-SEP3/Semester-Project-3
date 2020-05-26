@@ -31,28 +31,28 @@ CREATE TABLE Users (
 INSERT INTO Users (username, manager_ID,  password, firstName, lastName, email, status, accessLevel, dayEmployment, monthEmployment, yearEmployment)
     VALUE('admin', 3, 'admin', 'admin', 'admin', 'admin@admin.admin', 'ACTIVE', 'MANAGER', 16, 03, 2020  );
 
-INSERT INTO Users (username, password, firstName, lastName, email, status, accessLevel, dayEmployment, monthEmployment, yearEmployment)
+INSERT INTO Users (username, manager_ID, password, firstName, lastName, email, status, accessLevel, dayEmployment, monthEmployment, yearEmployment)
     VALUE('Anders', 3, '1234', 'Anders', 'Sønderby', '264247@via.dk', 'ACTIVE', 'EMPLOYEE', 16, 03, 2020  );
 
-INSERT INTO Users (username, password, firstName, lastName, email, status, accessLevel, dayEmployment, monthEmployment, yearEmployment)
+INSERT INTO Users (username, manager_ID, password, firstName, lastName, email, status, accessLevel, dayEmployment, monthEmployment, yearEmployment)
     VALUE('David', 4, '3556498', 'David', 'Nguyen', '251771@via.dk', 'INACTIVE', 'MANAGER', 16, 03, 2020  );
 
-INSERT INTO Users (username, password, firstName, lastName, email, status, accessLevel, dayEmployment, monthEmployment, yearEmployment)
+INSERT INTO Users (username, manager_ID, password, firstName, lastName, email, status, accessLevel, dayEmployment, monthEmployment, yearEmployment)
     VALUE('Niklas', 3, '549190650', 'Niklas', 'Krogh', '281335@via.dk', 'ACTIVE', 'MANAGER', 16, 03, 2020  );
 
-INSERT INTO Users (username, password, firstName, lastName, email, status, accessLevel, dayEmployment, monthEmployment, yearEmployment)
+INSERT INTO Users (username, manager_ID, password, firstName, lastName, email, status, accessLevel, dayEmployment, monthEmployment, yearEmployment)
     VALUE('Rokas', 3, '92668751', 'Rokas', 'Barasa', '285047@via.dk', 'ACTIVE', 'EMPLOYEE', 16, 03, 2020  );
 
-INSERT INTO Users (username, password, firstName, lastName, email, status, accessLevel, dayEmployment, monthEmployment, yearEmployment)
+INSERT INTO Users (username, manager_ID, password, firstName, lastName, email, status, accessLevel, dayEmployment, monthEmployment, yearEmployment)
     VALUE('Human1', 3, 'admin1', 'Nedas', 'Annoying', '281335@via.dk', 'ACTIVE', 'EMPLOYEE', 16, 03, 2020  );
 
-INSERT INTO Users (username, password, firstName, lastName, email, status, accessLevel, dayEmployment, monthEmployment, yearEmployment)
+INSERT INTO Users (username, manager_ID, password, firstName, lastName, email, status, accessLevel, dayEmployment, monthEmployment, yearEmployment)
     VALUE('Human2', 3, 'admin2', 'Bragi', 'Weed', '285047@via.dk', 'ACTIVE', 'EMPLOYEE', 16, 03, 2020  );
 
-INSERT INTO Users (username, password, firstName, lastName, email, status, accessLevel, dayEmployment, monthEmployment, yearEmployment)
+INSERT INTO Users (username, manager_ID, password, firstName, lastName, email, status, accessLevel, dayEmployment, monthEmployment, yearEmployment)
     VALUE('Human3', 3, 'admin3', 'Luhan', 'Dady', '281335@via.dk', 'ACTIVE', 'EMPLOYEE', 16, 03, 2020  );
 
-INSERT INTO Users (username, password, firstName, lastName, email, status, accessLevel, dayEmployment, monthEmployment, yearEmployment)
+INSERT INTO Users (username, manager_ID, password, firstName, lastName, email, status, accessLevel, dayEmployment, monthEmployment, yearEmployment)
     VALUE('Human4', 3, 'admin4', 'Toma&', 'Slovakian?', '285047@via.dk', 'ACTIVE', 'EMPLOYEE', 16, 03, 2020  );
 
 SELECT * FROM Users;
