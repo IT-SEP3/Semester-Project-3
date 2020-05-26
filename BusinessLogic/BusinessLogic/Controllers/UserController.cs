@@ -34,6 +34,7 @@ namespace BusinessLogic.Controllers
             return  _context.GetUser(id);
         }
 
+
         [HttpGet("id-name")]
         public async Task<ActionResult<string>> GetUsersIdName()
         {

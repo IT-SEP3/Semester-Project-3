@@ -39,7 +39,7 @@ public class ModelFactory {
 
     public ICreateUserModel createUserModel() {
         if (createUserModel == null)
-            createUserModel = new CreateUserModel(clientFactory.createUserClient());
+            createUserModel = new CreateUserModel(calendarModel,clientFactory.createUserClient());
         return createUserModel;
     }
 
