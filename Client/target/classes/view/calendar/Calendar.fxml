@@ -351,7 +351,7 @@
                               <Label fx:id="access" layoutX="14.0" layoutY="116.0" text="Access: " />
                               <Button fx:id="createEmployee" layoutX="64.0" layoutY="269.0" mnemonicParsing="false" onAction="#onCreateUser" text="Create User" />
                               <Button fx:id="createShift" layoutX="70.0" layoutY="219.0" mnemonicParsing="false" onAction="#onAddShift" text="Add Shift" />
-                              <Button layoutX="59.0" layoutY="166.0" mnemonicParsing="false" onAction="#onEmployeeList" text="Employee List" />
+                              <Button fx:id="employeeListButton" layoutX="59.0" layoutY="166.0" mnemonicParsing="false" onAction="#onEmployeeList" text="Employee List" />
                            </children></AnchorPane>
                      </children>
                   </VBox>

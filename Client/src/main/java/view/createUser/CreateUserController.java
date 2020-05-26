@@ -66,33 +66,34 @@ public class CreateUserController {
         labelStatusString.textProperty().bindBidirectional(vm.statusProperty());
         labelAccesslevelString.textProperty().bindBidirectional(vm.accesslevelProperty());
 
+        labelUsername.textFillProperty().bindBidirectional(vm.usernamePaintProperty());
+        labelPassword.textFillProperty().bindBidirectional(vm.passwordPaintProperty());
+        labelFirstname.textFillProperty().bindBidirectional(vm.fnamePaintProperty());
+        labelLastname.textFillProperty().bindBidirectional(vm.lnamePaintProperty());
+        labelEmail.textFillProperty().bindBidirectional(vm.emailPaintProperty());
+
         statusComboBox.getItems().add("ACTIVE");
         statusComboBox.getItems().add("INACTIVE");
 
         accesslevelComboBox.getItems().add("EMPLOYEE");
         accesslevelComboBox.getItems().add("MANAGER");
+        vm.resetColors();
     }
 
     public void onSubmitButton(ActionEvent event) {
-        if(usernameTextField.getText().isEmpty() || passwordTextField.getText().isEmpty() || firstnameTextField.getText().isEmpty()
-                || lastnameTextField.getText().isEmpty() || emailTextField.getText().isEmpty() || statusComboBox.getSelectionModel().isEmpty()
-                || accesslevelComboBox.getSelectionModel().isEmpty()) {
-            setEmptyFieldsRed();
-            labelFillFields.setText("Please fill the required fields...");
-        } else {
-            createUserViewModel.submitEmployee();
-            System.out.println(response.getText());
-            System.out.println(response + "view");
-
-            // Opens the calendar after all the information have been added to the database, else writing something went wrong.
+        createUserViewModel.submitEmployee();
+        // Opens the calendar after all the information have been added to the database, else writing something went wrong.
+        if(response.getText() != null){
             if(response.getText().equals("Success")){
                 viewHandler.openCalendarViewOld();
                 System.out.println("Changing to calendar");
-            } else {
-                response.setText("Connection to database couldn't be established...");
-                System.out.println("Connection to database couldn't be established...");
+            }else {
+                response.setText("User already exists. Can't add");
             }
+        } else if (response.getText() == null){
+            response.setText("Connection to database couldn't be established...");
         }
+
     }
 
     public void onCancelButton(ActionEvent event) {
