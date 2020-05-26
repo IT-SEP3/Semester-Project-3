@@ -1,12 +1,12 @@
 package view.employeeList;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
-import shared.User;
 import view.ViewHandler;
 import viewModel.employeeList.EmployeeListViewModel;
-import viewModel.login.LoginViewModel;
 
 public class EmployeeListController {
 
@@ -19,7 +19,8 @@ public class EmployeeListController {
         viewHandler = vh;
         viewModel = vm;
         employeeList = new ListView<>();
-        //employeeList.getItems().addAll(vm.populateListView());
+        ObservableList<String> employees = FXCollections.observableArrayList(viewModel.populateListView());
+        employeeList.getItems().addAll(employees);
     }
 
 
