@@ -102,10 +102,10 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-    public ArrayList<User> getUsersIdName() {
+    public ArrayList<User> getUsersIdName(String managerId) {
 
-        String sql = "SELECT users_ID, firstName FROM " + databaseConnection.getUserTable() + ";";
-        ArrayList<User> users = new ArrayList<>();
+        String sql = "SELECT users_ID, manager_ID, firstName FROM " + databaseConnection.getUserTable() + " WHERE manager_ID = " + managerId + ";";
+        ArrayList<User> users_id_name = new ArrayList<>();
 
         try {
             PreparedStatement preparedStatement = databaseConnection.createPreparedStatement(sql);
@@ -113,9 +113,10 @@ public class UserDAO implements IUserDAO {
 
             while ( resultSet.next()) {
                 int id = resultSet.getInt("users_ID");
+                int manager_id = resultSet.getInt("manager_ID");
                 String name = resultSet.getString("firstName");
 
-                users.add(new User(id, name));
+                users_id_name.add(new User(id, manager_id, name));
             }
 
         } catch (DataConnectionException | SQLException throwables) {
@@ -124,6 +125,47 @@ public class UserDAO implements IUserDAO {
             databaseConnection.closeConnection();
         }
 
-        return users;
+        return users_id_name;
+    }
+
+    @Override
+    public ArrayList<User> getUsersByManager(String managerId) {
+
+        String sql = "SELECT * FROM "+ databaseConnection.getUserTable() + " WHERE manager_ID = " + managerId + ";";
+        ArrayList<User> managedUsers = new ArrayList<>();
+
+        try {
+            PreparedStatement preparedStatement = databaseConnection.createPreparedStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while ( resultSet.next()) {
+
+                int id = resultSet.getInt("users_ID");
+                int manager_id = resultSet.getInt("manager_ID");
+                String username = resultSet.getString("username");
+                String password = resultSet.getString("password");
+                String name = resultSet.getString("firstName");
+                String lastname = resultSet.getString("lastName");
+                String email = resultSet.getString("email");
+                String status = resultSet.getString("status");
+                int day = resultSet.getInt("dayEmployment");
+                int month = resultSet.getInt("monthEmployment");
+                int year = resultSet.getInt("yearEmployment");
+                String accessLevel = resultSet.getString("accessLevel");
+
+                String dateString = day + "-" + month + "-" + year;
+                System.out.println(dateString);
+                LocalDate date = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("dd-M-yyyy"));;
+
+                managedUsers.add(new User(id, manager_id, username, password, name, lastname,  email, status, date, accessLevel));
+            }
+
+        } catch (DataConnectionException | SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            databaseConnection.closeConnection();
+        }
+
+        return managedUsers;
     }
 }
