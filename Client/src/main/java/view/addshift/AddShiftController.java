@@ -28,7 +28,7 @@ public class AddShiftController {
         viewHandler = vh;
         descriptionTextField.textProperty().bindBidirectional(vm.descriptionProperty());
         response.textProperty().bindBidirectional(vm.responseProperty());
-        //employeeComboBox.getItems().addAll(vm.getUsers());
+        employeeComboBox.getItems().addAll(vm.getUsers());
     }
 
     public void onSubmitButton(ActionEvent event) {
@@ -37,6 +37,7 @@ public class AddShiftController {
             response.setText("Please fill out the required fields to create a shift");
         } else {
             addShiftViewModel.submitShift(shiftDatePicker.getValue(), employeeComboBox.getValue());
+            viewHandler.openCalendarViewOld();
         }
     }
 
@@ -44,7 +45,7 @@ public class AddShiftController {
         addShiftViewModel.clearFields();
         employeeComboBox.getSelectionModel().select(0);
         shiftDatePicker.getEditor().clear();
-        viewHandler.openCalendarView();
+        viewHandler.openCalendarViewOld();
     }
 
     public void onResetButton(ActionEvent event) {

@@ -5,7 +5,7 @@ import clientNetworking.login.ILoginClient;
 import shared.User;
 
 public class LoginModel implements ILoginModel {
-    public ILoginClient loginClient;
+    private ILoginClient loginClient;
     private User currentUser;
     private String response;
 

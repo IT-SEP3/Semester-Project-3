@@ -1,4 +1,4 @@
-﻿using NodaTime;
+﻿
 using System;
 
 namespace BusinessLogic.Model.Shared
@@ -6,6 +6,7 @@ namespace BusinessLogic.Model.Shared
     public class User
     {
         public int id { get; set; }
+        public int managerID { get; set; }
         public string username { get; set; }
         public string password { get; set; }
         public string fname { get; set; }

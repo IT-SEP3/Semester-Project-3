@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public class User {
     private int id;
+    private int managerID;
     private String username;
     private String password;
     private String fname;
@@ -15,8 +16,9 @@ public class User {
 
 
 
-    public User(int id, String username, String password, String fname, String lname, String email, String status, LocalDate employmentDate, String accessLevel) {
+    public User(int id, int managerID, String username, String password, String fname, String lname, String email, String status, LocalDate employmentDate, String accessLevel) {
         this.id = id;
+        this.managerID = managerID;
         this.username = username;
         this.password = password;
         this.fname = fname;
@@ -27,7 +29,8 @@ public class User {
         this.accessLevel = accessLevel;
     }
 
-    public User(String username, String password, String fname, String lname, String email, String status, String accessLevel) {
+    public User(int managerID, String username, String password, String fname, String lname, String email, String status, String accessLevel) {
+        this.managerID = managerID;
         this.username = username;
         this.password = password;
         this.fname = fname;
@@ -47,68 +50,24 @@ public class User {
         this.fname = fname;
     }
 
+    public int getManagerID() {
+        return managerID;
+    }
+
     public String getUsername() {
         return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getFname() {
         return fname;
     }
 
-    public void setFname(String fname) {
-        this.fname = fname;
-    }
-
     public String getLname() {
         return lname;
     }
 
-    public void setLname(String lname) {
-        this.lname = lname;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public LocalDate getEmploymentDate() {
-        return employmentDate;
-    }
-
-    public void setEmploymentDate(LocalDate employmentDate) {
-        this.employmentDate = employmentDate;
-    }
-
     public String getAccessLevel() {
         return accessLevel;
-    }
-
-    public void setAccessLevel(String accessLevel) {
-        this.accessLevel = accessLevel;
     }
 
     public int getId() {

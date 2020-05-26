@@ -17,7 +17,7 @@ namespace BusinessLogic.Model
         { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {   
+        {
         }
 
         public string ValidateLogin(User user)
@@ -35,7 +35,12 @@ namespace BusinessLogic.Model
             }
         }
 
-        internal String GetShift(int id)
+        internal ActionResult<string> GetUsers(object id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetShift(int id)
         {
             socketHandler.SendToDatabaseStringOnly("GetShift;" + id);
             return socketHandler.GetResponse();
@@ -47,10 +52,16 @@ namespace BusinessLogic.Model
             string shifts = socketHandler.GetResponse();
             return shifts;
         }
-
+        /*
+        public string GetUser(int id)
+        {
+            socketHandler.SendToDatabaseStringOnly("GetUser;" + id);
+            return socketHandler.GetResponse();
+        }
+        */
         public string PostUser(User user)
         {
-            //Check if there is one in database 
+            //Check if there is one in database
             socketHandler.SendToDatabase("PostUser", user);
             string result = socketHandler.GetResponse();
             if (result.Equals("OK")){
@@ -70,12 +81,13 @@ namespace BusinessLogic.Model
             {
                 return "Database already has this user in it";
             }
-            
+
         }
 
         public string PostShift(Shift shift)
         {
-
+            //Due to c# having no interoperability between DateTime or plugin class Localdate and java Date
+            //and localDate we decided to just skip deserialization in the c# client
             socketHandler.SendToDatabase("PostShift", shift);
             string result = socketHandler.GetResponse();
             if (result.Equals("OK"))
@@ -98,10 +110,26 @@ namespace BusinessLogic.Model
             }
         }
 
-        public String GetUser(int id)
+        public string GetUser(int id)
         {
             socketHandler.SendToDatabaseStringOnly("GetUser;" + id);
             return socketHandler.GetResponse();
+        }
+
+        public string GetUsersIdName()
+        {
+            socketHandler.SendToDatabaseStringOnly("GetUsersIDName;");
+            return socketHandler.GetResponse();
+        }
+
+        public string GetUsersByManager(int managerId)
+        {
+            //I NEED ALL USER WHO HAVE THIS MANAGER ID
+
+            socketHandler.SendToDatabaseStringOnly("GetManagedUsers;" + managerId);
+            string users = socketHandler.GetResponse();
+            return users;
+
         }
     }
 }
