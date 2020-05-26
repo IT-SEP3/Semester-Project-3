@@ -19,7 +19,7 @@ public class EmployeeListController {
         viewHandler = vh;
         viewModel = vm;
         employeeList = new ListView<>();
-        employeeList.getItems().addAll(vm.populateListView());
+        //employeeList.getItems().addAll(vm.populateListView());
     }
 
 

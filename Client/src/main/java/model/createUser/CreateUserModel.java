@@ -9,7 +9,6 @@ public class CreateUserModel implements ICreateUserModel {
     private ICalendarModel calendarModel;
     private ICreateUserClient iCreateUserClient;
     private String response;
-
     private User userInfo;
 
     public CreateUserModel(ICalendarModel calendarModel, ICreateUserClient iCreateUserClient) {
@@ -23,6 +22,11 @@ public class CreateUserModel implements ICreateUserModel {
         String answer = iCreateUserClient.createUser(createUserCarrier);
         System.out.println(answer);
         return answer;
+    }
+
+    @Override
+    public String createUserResponse() {
+        return null;
     }
 
     @Override
