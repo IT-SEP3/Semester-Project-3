@@ -23,7 +23,7 @@ public class CalendarClient implements ICalendarClient {
     @Override // date format xx-xxxx
     public ArrayList<Shift> getCalendarShifts(int userID, String accessLevel, String month) {
         Type listType = new TypeToken<ArrayList<Shift>>(){}.getType();
-        String PATH ="http://127.0.0.1:5000/api/Shifts/?username=" +  userID + "&accessLevel=" + accessLevel + "&date=" + month;
+        String PATH ="http://127.0.0.1:5000/api/Shift/?username=" +  userID + "&accessLevel=" + accessLevel + "&date=" + month;
         response = httpHandler.getFromAPI(PATH);
         ArrayList<Shift> shifts = jsonSerializer.fromJson(response, listType);
         return shifts;

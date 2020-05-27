@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using BusinessLogic.Model.Calendar;
-using BusinessLogic.Model.Shared;
-using Microsoft.AspNetCore.Mvc;
+﻿
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
