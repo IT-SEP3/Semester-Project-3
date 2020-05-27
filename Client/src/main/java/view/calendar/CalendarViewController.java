@@ -109,6 +109,8 @@ public class CalendarViewController {
     private Button createShift;
     @FXML
     private Button employeeListButton;
+    @FXML
+    private Button shiftList;
 
     private ViewHandler viewHandler;
     private CalendarViewModel calendarViewModel;
@@ -165,6 +167,7 @@ public class CalendarViewController {
         //Button accesibility for different access levels
         createShift.visibleProperty().bindBidirectional(calendarViewModel.getButtonsProperty());
         employeeListButton.visibleProperty().bindBidirectional(calendarViewModel.getButtonsProperty());
+        shiftList.visibleProperty().bindBidirectional(calendarViewModel.getButtonsProperty());
         //Combobox year and month population
         monthsBox.getItems().add("January");
         monthsBox.getItems().add("February");
@@ -252,6 +255,11 @@ public class CalendarViewController {
 
     public void onAddShift(ActionEvent event) {
         viewHandler.openAddShiftView();
+    }
+
+    @FXML
+    void onOpenShiftList(ActionEvent event) {
+        viewHandler.openShiftListView();
     }
 
     @FXML

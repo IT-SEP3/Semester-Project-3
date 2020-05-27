@@ -44,10 +44,10 @@ public class ShiftListController {
         viewHandler = vh;
         viewModel = vm;
         shiftID.setCellValueFactory(new PropertyValueFactory<Shift, Integer>("id"));
-        managerID.setCellValueFactory(new PropertyValueFactory<Shift, Integer>("username"));
-        workerID.setCellValueFactory(new PropertyValueFactory<Shift, Integer>("fname"));
-        dateID.setCellValueFactory(new PropertyValueFactory<Shift, LocalDate>("lname"));
-        descriptionID.setCellValueFactory(new PropertyValueFactory<Shift, String>("Email"));
+        managerID.setCellValueFactory(new PropertyValueFactory<Shift, Integer>("user_id"));
+        workerID.setCellValueFactory(new PropertyValueFactory<Shift, Integer>("manager_id"));
+        dateID.setCellValueFactory(new PropertyValueFactory<Shift, LocalDate>("date"));
+        descriptionID.setCellValueFactory(new PropertyValueFactory<Shift, String>("description"));
 
         shifts.addAll(viewModel.populateListView());
         table.setItems(shifts);
