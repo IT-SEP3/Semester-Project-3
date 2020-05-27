@@ -50,4 +50,16 @@ public class HTTPHandler {
         }
         return value;
     }
+
+    public void deleteFromAPI(String json, String URL) {
+        Response response;
+        try {
+            client = new ResteasyClientBuilder().build();
+            target = client.target(URL);
+            response = target.request().delete();
+            System.out.println(response.readEntity(String.class));
+        } catch (ProcessingException e) {
+            e.printStackTrace();
+        }
+    }
 }

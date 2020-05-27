@@ -17,4 +17,8 @@ public class ShiftListViewModel {
     public ArrayList<Shift> populateListView() {
         return model.getShifts();
     }
+
+    public void removeShift(int shiftId) {
+        model.removeShift(shiftId);
+    }
 }

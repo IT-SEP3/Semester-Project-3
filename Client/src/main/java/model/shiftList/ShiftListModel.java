@@ -18,4 +18,9 @@ public class ShiftListModel implements IShiftListModel {
     public ArrayList<Shift> getShifts() {
         return client.getCalendarShifts(calendarModel.getUserFromModel().getId(), calendarModel.getUserFromModel().getAccessLevel(), calendarModel.getTimeStamp() );
     }
+
+    @Override
+    public void removeShift(int shiftId) {
+        client.removeShift(shiftId);
+    }
 }
