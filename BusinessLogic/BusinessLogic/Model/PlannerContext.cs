@@ -1,4 +1,5 @@
 ﻿
+using BusinessLogic.Model.Shared;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 

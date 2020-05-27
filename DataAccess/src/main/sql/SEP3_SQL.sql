@@ -31,7 +31,8 @@ CREATE TABLE Users (
 INSERT INTO Users (username, manager_ID,  password, firstName, lastName, email, status, accessLevel, dayEmployment, monthEmployment, yearEmployment)
     VALUE('admin', 3, 'admin', 'admin', 'admin', 'admin@admin.admin', 'ACTIVE', 'MANAGER', 16, 03, 2020  );
 
-INSERT INTO Users (username, manager_ID,  password, firstName, lastName, email, status, accessLevel, dayEmployment, monthEmployment, yearEmployment)
+
+INSERT INTO Users (username, manager_ID, password, firstName, lastName, email, status, accessLevel, dayEmployment, monthEmployment, yearEmployment)
     VALUE('Anders', 3, '1234', 'Anders', 'Sønderby', '264247@via.dk', 'ACTIVE', 'EMPLOYEE', 16, 03, 2020  );
 
 INSERT INTO Users (username, manager_ID,  password, firstName, lastName, email, status, accessLevel, dayEmployment, monthEmployment, yearEmployment)
@@ -105,4 +106,20 @@ INSERT INTO Shift (Users_ID, Manager_ID, description, day, month, year)
     VALUE (5, 3,'This is a test of the shift',   29, 05, 2020);
 INSERT INTO Shift (Users_ID, Manager_ID, description, day, month, year)
     VALUE (2, 3,'This is a test of the shift',   06, 05, 2020);
+
+-- -- -- Update Shift Testing -- -- --
+
+SELECT Users_ID, Manager_ID, description, day, month, year FROM Shift
+WHERE Shift_ID = 11;
+
+UPDATE Shift
+SET
+    description = 'does UPDATE work??',
+    day = 01,
+    month = 01,
+    year = 2022
+WHERE Shift_ID = 11;
+
+-- -- -- End here -- -- --
+
 SELECT * FROM Shift;
