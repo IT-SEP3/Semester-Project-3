@@ -9,7 +9,6 @@ import view.ViewHandler;
 import viewModel.employeeList.EmployeeListViewModel;
 
 public class EmployeeListController {
-
     @FXML
     private ListView<String> employeeList;
     private ViewHandler viewHandler;
@@ -18,9 +17,7 @@ public class EmployeeListController {
     public void init(EmployeeListViewModel vm, ViewHandler vh) {
         viewHandler = vh;
         viewModel = vm;
-        employeeList = new ListView<>();
-        ObservableList<String> employees = FXCollections.observableArrayList(viewModel.populateListView());
-        employeeList.getItems().addAll(employees);
+        employeeList.getItems().addAll(viewModel.populateListView());
     }
 
 

@@ -249,7 +249,6 @@ public class CalendarViewModel {
         if(model.getUserFromModel().getAccessLevel().equals("EMPLOYEE")){
             return model.getUserFromModel().getFname() + " " + model.getUserFromModel().getLname() + "\n" + shift.getDescription();
         } else if(model.getUserFromModel().getAccessLevel().equals("MANAGER")){
-            System.out.println("Getting users for manager calendar");
             User user = model.getUserfromDatabase(shift.getUser_id());
             return user.getFname() + " " + user.getLname() + "\n" + shift.getDescription();
         }else{

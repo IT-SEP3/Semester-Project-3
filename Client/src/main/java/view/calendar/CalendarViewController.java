@@ -106,8 +106,6 @@ public class CalendarViewController {
     @FXML
     private ComboBox<String> yearBox;
     @FXML
-    private Button createEmployee;
-    @FXML
     private Button createShift;
     @FXML
     private Button employeeListButton;
@@ -165,7 +163,6 @@ public class CalendarViewController {
         user.textProperty().bindBidirectional(calendarViewModel.getProperyList(42));
         access.textProperty().bindBidirectional(calendarViewModel.getProperyList(43));
         //Button accesibility for different access levels
-        createEmployee.visibleProperty().bindBidirectional(calendarViewModel.getButtonsProperty());
         createShift.visibleProperty().bindBidirectional(calendarViewModel.getButtonsProperty());
         employeeListButton.visibleProperty().bindBidirectional(calendarViewModel.getButtonsProperty());
         //Combobox year and month population
@@ -237,12 +234,11 @@ public class CalendarViewController {
                 monthNumber = 1;
                 break;
         }
-        createEmployee.visibleProperty().bindBidirectional(calendarViewModel.getButtonsProperty());
         calendarViewModel.getUser();
         calendarViewModel.setFunctionalityDifferences();
         //Years not flexible, what if its 2021 now
         calendarViewModel.getCalendar(monthNumber +"-"+ yearBox.getValue());
-        calendarViewModel.setCalendar(monthNumber, 2020);
+        calendarViewModel.setCalendar(monthNumber,  Integer.parseInt(yearBox.getValue()));
     }
 
     @FXML

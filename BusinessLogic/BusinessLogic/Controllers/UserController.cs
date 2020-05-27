@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BusinessLogic.Model;
 using BusinessLogic.Model.Shared;
+using BusinessLogic.Model.user;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,11 +14,11 @@ namespace BusinessLogic.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly PlannerContext _context;
+        private readonly IUserModel _context;
 
-        public UserController(PlannerContext context)
+        public UserController()
         {
-            _context = context;
+            _context = new UserModel();
         }
 
 

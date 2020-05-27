@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BusinessLogic.Model.Shared;
 
-namespace BusinessLogic.Model.Calendar
+namespace BusinessLogic.Model.Shared
 {
     public class Shift
     {

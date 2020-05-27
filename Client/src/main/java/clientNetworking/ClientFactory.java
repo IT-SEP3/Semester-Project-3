@@ -8,14 +8,14 @@ import clientNetworking.employeeList.EmployeeListClient;
 import clientNetworking.employeeList.IEmployeeListClient;
 import clientNetworking.login.ILoginClient;
 import clientNetworking.login.LoginClient;
-import clientNetworking.shift.IShiftClient;
-import clientNetworking.shift.ShiftClient;
+import clientNetworking.addShift.IAddShiftClient;
+import clientNetworking.addShift.AddShiftClient;
 
 public class ClientFactory {
     private HTTPHandler httpHandler;
     private ILoginClient loginClient;
     private ICalendarClient calendarClient;
-    private IShiftClient shiftClient;
+    private IAddShiftClient shiftClient;
     private ICreateUserClient createUserClient;
     private IEmployeeListClient employeeListClient;
 
@@ -36,9 +36,9 @@ public class ClientFactory {
         return calendarClient;
     }
 
-    public IShiftClient shiftClient(){
+    public IAddShiftClient shiftClient(){
         if(shiftClient == null)
-            shiftClient = new ShiftClient(httpHandler);
+            shiftClient = new AddShiftClient(httpHandler);
         return shiftClient;
     }
 
