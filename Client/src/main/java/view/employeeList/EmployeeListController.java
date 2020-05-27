@@ -26,7 +26,7 @@ public class EmployeeListController {
 
     @FXML
     void onBack(ActionEvent event) {
-        viewHandler.openCalendarViewOld();
+        viewHandler.openCalendarView();
     }
 
     @FXML
