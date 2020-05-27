@@ -3,14 +3,11 @@ package shared;
 import java.time.LocalDate;
 
 public class Shift {
-
     private int id;
     private int user_id;
     private int manager_id;
     private String description;
     private LocalDate date;
-
-
 
     public Shift(int id, int user_id, String description, int manager_id, LocalDate date) {
         this.id = id;
@@ -37,6 +34,14 @@ public class Shift {
 
     public LocalDate getDate() {
         return date;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getManager_id() {
+        return manager_id;
     }
 
     @Override

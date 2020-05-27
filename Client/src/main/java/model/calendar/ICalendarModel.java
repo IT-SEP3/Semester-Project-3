@@ -12,4 +12,6 @@ public interface ICalendarModel {
     void getCalendar(String timeStamp);
     void getCurrentUser();
     ArrayList<Shift> getModelShifts();
+
+    String getTimeStamp();
 }

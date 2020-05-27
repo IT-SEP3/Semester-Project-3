@@ -10,6 +10,8 @@ import clientNetworking.login.ILoginClient;
 import clientNetworking.login.LoginClient;
 import clientNetworking.addShift.IAddShiftClient;
 import clientNetworking.addShift.AddShiftClient;
+import clientNetworking.shiftList.IShiftListClient;
+import clientNetworking.shiftList.ShiftListClient;
 
 public class ClientFactory {
     private HTTPHandler httpHandler;
@@ -18,6 +20,7 @@ public class ClientFactory {
     private IAddShiftClient shiftClient;
     private ICreateUserClient createUserClient;
     private IEmployeeListClient employeeListClient;
+    private IShiftListClient shiftListClient;
 
 
     public ClientFactory(HTTPHandler httpHandler){
@@ -52,5 +55,11 @@ public class ClientFactory {
         if (employeeListClient == null)
             employeeListClient = new EmployeeListClient(httpHandler);
         return employeeListClient;
+    }
+
+    public IShiftListClient shiftListClient() {
+        if(shiftListClient == null)
+            shiftListClient = new ShiftListClient(httpHandler);
+        return shiftListClient;
     }
 }

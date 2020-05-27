@@ -12,6 +12,8 @@ import model.employeeList.EmployeeListModel;
 import model.employeeList.IEmployeeListModel;
 import model.login.ILoginModel;
 import model.login.LoginModel;
+import model.shiftList.IShiftListModel;
+import model.shiftList.ShiftListModel;
 
 public class ModelFactory {
     private ClientFactory clientFactory;
@@ -20,6 +22,7 @@ public class ModelFactory {
     private ICreateUserModel createUserModel;
     private IAddShiftModel addShiftModel;
     private IEmployeeListModel employeeListModel;
+    private IShiftListModel shiftListModel;
 
     public ModelFactory(ClientFactory c) {
         clientFactory = c;
@@ -53,5 +56,11 @@ public class ModelFactory {
         if (employeeListModel == null)
             employeeListModel = new EmployeeListModel(calendarModel, clientFactory.employeeList());
         return employeeListModel;
+    }
+
+    public IShiftListModel shiftListModel() {
+        if(shiftListModel == null)
+            shiftListModel = new ShiftListModel(clientFactory.shiftListClient());
+        return shiftListModel;
     }
 }

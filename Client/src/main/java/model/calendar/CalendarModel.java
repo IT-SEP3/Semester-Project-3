@@ -12,6 +12,7 @@ public class CalendarModel implements ICalendarModel {
     private ILoginModel loginModel;
     private User currentUser;
     private ArrayList<Shift> shifts;
+    private String savedTimeStamp;
 
     public CalendarModel(ICalendarClient calendarClient, ILoginModel loginModel) {
         this.calendarClient = calendarClient;
@@ -21,6 +22,7 @@ public class CalendarModel implements ICalendarModel {
 
     @Override
     public void getCalendar(String timeStamp) {
+        this.savedTimeStamp = timeStamp;
         shifts = calendarClient.getCalendarShifts(currentUser.getId(), currentUser.getAccessLevel() ,  timeStamp);
     }
 
@@ -33,6 +35,11 @@ public class CalendarModel implements ICalendarModel {
     @Override
     public ArrayList<Shift> getModelShifts() {
         return shifts;
+    }
+
+    @Override
+    public String getTimeStamp() {
+        return savedTimeStamp;
     }
 
     @Override

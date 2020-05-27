@@ -2,11 +2,14 @@ package viewModel;
 
 
 import model.ModelFactory;
+import model.shiftList.IShiftListModel;
+import model.shiftList.ShiftListModel;
 import viewModel.addshift.AddShiftViewModel;
 import viewModel.calendar.CalendarViewModel;
 import viewModel.createUser.CreateUserViewModel;
 import viewModel.employeeList.EmployeeListViewModel;
 import viewModel.login.LoginViewModel;
+import viewModel.shiftList.ShiftListViewModel;
 
 public class ViewModelFactory {
     private ModelFactory modelFactory;
@@ -15,6 +18,7 @@ public class ViewModelFactory {
     private CreateUserViewModel userViewModel;
     private AddShiftViewModel addShiftViewModel;
     private EmployeeListViewModel employeeListViewModel;
+    private ShiftListViewModel shiftListModel;
 
     public ViewModelFactory(ModelFactory modelFactory) {
         this.modelFactory = modelFactory;
@@ -48,5 +52,11 @@ public class ViewModelFactory {
         if (employeeListViewModel == null)
             employeeListViewModel = new EmployeeListViewModel(modelFactory.employeeListModel());
         return employeeListViewModel;
+    }
+
+    public ShiftListViewModel getShiftListViewModel() {
+        if (shiftListModel == null)
+            shiftListModel = new ShiftListViewModel(modelFactory.shiftListModel());
+        return shiftListModel;
     }
 }
