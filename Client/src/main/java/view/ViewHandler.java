@@ -84,7 +84,7 @@ public class ViewHandler {
             mainStage.setScene(addShift);
         }
     }
-    public void openEmployeeListViewOld() {
+    public void openEmployeeListView() {
         FXMLLoader loader = new FXMLLoader();
         Parent root = getRootByPath("employeeList/EmployeeList.fxml", loader);
         EmployeeListController controller = loader.getController();

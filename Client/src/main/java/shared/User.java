@@ -79,18 +79,16 @@ public class User {
         this.id = id;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public String getStatus() {
+        return status;
+    }
 
     @Override
     public String toString() {
-        return "User{" +
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", fname='" + fname + '\'' +
-                ", lname='" + lname + '\'' +
-                ", email='" + email + '\'' +
-                ", status='" + status + '\'' +
-                ", employmentDate=" + employmentDate +
-                ", accessLevel='" + accessLevel + '\'' +
-                '}';
+        return "Username: " + username + " User: " + fname + " " + lname  + " Email: "+ email + " Access level:  "+accessLevel + " Status: " + status;
     }
 }

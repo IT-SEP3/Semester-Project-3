@@ -71,14 +71,14 @@ WHERE accessLevel = 'employee';
 
 DROP TABLE IF EXISTS Shift CASCADE;
 CREATE TABLE Shift (
-                       Shift_ID SERIAL,
-                       Users_ID INTEGER REFERENCES Users(Users_ID),
-                       Manager_ID INTEGER REFERENCES Users(Users_ID),
-                       description VARCHAR(10000),
-                       day int NOT NULL,
-                       month int NOT NULL,
-                       year int NOT NULL,
-                       PRIMARY KEY(Shift_ID)
+                        Shift_ID SERIAL,
+                        Users_ID INTEGER REFERENCES Users(Users_ID),
+                        Manager_ID INTEGER REFERENCES Users(Users_ID),
+                        description VARCHAR(10000),
+                        day int NOT NULL,
+                        month int NOT NULL,
+                        year int NOT NULL,
+                        PRIMARY KEY(Shift_ID)
 
 );
 

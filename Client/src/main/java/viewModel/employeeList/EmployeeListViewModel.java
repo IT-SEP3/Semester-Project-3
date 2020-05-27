@@ -2,6 +2,7 @@ package viewModel.employeeList;
 
 import model.createUser.ICreateUserModel;
 import model.employeeList.IEmployeeListModel;
+import shared.User;
 
 import java.util.ArrayList;
 
@@ -13,7 +14,7 @@ public class EmployeeListViewModel {
         model = employeeListModel;
     }
 
-    public ArrayList<String> populateListView() {
+    public ArrayList<User> populateListView() {
         return model.getEmployees();
     }
 }

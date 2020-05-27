@@ -16,13 +16,7 @@ public class EmployeeListModel implements IEmployeeListModel {
     }
 
     @Override
-    public ArrayList<String> getEmployees() {
-        ArrayList<User> users = employeeListClient.getEmployees(calendarModel.getUserFromModel().getId());
-        System.out.println(users.get(0).getManagerID());
-        ArrayList<String> usersStrings = new ArrayList<>();
-        for (int i = 0; i < users.size(); i++) {
-            usersStrings.add(users.get(i).toString());
-        }
-        return usersStrings;
+    public ArrayList<User> getEmployees() {
+        return employeeListClient.getEmployees(calendarModel.getUserFromModel().getId());
     }
 }
