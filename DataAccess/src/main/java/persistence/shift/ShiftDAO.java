@@ -137,7 +137,7 @@ public class ShiftDAO implements IShiftDAO {
     }
 
     @Override
-    public String postEditShift(Shift shift, String operation) {
+    public String updateShift(Shift shift, String operation) {
 
         PreparedStatement preparedStatement;
         ResultSet resultSet;
