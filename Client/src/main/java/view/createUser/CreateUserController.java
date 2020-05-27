@@ -90,14 +90,14 @@ public class CreateUserController {
         if(response.getText() == null){
             //Just to avoid errors
         } else if (response.getText().equals("Success")){
-            viewHandler.openCalendarViewOld();
+            viewHandler.openEmployeeListView();
             System.out.println("Changing to calendar");
         }
     }
 
     public void onCancelButton(ActionEvent event) {
         createUserViewModel.clearFields();
-        viewHandler.openCalendarViewOld();
+        viewHandler.openEmployeeListView();
     }
 
     public void onResetButton(ActionEvent event) {

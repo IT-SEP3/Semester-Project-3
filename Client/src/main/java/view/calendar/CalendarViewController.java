@@ -256,7 +256,7 @@ public class CalendarViewController {
 
     @FXML
     void onEmployeeList(ActionEvent event) {
-        viewHandler.openEmployeeListViewOld();
+        viewHandler.openEmployeeListView();
     }
 
     @FXML

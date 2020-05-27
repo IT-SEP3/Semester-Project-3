@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import shared.User;
 import view.ViewHandler;
 import viewModel.employeeList.EmployeeListViewModel;
@@ -36,8 +37,6 @@ public class EmployeeListController {
     @FXML
     private TableColumn<User, String> tableStatus;
 
-    @FXML
-    private ListView<String> employeeList;
     private ViewHandler viewHandler;
     private EmployeeListViewModel viewModel;
     private ObservableList<User> users = FXCollections.observableArrayList();
@@ -45,6 +44,14 @@ public class EmployeeListController {
     public void init(EmployeeListViewModel vm, ViewHandler vh) {
         viewHandler = vh;
         viewModel = vm;
+        tableID.setCellValueFactory(new PropertyValueFactory<User, Integer>("id"));
+        tableUsername.setCellValueFactory(new PropertyValueFactory<User, String>("username"));
+        tableFname.setCellValueFactory(new PropertyValueFactory<User, String>("fname"));
+        tableLname.setCellValueFactory(new PropertyValueFactory<User, String>("lname"));
+        tableEmail.setCellValueFactory(new PropertyValueFactory<User, String>("Email"));
+        tableAcessLevel.setCellValueFactory(new PropertyValueFactory<User, String>("accessLevel"));
+        tableStatus.setCellValueFactory(new PropertyValueFactory<User, String>("Status"));
+
         //employeeList.getItems().addAll(viewModel.populateListView());
         users.addAll(viewModel.populateListView());
         tableOfEmployees.setItems(users);

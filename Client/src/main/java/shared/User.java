@@ -79,6 +79,13 @@ public class User {
         this.id = id;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public String getStatus() {
+        return status;
+    }
 
     @Override
     public String toString() {
