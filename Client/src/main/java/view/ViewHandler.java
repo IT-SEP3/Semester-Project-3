@@ -6,6 +6,7 @@ import view.calendar.CalendarViewController;
 import view.createUser.CreateUserController;
 import view.employeeList.EmployeeListController;
 import view.login.LoginViewController;
+import view.shiftList.ShiftListController;
 import viewModel.ViewModelFactory;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,8 +19,10 @@ public class ViewHandler {
     private Stage mainStage;
     private Scene loginScene;
     private Scene calendarScene;
+    private Scene employeeList;
     private Scene createUser;
     private Scene addShift;
+    private Scene shiftList;
 
     public ViewHandler(Stage stage, ViewModelFactory vmf) {
         viewModelFactory = vmf;
@@ -84,15 +87,30 @@ public class ViewHandler {
             mainStage.setScene(addShift);
         }
     }
+
     public void openEmployeeListView() {
         FXMLLoader loader = new FXMLLoader();
         Parent root = getRootByPath("employeeList/EmployeeList.fxml", loader);
         EmployeeListController controller = loader.getController();
         controller.init(viewModelFactory.getEmployeeListViewModel(), this);
-        calendarScene = new Scene(root);
+        employeeList = new Scene(root);
         mainStage.setTitle("Calendar");
         mainStage.setScene(calendarScene);
     }
+
+    public void openShiftListView() {
+        FXMLLoader loader = new FXMLLoader();
+        if (shiftList == null) {
+            Parent root = getRootByPath("shiftList/ShiftList.fxml", loader);
+            ShiftListController controller = loader.getController();
+            controller.init(viewModelFactory.getShiftListViewModel(), this);
+            shiftList = new Scene(root);
+        }
+        mainStage.setTitle("Add Shift");
+        mainStage.setScene(addShift);
+
+    }
+
 
     private Parent getRootByPath(String path, FXMLLoader loader) {
         loader.setLocation(getClass().getResource(path));
