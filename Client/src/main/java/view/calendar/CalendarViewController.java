@@ -242,7 +242,7 @@ public class CalendarViewController {
         calendarViewModel.setFunctionalityDifferences();
         //Years not flexible, what if its 2021 now
         calendarViewModel.getCalendar(monthNumber +"-"+ yearBox.getValue());
-        calendarViewModel.setCalendar(monthNumber, 2020);
+        calendarViewModel.setCalendar(monthNumber,  Integer.parseInt(yearBox.getValue()));
     }
 
     @FXML

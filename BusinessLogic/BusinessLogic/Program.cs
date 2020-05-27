@@ -22,7 +22,6 @@ namespace BusinessLogic
                     localIP = endPoint.Address.ToString();
                 }
 
-
                 IPEndPoint serverAddress = new IPEndPoint(IPAddress.Parse(localIP), 4343);
                 Socket BusinessSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 BusinessSocket.Connect(serverAddress);

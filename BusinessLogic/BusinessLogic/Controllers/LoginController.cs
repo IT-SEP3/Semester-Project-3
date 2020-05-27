@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using BusinessLogic.Model;
 using BusinessLogic.Model.Shared;
+using BusinessLogic.Model.login;
 
 namespace BusinessLogic.Controllers
 {
@@ -13,11 +14,11 @@ namespace BusinessLogic.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
-        private readonly PlannerContext _context;
+        private ILoginModel _context;
 
-        public LoginController(PlannerContext context)
+        public LoginController()
         {
-            _context = context;
+            _context = new LoginModel();
         }
 
 

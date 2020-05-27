@@ -34,33 +34,44 @@ public class CreateUserViewModel {
 
     public void submitEmployee() {
         resetColors();
+        boolean usernameCorrect = false;
+        boolean passwordCorrect = false;
+        boolean fnameCorrect = false;
+        boolean lnameCorrect = false;
+        boolean emailCorrect = false;
+
         if(username.get() != null && !username.get().isEmpty()){
-            if(password.get() != null && !password.get().isEmpty()){
-                if(fname.get() != null && !fname.get().isEmpty()){
-                    if(lname.get() != null && !lname.get().isEmpty()){
-                       if(email.get() != null && !email.get().isEmpty()){
-                           String API_reponse = model.createUser(username.getValue(), password.getValue(), fname.getValue(), lname.getValue(),
-                                   email.getValue(), status.getValue(), accesslevel.getValue());
-                           createEmployeeResponse.setValue(API_reponse);
-                       }else {
-                           createEmployeeResponse.set("Enter email");
-                           emailPaint.setValue(Color.RED);
-                       }
-                    }else {
-                        createEmployeeResponse.set("Enter last name");
-                        lnamePaint.setValue(Color.RED);
-                    }
-                }else {
-                    createEmployeeResponse.set("Enter first name");
-                    fnamePaint.setValue(Color.RED);
-                }
-            }else {
-                createEmployeeResponse.set("Enter password");
-                passwordPaint.setValue(Color.RED);
-            }
+            usernameCorrect = true;
         }else {
-            createEmployeeResponse.set("Enter username");
             usernamePaint.setValue(Color.RED);
+        }
+        if(password.get() != null && !password.get().isEmpty()){
+            passwordCorrect = true;
+        }else {
+            passwordPaint.setValue(Color.RED);
+        }
+        if(fname.get() != null && !fname.get().isEmpty()){
+            fnameCorrect = true;
+        }else {
+            fnamePaint.setValue(Color.RED);
+        }
+        if(lname.get() != null && !lname.get().isEmpty()){
+            lnameCorrect = true;
+        }else {
+            lnamePaint.setValue(Color.RED);
+        }
+        if(email.get() != null && !email.get().isEmpty()){
+            emailCorrect = true;
+        }else {
+            emailPaint.setValue(Color.RED);
+        }
+        if(usernameCorrect && passwordCorrect && fnameCorrect && lnameCorrect && emailCorrect){
+            System.out.println(status.getValue()+ " " + accesslevel.getValue());
+            String API_reponse = model.createUser(username.getValue(), password.getValue(), fname.getValue(), lname.getValue(),
+                    email.getValue(), status.getValue(), accesslevel.getValue());
+            createEmployeeResponse.setValue(API_reponse);
+        }else {
+            createEmployeeResponse.set("Enter missing fields");
         }
     }
 
@@ -131,5 +142,14 @@ public class CreateUserViewModel {
 
     public Property<Paint> emailPaintProperty() {
         return emailPaint;
+    }
+
+    public void resetAddUser() {
+        username.set("");
+        password.set("");
+        fname.set("");
+        lname.set("");
+        email.set("");
+        createEmployeeResponse.set("");
     }
 }
