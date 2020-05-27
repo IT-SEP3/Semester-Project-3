@@ -82,15 +82,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", fname='" + fname + '\'' +
-                ", lname='" + lname + '\'' +
-                ", email='" + email + '\'' +
-                ", status='" + status + '\'' +
-                ", employmentDate=" + employmentDate +
-                ", accessLevel='" + accessLevel + '\'' +
-                '}';
+        return "Username: " + username + " User: " + fname + " " + lname  + " Email: "+ email + " Access level:  "+accessLevel + " Status: " + status;
     }
 }
