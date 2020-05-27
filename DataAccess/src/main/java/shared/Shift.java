@@ -19,6 +19,16 @@ public class Shift {
         this.manager_id = manager_id;
         this.date = date;
     }
+
+   public Shift(int user_id, LocalDate date) {
+        this.user_id = user_id;
+        this.date = date;
+   }
+
+    public int getId() {
+        return id;
+    }
+
     public int getUser_id() {
         return user_id;
     }

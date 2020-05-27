@@ -104,6 +104,19 @@ public class DatabaseSocketHandler implements Runnable {
                     }
                 }
 
+                else if (receivedPieces[0].equals("updateShift")) {
+                    System.out.println(received);
+                    if(!receivedPieces[1].equals("Confirmed")){
+                        Shift new_shift = gson.fromJson(receivedPieces[1], Shift.class);
+                        String addResponse = daoFactory.getShiftDAO().updateShift(new_shift,"Check");
+                        sendToClient(addResponse);
+                    } else {
+                        Shift new_shift = gson.fromJson(receivedPieces[2], Shift.class);
+                        String addResponse = daoFactory.getShiftDAO().updateShift(new_shift,"Post");
+                        sendToClient(addResponse);
+                    }
+                }
+
                 else if(receivedPieces[0].equals("GetUsersIDName")) {
                     System.out.println("Trying to get users");
                     List<User> users = daoFactory.getUserDAO().getUsersIdName();
