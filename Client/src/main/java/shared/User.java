@@ -45,8 +45,9 @@ public class User {
         this.password = password;
     }
 
-    public User(int id, String fname) {
+    public User(int id, int managerID, String fname) {
         this.id = id;
+        this.managerID = managerID;
         this.fname = fname;
     }
 
