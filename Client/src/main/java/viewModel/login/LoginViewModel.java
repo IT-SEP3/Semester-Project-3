@@ -32,7 +32,7 @@ public class LoginViewModel {
 
     //Checks if login fields are empty. If not hashes password and sends it to model. And also gets response from server. And also violates solid principles
     public void login() {
-        if(username.get() != null && !username.get().isEmpty() && password.get() != null && !username.get().isEmpty()) {
+        if(username.get() != null && !username.get().isEmpty() && password.get() != null && !password.get().isEmpty()) {
             model.login(username.get(), password.get());
             String response = model.loginResponse();
             loginResponse.set(response);
