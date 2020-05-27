@@ -1,6 +1,6 @@
 package model.addshift;
 
-import clientNetworking.shift.IShiftClient;
+import clientNetworking.addShift.IAddShiftClient;
 import model.login.ILoginModel;
 import shared.Shift;
 import shared.User;
@@ -10,17 +10,17 @@ import java.util.ArrayList;
 
 public class AddShiftModel implements IAddShiftModel {
 
-    public IShiftClient client;
+    public IAddShiftClient client;
     private ILoginModel loginModel;
     private ArrayList<User> userMap;
 
-    public AddShiftModel(IShiftClient client, ILoginModel loginModel) {
+    public AddShiftModel(IAddShiftClient client, ILoginModel loginModel) {
         this.client = client;
         this.loginModel = loginModel;
     }
 
     public ArrayList<String> getUsers() {
-        userMap = client.getUsers();
+        userMap = client.getUsers(loginModel.getCurrentUser().getId());
         ArrayList<String> listOfNames = new ArrayList<String>();
         for (User user : userMap)
         {

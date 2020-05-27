@@ -1,4 +1,4 @@
-package clientNetworking.shift;
+package clientNetworking.addShift;
 
 import clientNetworking.HTTPHandler;
 import com.google.gson.Gson;
@@ -9,19 +9,19 @@ import shared.User;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class ShiftClient implements IShiftClient {
+public class AddShiftClient implements IAddShiftClient {
     private Gson jsonSerializer;
     private String response;
     private HTTPHandler httpHandler;
 
-    public ShiftClient(HTTPHandler httpHandler) {
+    public AddShiftClient(HTTPHandler httpHandler) {
         this.httpHandler = httpHandler;
         this.jsonSerializer = new Gson();
     }
 
     @Override
     public String postShift(Shift shift) {
-        String PATH ="http://127.0.0.1:5000/api/Shifts";
+        String PATH ="http://127.0.0.1:5000/api/Shift";
         String shiftJson = jsonSerializer.toJson(shift);
 
         System.out.println(shiftJson);
@@ -35,8 +35,8 @@ public class ShiftClient implements IShiftClient {
     }
 
     @Override
-    public ArrayList<User> getUsers() {
-        String PATH ="http://127.0.0.1:5000/api/user/id-name";
+    public ArrayList<User> getUsers(int managerId) {
+        String PATH ="http://127.0.0.1:5000/api/user/id-name?managerId=" + managerId;
         System.out.println("Getting users available for shifts");
         response = httpHandler.getFromAPI(PATH);
 

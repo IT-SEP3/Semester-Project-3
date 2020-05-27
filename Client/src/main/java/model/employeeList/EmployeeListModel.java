@@ -1,9 +1,6 @@
 package model.employeeList;
 
-import clientNetworking.employeeList.EmployeeListClient;
 import clientNetworking.employeeList.IEmployeeListClient;
-import clientNetworking.shift.IShiftClient;
-import model.calendar.CalendarModel;
 import model.calendar.ICalendarModel;
 import shared.User;
 
@@ -21,6 +18,7 @@ public class EmployeeListModel implements IEmployeeListModel {
     @Override
     public ArrayList<String> getEmployees() {
         ArrayList<User> users = employeeListClient.getEmployees(calendarModel.getUserFromModel().getId());
+        System.out.println(users.get(0).getManagerID());
         ArrayList<String> usersStrings = new ArrayList<>();
         for (int i = 0; i < users.size(); i++) {
             usersStrings.add(users.get(i).toString());

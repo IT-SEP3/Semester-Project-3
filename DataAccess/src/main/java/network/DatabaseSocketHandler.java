@@ -50,7 +50,6 @@ public class DatabaseSocketHandler implements Runnable {
                     String confirmation = daoFactory.getLoginDAO().validateLogin(login);
                     sendToClient(confirmation);
                 }
-
                 else if(receivedPieces[0].equals("CalendarMonth")) {
                     String[] date = receivedPieces[2].split("-");
                     ArrayList<Shift> shiftsForMonth = new ArrayList<>();
@@ -104,17 +103,30 @@ public class DatabaseSocketHandler implements Runnable {
                     }
                 }
 
-                else if(receivedPieces[0].equals("GetUsersIDName")) {
-                    System.out.println("Trying to get users");
-                    List<User> users = daoFactory.getUserDAO().getUsersIdName();
-                    String userJson = gson.toJson(users);
-                    sendToClient(userJson);
+                else if (receivedPieces[0].equals("updateShift")) {
+                    System.out.println(received);
+                    if(!receivedPieces[1].equals("Confirmed")){
+                        Shift new_shift = gson.fromJson(receivedPieces[1], Shift.class);
+                        String addResponse = daoFactory.getShiftDAO().updateShift(new_shift,"Check");
+                        sendToClient(addResponse);
+                    } else {
+                        Shift new_shift = gson.fromJson(receivedPieces[2], Shift.class);
+                        String addResponse = daoFactory.getShiftDAO().updateShift(new_shift,"Post");
+                        sendToClient(addResponse);
+                    }
                 }
 
+                else if(receivedPieces[0].equals("GetUsersIDName")) {
+                    System.out.println("Trying to get users");
+                    List<User> users_id_name = daoFactory.getUserDAO().getUsersIdName(receivedPieces[1]);
+                    String userJson = gson.toJson(users_id_name);
+                    sendToClient(userJson);
+                }
                 else if(receivedPieces[0].equals("GetManagedUsers")){
-                    ArrayList<User> employeesOfManager = new ArrayList<>();
-                    System.out.println("Getting manager");
-                    //employeesOfManager = daoFactory.getUserDAO().getUserByManager())
+                    System.out.println("Trying to get users managed by manager ID " + receivedPieces[1]);
+                    List<User> managedUsers = daoFactory.getUserDAO().getUsersByManager(receivedPieces[1]);
+                    String userJson = gson.toJson(managedUsers);
+                    sendToClient(userJson);
                 }
             }
         }catch (Exception e){ //VIOLATION OF SOLID

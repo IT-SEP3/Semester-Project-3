@@ -1,5 +1,5 @@
-﻿using BusinessLogic.Model;
-using BusinessLogic.Model.Calendar;
+﻿using BusinessLogic.Model.Shared;
+using BusinessLogic.Model.shifts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -11,20 +11,20 @@ namespace BusinessLogic.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ShiftsController : ControllerBase
+    public class ShiftController : ControllerBase
     {
-        private readonly PlannerContext _context;
+        private IShiftModel _context;
 
-        public ShiftsController(PlannerContext context)
+        public ShiftController()
         {
-            _context = context;
+            _context = new ShiftModel();
         }
 
         // GET: api/Shifts
         [HttpGet]
         public async Task<ActionResult<String>> GetShifts([FromQuery (Name = "username")] string username, [FromQuery(Name = "accessLevel")] string accessLevel, [FromQuery (Name = "date")] string date)
         {
-            return _context.GetAllShifts(username, accessLevel, date);
+            return  _context.GetAllShifts(username, accessLevel, date);
         }
 
 
@@ -45,5 +45,12 @@ namespace BusinessLogic.Controllers
             Console.WriteLine(shift);
             return _context.PostShift(shift);
         }
+        
+        [HttpPost]
+        public async Task<ActionResult<String>> updateShift(Shift shift)
+        {
+            Console.WriteLine(shift);
+            return _context.PostEditShift(shift);
+        }       
     }
 }

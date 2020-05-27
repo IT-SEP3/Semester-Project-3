@@ -1,15 +1,11 @@
 package clientNetworking.employeeList;
 
 import clientNetworking.HTTPHandler;
-import clientNetworking.createUser.ICreateUserClient;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import shared.Shift;
 import shared.User;
 
-import javax.xml.ws.spi.http.HttpHandler;
 import java.lang.reflect.Type;
-import java.net.HttpCookie;
 import java.util.ArrayList;
 
 public class EmployeeListClient implements IEmployeeListClient {
@@ -19,13 +15,15 @@ public class EmployeeListClient implements IEmployeeListClient {
 
     public EmployeeListClient(HTTPHandler httpHandler) {
         this.httpHandler = httpHandler;
+        this.jsonSerializer = new Gson();
     }
 
     @Override
     public ArrayList<User> getEmployees(int managerId) {
-        Type listType = new TypeToken<ArrayList<User>>(){}.getType();
-        String PATH ="http://127.0.0.1:5000/api/User/?managerId="+ managerId ;
+        String PATH ="http://127.0.0.1:5000/api/user/?managerId="+ managerId;
         response = httpHandler.getFromAPI(PATH);
+
+        Type listType = new TypeToken<ArrayList<User>>(){}.getType();
         ArrayList<User> shifts = jsonSerializer.fromJson(response, listType);
         return shifts;
     }

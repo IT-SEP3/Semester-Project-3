@@ -28,7 +28,6 @@ public class CreateUserController {
     private ComboBox<String> statusComboBox;
     @FXML
     private ComboBox<String> accesslevelComboBox;
-
     @FXML
     private Label response;
     @FXML
@@ -74,26 +73,26 @@ public class CreateUserController {
 
         statusComboBox.getItems().add("ACTIVE");
         statusComboBox.getItems().add("INACTIVE");
-
         accesslevelComboBox.getItems().add("EMPLOYEE");
         accesslevelComboBox.getItems().add("MANAGER");
+
+        statusComboBox.getSelectionModel().select(0);
+        statusComboBox();
+        accesslevelComboBox.getSelectionModel().select(0);
+        accesslevelComboBox();
         vm.resetColors();
+        vm.resetAddUser();
     }
 
     public void onSubmitButton(ActionEvent event) {
         createUserViewModel.submitEmployee();
         // Opens the calendar after all the information have been added to the database, else writing something went wrong.
-        if(response.getText() != null){
-            if(response.getText().equals("Success")){
-                viewHandler.openCalendarViewOld();
-                System.out.println("Changing to calendar");
-            }else {
-                response.setText("User already exists. Can't add");
-            }
-        } else if (response.getText() == null){
-            response.setText("Connection to database couldn't be established...");
+        if(response.getText() == null){
+            //Just to avoid errors
+        } else if (response.getText().equals("Success")){
+            viewHandler.openCalendarViewOld();
+            System.out.println("Changing to calendar");
         }
-
     }
 
     public void onCancelButton(ActionEvent event) {
@@ -118,19 +117,18 @@ public class CreateUserController {
         labelStatusString.setText(selectedValue);
     }
 
+    public void statusComboBox() {
+        String selectedValue = statusComboBox.getValue();
+        labelStatusString.setText(selectedValue);
+    }
+
     public void accesslevelComboBox(ActionEvent event) {
         String selectedValue = accesslevelComboBox.getValue();
         labelAccesslevelString.setText(selectedValue);
     }
 
-    private void setEmptyFieldsRed() {
-        labelUsername.setTextFill(usernameTextField.getText().isEmpty() ? Color.RED : Color.BLACK);
-        labelPassword.setTextFill(passwordTextField.getText().isEmpty() ? Color.RED : Color.BLACK);
-        labelFirstname.setTextFill(firstnameTextField.getText().isEmpty() ? Color.RED : Color.BLACK);
-        labelLastname.setTextFill(lastnameTextField.getText().isEmpty() ? Color.RED : Color.BLACK);
-        labelEmail.setTextFill(emailTextField.getText().isEmpty() ? Color.RED : Color.BLACK);
-
-        labelStatus.setTextFill(statusComboBox.getSelectionModel().isEmpty() ? Color.RED : Color.BLACK);
-        labelAccesslevel.setTextFill(accesslevelComboBox.getSelectionModel().isEmpty() ? Color.RED : Color.BLACK);
+    public void accesslevelComboBox() {
+        String selectedValue = accesslevelComboBox.getValue();
+        labelAccesslevelString.setText(selectedValue);
     }
 }
