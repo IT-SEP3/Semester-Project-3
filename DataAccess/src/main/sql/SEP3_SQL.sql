@@ -70,14 +70,14 @@ WHERE accessLevel = 'employee';
 
 DROP TABLE IF EXISTS Shift CASCADE;
 CREATE TABLE Shift (
-                        Shift_ID SERIAL,
-                        Users_ID INTEGER REFERENCES Users(Users_ID),
-                        Manager_ID INTEGER REFERENCES Users(Users_ID),
-                        description VARCHAR(10000),
-                        day int NOT NULL,
-                        month int NOT NULL,
-                        year int NOT NULL,
-                        PRIMARY KEY(Shift_ID)
+                       Shift_ID SERIAL,
+                       Users_ID INTEGER REFERENCES Users(Users_ID),
+                       Manager_ID INTEGER REFERENCES Users(Users_ID),
+                       description VARCHAR(10000),
+                       day int NOT NULL,
+                       month int NOT NULL,
+                       year int NOT NULL,
+                       PRIMARY KEY(Shift_ID)
 
 );
 
@@ -105,4 +105,20 @@ INSERT INTO Shift (Users_ID, Manager_ID, description, day, month, year)
     VALUE (5, 3,'This is a test of the shift',   29, 05, 2020);
 INSERT INTO Shift (Users_ID, Manager_ID, description, day, month, year)
     VALUE (2, 3,'This is a test of the shift',   06, 05, 2020);
+
+-- -- -- Update Shift Testing -- -- --
+
+SELECT Users_ID, Manager_ID, description, day, month, year FROM Shift
+WHERE Shift_ID = 11;
+
+UPDATE Shift
+SET
+    description = 'does UPDATE work??',
+    day = 01,
+    month = 01,
+    year = 2022
+WHERE Shift_ID = 11;
+
+-- -- -- End here -- -- --
+
 SELECT * FROM Shift;
