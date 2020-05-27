@@ -45,12 +45,13 @@ namespace BusinessLogic.Controllers
             Console.WriteLine(shift);
             return _context.PostShift(shift);
         }
-        
+        /*
         [HttpPost]
         public async Task<ActionResult<String>> updateShift(Shift shift)
         {
             Console.WriteLine(shift);
-            return _context.PostEditShift(shift);
-        }       
+            return _context.UpdateShift(shift);
+        } 
+        */
     }
 }
