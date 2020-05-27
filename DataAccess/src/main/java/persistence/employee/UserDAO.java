@@ -104,7 +104,7 @@ public class UserDAO implements IUserDAO {
     @Override
     public ArrayList<User> getUsersIdName(String managerId) {
 
-        String sql = "SELECT users_ID, manager_ID, firstName FROM " + databaseConnection.getUserTable() + " WHERE manager_ID = " + managerId + ";";
+        String sql = "SELECT users_ID, manager_ID, firstName FROM " + databaseConnection.getUserTable() + " WHERE manager_ID = " + managerId + " AND status = 'ACTIVE';";
         ArrayList<User> users_id_name = new ArrayList<>();
 
         try {
