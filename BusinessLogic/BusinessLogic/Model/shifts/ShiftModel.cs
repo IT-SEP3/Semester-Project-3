@@ -53,5 +53,31 @@ namespace BusinessLogic.Model.shifts
                 return "Database already has this shift in it";
             }
         }
+
+        public string UpdateShift(Shift shift)
+        {
+            //Due to c# having no interoperability between DateTime or plugin class Localdate and java Date
+            //and localDate we decided to just skip deserialization in the c# client
+            socketHandler.SendToDatabase("updateShift", shift);
+            string result = socketHandler.GetResponse();
+            if (result.Equals("OK"))
+            {
+                //If ok it post and returns if post was succesful
+                socketHandler.SendToDatabase("updateShift;Confirmed", shift);
+                result = socketHandler.GetResponse();
+                if (result.Equals("OK"))
+                {
+                    return "Success";
+                }
+                else
+                {
+                    return "Failed";
+                }
+            }
+            else
+            {
+                return "Database already has this shift in it";
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿
+using BusinessLogic.Model.Shared;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
@@ -28,11 +29,6 @@ namespace BusinessLogic.Model
             {
                 return "Wrong username or password";
             }
-        }
-
-        internal ActionResult<string> GetUsers(object id)
-        {
-            throw new NotImplementedException();
         }
 
         public string GetShift(int id)

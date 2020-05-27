@@ -9,5 +9,6 @@ namespace BusinessLogic.Model.shifts
         string GetShift(int id);
         string GetAllShifts(string UserId, string AccessLevel, string date);
         string PostShift(Shift shift);
+        string UpdateShift(Shift shift);
     }
 }
