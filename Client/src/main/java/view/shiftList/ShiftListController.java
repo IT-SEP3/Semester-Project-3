@@ -8,7 +8,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import shared.Shift;
-import shared.User;
 import view.ViewHandler;
 
 import viewModel.shiftList.ShiftListViewModel;
@@ -61,5 +60,12 @@ public class ShiftListController {
     @FXML
     void onDeleteShift(ActionEvent event) {
 
+    }
+
+    @FXML
+    void onEdit(ActionEvent event) {
+        Shift seleced = table.getSelectionModel().getSelectedItem();
+        System.out.println(seleced.getId());
+        //viewModel.setSelected();
     }
 }
