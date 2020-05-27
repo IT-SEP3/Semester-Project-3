@@ -11,10 +11,15 @@
       <Button layoutX="22.0" layoutY="351.0" mnemonicParsing="false" onAction="#onBack" text="Back" />
       <Button layoutX="93.0" layoutY="351.0" mnemonicParsing="false" onAction="#onCreateEmployee" text="Create employee" />
       <ListView fx:id="employeeList" layoutX="22.0" layoutY="14.0" prefHeight="136.0" prefWidth="199.0" />
-      <TableView layoutX="32.0" layoutY="150.0" prefHeight="200.0" prefWidth="562.0">
+      <TableView fx:id="tableOfEmployees" layoutX="14.0" layoutY="150.0" prefHeight="200.0" prefWidth="562.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="ID" />
-          <TableColumn prefWidth="75.0" text="Username" />
+          <TableColumn fx:id="tableID" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="tableUsername" prefWidth="75.0" text="Username" />
+            <TableColumn fx:id="tableFname" prefWidth="75.0" text="First name" />
+            <TableColumn fx:id="tableLname" prefWidth="75.0" text="Last name" />
+            <TableColumn fx:id="tableEmail" prefWidth="75.0" text="Email" />
+            <TableColumn fx:id="tableAcessLevel" prefWidth="75.0" text="Access level" />
+            <TableColumn fx:id="tableStatus" prefWidth="75.0" text="Status" />
         </columns>
       </TableView>
    </children>
