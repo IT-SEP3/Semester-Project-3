@@ -4,15 +4,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import shared.Shift;
+import shared.User;
 import view.ViewHandler;
 
 import viewModel.shiftList.ShiftListViewModel;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 public class ShiftListController {
     @FXML
@@ -59,8 +60,23 @@ public class ShiftListController {
 
     @FXML
     void onDeleteShift(ActionEvent event) {
-        Shift shift = table.getSelectionModel().getSelectedItem();
-        viewModel.removeShift(shift.getId());
+        boolean delete = false;
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setContentText("Do you want to delete this user?");
+        alert.setTitle("Delete user");
+        alert.setHeaderText("Do you want to delete this user?");
+
+        ButtonType cancelButtonType =  new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getDialogPane().getButtonTypes().add(cancelButtonType);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.isPresent() && result.get() == ButtonType.OK){
+            delete = true;
+        }
+        if(delete){
+            Shift shift = table.getSelectionModel().getSelectedItem();
+            viewModel.removeShift(shift.getId());
+        }
     }
 
     @FXML

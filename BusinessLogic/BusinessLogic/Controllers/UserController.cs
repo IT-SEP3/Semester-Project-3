@@ -48,5 +48,12 @@ namespace BusinessLogic.Controllers
         {
             return _context.GetUsersByManager(managerId);
         }
+
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<String>> RemoveUser(int id)
+        {
+            return _context.RemoveUser(id);
+        }
     }
 }

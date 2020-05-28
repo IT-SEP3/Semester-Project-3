@@ -17,4 +17,12 @@ public class EmployeeListViewModel {
     public ArrayList<User> populateListView() {
         return model.getEmployees();
     }
+
+    public void saveUser(User seleced) {
+        model.saveUserForEditing(seleced);
+    }
+
+    public void deleteUser(int id) {
+        model.deleteUser(id);
+    }
 }

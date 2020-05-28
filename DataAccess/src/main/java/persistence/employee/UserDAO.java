@@ -168,4 +168,9 @@ public class UserDAO implements IUserDAO {
 
         return managedUsers;
     }
+
+    @Override
+    public String deleteUser(String receivedPiece) {
+        return null;
+    }
 }

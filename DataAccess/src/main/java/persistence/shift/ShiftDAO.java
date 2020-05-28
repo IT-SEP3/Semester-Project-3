@@ -198,4 +198,9 @@ public class ShiftDAO implements IShiftDAO {
         }
         return conclusion;
     }
+
+    @Override
+    public String deleteShift(String receivedPiece) {
+        return null;
+    }
 }
