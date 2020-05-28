@@ -18,7 +18,11 @@ public class ShiftListViewModel {
         return model.getShifts();
     }
 
+
     public void saveShiftForEditing(Shift seleced) {
         model.saveShift(seleced);
+    }
+    public void removeShift(int shiftId) {
+        model.removeShift(shiftId);
     }
 }

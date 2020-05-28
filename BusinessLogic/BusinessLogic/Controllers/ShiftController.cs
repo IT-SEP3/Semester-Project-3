@@ -53,5 +53,12 @@ namespace BusinessLogic.Controllers
             return _context.UpdateShift(shift);
         } 
         */
+
+        // DELETE: api/Shift/RemoveShift/5(shiftId)
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<String>> RemoveShift(int id)
+        {
+            return _context.GetShift(id);
+        }
     }
 }

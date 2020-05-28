@@ -8,4 +8,7 @@ public interface IShiftListModel {
     ArrayList<Shift> getShifts();
 
     void saveShift(Shift seleced);
+
+    void removeShift(int shiftId);
+
 }

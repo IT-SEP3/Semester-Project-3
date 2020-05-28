@@ -24,4 +24,7 @@ public class ShiftListModel implements IShiftListModel {
     public void saveShift(Shift seleced) {
         forEditing = seleced;
     }
+    public void removeShift(int shiftId) {
+        client.removeShift(shiftId);
+    }
 }

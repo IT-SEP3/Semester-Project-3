@@ -59,7 +59,8 @@ public class ShiftListController {
 
     @FXML
     void onDeleteShift(ActionEvent event) {
-
+        Shift shift = table.getSelectionModel().getSelectedItem();
+        viewModel.removeShift(shift.getId());
     }
 
     @FXML
