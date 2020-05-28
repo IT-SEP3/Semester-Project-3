@@ -60,9 +60,7 @@ public class ModelFactory {
 
     public IShiftListModel shiftListModel() {
         if(shiftListModel == null)
-
-            shiftListModel = new ShiftListModel(calendarModel(),clientFactory.shiftListClient());
-
+            shiftListModel = new ShiftListModel(calendarModel, clientFactory.shiftListClient());
         return shiftListModel;
     }
 }
