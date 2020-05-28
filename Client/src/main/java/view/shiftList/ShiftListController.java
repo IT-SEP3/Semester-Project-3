@@ -4,6 +4,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -14,6 +16,7 @@ import view.ViewHandler;
 import viewModel.shiftList.ShiftListViewModel;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 public class ShiftListController {
     @FXML
@@ -61,6 +64,15 @@ public class ShiftListController {
     @FXML
     void onDeleteShift(ActionEvent event) {
         Shift shift = table.getSelectionModel().getSelectedItem();
-        viewModel.removeShift(shift.getId());
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Delete shift");
+        alert.setHeaderText(null);
+        alert.setContentText("Are you sure you want to delete this shift?" + shift.getId());
+        Optional<ButtonType> action = alert.showAndWait();
+
+        if (action.get() == ButtonType.OK){
+            viewModel.removeShift(shift.getId());
+        }
     }
 }
