@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class ShiftListModel implements IShiftListModel {
     private IShiftListClient client;
     private ICalendarModel calendarModel;
+    private Shift forEditing;
     public ShiftListModel(ICalendarModel calendarModel, IShiftListClient client) {
         this.calendarModel = calendarModel;
         this.client = client;
@@ -17,5 +18,10 @@ public class ShiftListModel implements IShiftListModel {
     @Override
     public ArrayList<Shift> getShifts() {
         return client.getCalendarShifts(calendarModel.getUserFromModel().getId(), calendarModel.getUserFromModel().getAccessLevel(), calendarModel.getTimeStamp() );
+    }
+
+    @Override
+    public void saveShift(Shift seleced) {
+        forEditing = seleced;
     }
 }

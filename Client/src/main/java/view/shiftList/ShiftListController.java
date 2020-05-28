@@ -65,7 +65,7 @@ public class ShiftListController {
     @FXML
     void onEdit(ActionEvent event) {
         Shift seleced = table.getSelectionModel().getSelectedItem();
-        System.out.println(seleced.getId());
-        //viewModel.setSelected();
+        viewModel.saveShiftForEditing(seleced);
+        //viewHandler.openEditShift();
     }
 }

@@ -6,4 +6,6 @@ import java.util.ArrayList;
 
 public interface IShiftListModel {
     ArrayList<Shift> getShifts();
+
+    void saveShift(Shift seleced);
 }
