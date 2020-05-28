@@ -216,5 +216,4 @@ public class ShiftDAO implements IShiftDAO {
         return conclusion;
     }
 
-
 }

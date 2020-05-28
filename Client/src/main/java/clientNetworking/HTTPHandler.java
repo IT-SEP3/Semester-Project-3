@@ -51,7 +51,7 @@ public class HTTPHandler {
         return value;
     }
 
-    public void deleteFromAPI(String json, String URL) {
+    public void deleteFromAPI(String URL) {
         Response response;
         try {
             client = new ResteasyClientBuilder().build();

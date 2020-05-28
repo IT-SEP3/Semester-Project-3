@@ -55,6 +55,7 @@ namespace BusinessLogic.Controllers
         */
 
         // DELETE: api/Shift/RemoveShift/5(shiftId)
+
         [HttpDelete("{id}")]
         public async Task<ActionResult<String>> RemoveShift(int id)
         {

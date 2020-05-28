@@ -94,8 +94,8 @@ public class ViewHandler {
         EmployeeListController controller = loader.getController();
         controller.init(viewModelFactory.getEmployeeListViewModel(), this);
         employeeList = new Scene(root);
-        mainStage.setTitle("Calendar");
-        mainStage.setScene(calendarScene);
+        mainStage.setTitle("Employee list");
+        mainStage.setScene(employeeList);
     }
 
     public void openShiftListView() {
@@ -106,8 +106,8 @@ public class ViewHandler {
             controller.init(viewModelFactory.getShiftListViewModel(), this);
             shiftList = new Scene(root);
         }
-        mainStage.setTitle("Add Shift");
-        mainStage.setScene(addShift);
+        mainStage.setTitle("Shift list");
+        mainStage.setScene(shiftList);
 
     }
 

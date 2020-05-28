@@ -9,4 +9,5 @@ public interface IUserDAO {
     User getUser(String userId);
     List<User> getUsersIdName(String managerId);
     List<User> getUsersByManager(String managerId);
+    String deleteUser(String receivedPiece);
 }

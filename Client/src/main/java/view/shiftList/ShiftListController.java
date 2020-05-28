@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
@@ -47,10 +48,10 @@ public class ShiftListController {
         viewHandler = vh;
         viewModel = vm;
         shiftID.setCellValueFactory(new PropertyValueFactory<Shift, Integer>("id"));
-        managerID.setCellValueFactory(new PropertyValueFactory<Shift, Integer>("username"));
-        workerID.setCellValueFactory(new PropertyValueFactory<Shift, Integer>("fname"));
-        dateID.setCellValueFactory(new PropertyValueFactory<Shift, LocalDate>("lname"));
-        descriptionID.setCellValueFactory(new PropertyValueFactory<Shift, String>("Email"));
+        managerID.setCellValueFactory(new PropertyValueFactory<Shift, Integer>("user_id"));
+        workerID.setCellValueFactory(new PropertyValueFactory<Shift, Integer>("manager_id"));
+        dateID.setCellValueFactory(new PropertyValueFactory<Shift, LocalDate>("date"));
+        descriptionID.setCellValueFactory(new PropertyValueFactory<Shift, String>("description"));
 
         shifts.addAll(viewModel.populateListView());
         table.setItems(shifts);
@@ -63,16 +64,31 @@ public class ShiftListController {
 
     @FXML
     void onDeleteShift(ActionEvent event) {
-        Shift shift = table.getSelectionModel().getSelectedItem();
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Delete shift");
-        alert.setHeaderText(null);
-        alert.setContentText("Are you sure you want to delete this shift?" + shift.getId());
-        Optional<ButtonType> action = alert.showAndWait();
+        boolean delete = false;
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setContentText("Do you want to delete this user?");
+        alert.setTitle("Delete user");
+        alert.setHeaderText("Do you want to delete this user?");
 
-        if (action.get() == ButtonType.OK){
+        ButtonType cancelButtonType =  new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getDialogPane().getButtonTypes().add(cancelButtonType);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.isPresent() && result.get() == ButtonType.OK){
+            delete = true;
+        }
+        if(delete){
+            Shift shift = table.getSelectionModel().getSelectedItem();
             viewModel.removeShift(shift.getId());
         }
+    }
+
+    @FXML
+    void onEdit(ActionEvent event) {
+        Shift seleced = table.getSelectionModel().getSelectedItem();
+        viewModel.saveShiftForEditing(seleced);
+        //viewHandler.openEditShift();
+
     }
 }

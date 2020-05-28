@@ -27,4 +27,10 @@ public class EmployeeListClient implements IEmployeeListClient {
         ArrayList<User> shifts = jsonSerializer.fromJson(response, listType);
         return shifts;
     }
+
+    @Override
+    public void deleteUser(int id) {
+        String PATH ="http://127.0.0.1:5000/api/User/" + id;
+        httpHandler.deleteFromAPI(PATH);
+    }
 }
