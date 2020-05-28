@@ -67,9 +67,9 @@ public class ShiftListController {
 
         boolean delete = false;
         Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setContentText("Do you want to delete this user?");
-        alert.setTitle("Delete user");
-        alert.setHeaderText("Do you want to delete this user?");
+        alert.setContentText("Do you want to delete this shift?");
+        alert.setTitle("Delete shift");
+        alert.setHeaderText("");
 
         ButtonType cancelButtonType =  new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
         alert.getDialogPane().getButtonTypes().add(cancelButtonType);
@@ -81,13 +81,14 @@ public class ShiftListController {
         if(delete){
             Shift shift = table.getSelectionModel().getSelectedItem();
             viewModel.removeShift(shift.getId());
+            System.out.println(shift.getId());
         }
     }
 
     @FXML
     void onEdit(ActionEvent event) {
-        Shift seleced = table.getSelectionModel().getSelectedItem();
-        viewModel.saveShiftForEditing(seleced);
+        Shift selected = table.getSelectionModel().getSelectedItem();
+        viewModel.saveShiftForEditing(selected);
         //viewHandler.openEditShift();
 
     }

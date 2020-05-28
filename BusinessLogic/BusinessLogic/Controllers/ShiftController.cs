@@ -54,12 +54,13 @@ namespace BusinessLogic.Controllers
         } 
         */
 
-        // DELETE: api/Shift/RemoveShift/5(shiftId)
+        // DELETE: api/Shift/Remove/5(shiftId)
 
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<String>> RemoveShift(int id)
+        [HttpDelete("Remove/{id}")]
+        public async Task<ActionResult<String>> RemoveShift([FromQuery(Name = "shiftId")] int id)
         {
-            return _context.GetShift(id);
+            Console.WriteLine("YO this will be deleted" + id);
+            return _context.RemoveShift(id);
         }
     }
 }

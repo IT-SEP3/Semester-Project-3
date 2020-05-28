@@ -130,6 +130,7 @@ public class DatabaseSocketHandler implements Runnable {
                 }
                 else if(receivedPieces[0].equals("deleteShift")){
                     System.out.println("Trying delete shift with ID: "+receivedPieces[1]);
+                    daoFactory.getShiftDAO().deleteShift(receivedPieces[1]);
                 }
             }
         }catch (Exception e){ //VIOLATION OF SOLID

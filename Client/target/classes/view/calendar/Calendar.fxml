@@ -352,7 +352,6 @@
                               <Button fx:id="createShift" layoutX="70.0" layoutY="219.0" mnemonicParsing="false" onAction="#onAddShift" text="Add Shift" />
                               <Button fx:id="employeeListButton" layoutX="59.0" layoutY="166.0" mnemonicParsing="false" onAction="#onEmployeeList" text="Employee List" />
                               <Button fx:id="shiftList" layoutX="31.0" layoutY="278.0" mnemonicParsing="false" onAction="#onOpenShiftList" text="Open shift list for month" />
-
                            </children></AnchorPane>
                      </children>
                   </VBox>

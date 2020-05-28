@@ -53,6 +53,7 @@ namespace BusinessLogic.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<String>> RemoveUser(int id)
         {
+            Console.WriteLine(id);
             return _context.RemoveUser(id);
         }
     }

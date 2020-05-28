@@ -160,7 +160,7 @@ public class ShiftDAO implements IShiftDAO {
                     int year = resultSet.getInt("year");
 
                     String dateString = day + "-" + month + "-" + year;
-                    System.out.println(dateString);
+                    //System.out.println(dateString);
                     LocalDate date = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("d-M-yyyy"));
 
                     resultShift = new Shift(user_id, date);
@@ -201,19 +201,17 @@ public class ShiftDAO implements IShiftDAO {
     }
 
     @Override
-    public String deleteShift(int shiftId) {
+    public void deleteShift(String shiftId) {
         PreparedStatement preparedStatement;
-        String conclusion = "NOT";
+        System.out.println("THIS shift will be deleted" + shiftId);
         try {
             String sql = "DELETE From Shift where Shift_ID = " + shiftId;
             preparedStatement = databaseConnection.createPreparedStatement(sql);
             preparedStatement.execute();
-            conclusion ="OK";
         } catch (SQLException | DataConnectionException e){
             e.printStackTrace();
             databaseConnection.closeConnection();
         }
-        return conclusion;
     }
 
 }

@@ -80,9 +80,16 @@ namespace BusinessLogic.Model.shifts
             }
         }
 
-        public void RemoveShift(int shiftId)
+        public string RemoveShift(int id)
         {
-        socketHandler.SendToDatabase("deleteShift", shiftId);
+            socketHandler.SendToDatabaseStringOnly("RemoveShift;" + id);
+            string result = socketHandler.GetResponse();
+            if (result.Equals("OK")){
+                return "Success";
+            }
+            else {
+                return "Failed"; 
+            }
         }
     }
 }
