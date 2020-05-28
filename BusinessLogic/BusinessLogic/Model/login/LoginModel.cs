@@ -9,6 +9,7 @@ namespace BusinessLogic.Model.login
     public class LoginModel : ILoginModel
     {
         private BusinessSocketHandler socketHandler;
+        private Random random = new Random();
 
         public LoginModel()
         {
@@ -16,10 +17,11 @@ namespace BusinessLogic.Model.login
         }
 
 
-        public string ValidateLogin(User user)
+        public async Task<string> ValidateLogin(User user)
         {
-            socketHandler.SendToDatabase("Login", user);
-            string result = socketHandler.GetResponse();
+            int serial = random.Next();
+            socketHandler.SendToDatabase("Login", user, serial);
+            string result = await socketHandler.GetResponse(serial);
             string[] resultSlpit = result.Split(";");
             if (resultSlpit[0].Equals("OK"))
             {

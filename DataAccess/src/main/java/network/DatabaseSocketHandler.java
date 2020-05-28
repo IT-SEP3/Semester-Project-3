@@ -45,88 +45,91 @@ public class DatabaseSocketHandler implements Runnable {
                 String[] receivedPieces = received.split(";");
 
                 if(receivedPieces[0].equals("Login")){
-                    System.out.println(receivedPieces[1]);
+                    int serial = Integer.parseInt(receivedPieces[2]);
                     User login = gson.fromJson(receivedPieces[1], User.class);
                     String confirmation = daoFactory.getLoginDAO().validateLogin(login);
-                    sendToClient(confirmation);
+                    sendToClient(confirmation, serial);
                 }
                 else if(receivedPieces[0].equals("CalendarMonth")) {
+                    int serial = Integer.parseInt(receivedPieces[3]);
                     String[] date = receivedPieces[2].split("-");
                     ArrayList<Shift> shiftsForMonth = new ArrayList<>();
                     // Inputs are :Username for first input, month in MM-yyyy format
                     if(receivedPieces[3].equals("EMPLOYEE")){
-                        System.out.println("Getting employee");
                         shiftsForMonth = daoFactory.getShiftDAO().getShifts(receivedPieces[1], date[0], date[1]);
                     }else if(receivedPieces[3].equals("MANAGER")){
-                        System.out.println("Getting manager");
                         shiftsForMonth = daoFactory.getShiftDAO().getShiftsManager(receivedPieces[1], date[0], date[1]);
                     } else {
                         System.out.println("Problem in determening access level");
                     }
                     String shiftsJson = gson.toJson(shiftsForMonth);
-                    sendToClient(shiftsJson);
+                    sendToClient(shiftsJson, serial);
                 }
-
                 else if(receivedPieces[0].equals("GetUser")) {
-                    System.out.println("trying to get user data");
+                    int serial = Integer.parseInt(receivedPieces[2]);
                     User user = daoFactory.getUserDAO().getUser(receivedPieces[1]);
                     String userJson = gson.toJson(user);
-                    sendToClient(userJson);
+                    sendToClient(userJson, serial);
                 }
-
                 else if(receivedPieces[0].equals("PostUser")) {
-                    System.out.println(received);
-
                     if(!receivedPieces[1].equals("Confirmed")){
+                        int serial = Integer.parseInt(receivedPieces[2]);
                         User new_user = gson.fromJson(receivedPieces[1], User.class);
                         String addResponse = daoFactory.getUserDAO().addUser(new_user,"Check");
-                        sendToClient(addResponse);
+                        sendToClient(addResponse, serial);
                     } else {
+                        int serial = Integer.parseInt(receivedPieces[3]);
                         User new_user = gson.fromJson(receivedPieces[2], User.class);
-                        System.out.println(receivedPieces[2]);
-                        System.out.println();
                         String addResponse = daoFactory.getUserDAO().addUser(new_user,"Post");
-                        sendToClient(addResponse);
+                        sendToClient(addResponse, serial);
                     }
                 }
-
                 else if (receivedPieces[0].equals("PostShift")) {
-                    System.out.println(received);
                     if(!receivedPieces[1].equals("Confirmed")){
+                        int serial = Integer.parseInt(receivedPieces[2]);
                         Shift new_shift = gson.fromJson(receivedPieces[1], Shift.class);
                         String addResponse = daoFactory.getShiftDAO().postShift(new_shift,"Check");
-                        sendToClient(addResponse);
+                        sendToClient(addResponse, serial);
                     } else {
+                        int serial = Integer.parseInt(receivedPieces[3]);
                         Shift new_shift = gson.fromJson(receivedPieces[2], Shift.class);
                         String addResponse = daoFactory.getShiftDAO().postShift(new_shift,"Post");
-                        sendToClient(addResponse);
+                        sendToClient(addResponse, serial);
                     }
                 }
-
                 else if (receivedPieces[0].equals("updateShift")) {
-                    System.out.println(received);
                     if(!receivedPieces[1].equals("Confirmed")){
+                        int serial = Integer.parseInt(receivedPieces[2]);
                         Shift new_shift = gson.fromJson(receivedPieces[1], Shift.class);
                         String addResponse = daoFactory.getShiftDAO().updateShift(new_shift,"Check");
-                        sendToClient(addResponse);
+                        sendToClient(addResponse, serial);
                     } else {
+                        int serial = Integer.parseInt(receivedPieces[3]);
                         Shift new_shift = gson.fromJson(receivedPieces[2], Shift.class);
                         String addResponse = daoFactory.getShiftDAO().updateShift(new_shift,"Post");
-                        sendToClient(addResponse);
+                        sendToClient(addResponse, serial);
                     }
                 }
-
                 else if(receivedPieces[0].equals("GetUsersIDName")) {
-                    System.out.println("Trying to get users");
+                    int serial = Integer.parseInt(receivedPieces[2]);
                     List<User> users_id_name = daoFactory.getUserDAO().getUsersIdName(receivedPieces[1]);
                     String userJson = gson.toJson(users_id_name);
-                    sendToClient(userJson);
+                    sendToClient(userJson, serial);
                 }
                 else if(receivedPieces[0].equals("GetManagedUsers")){
-                    System.out.println("Trying to get users managed by manager ID " + receivedPieces[1]);
+                    int serial = Integer.parseInt(receivedPieces[2]);
                     List<User> managedUsers = daoFactory.getUserDAO().getUsersByManager(receivedPieces[1]);
                     String userJson = gson.toJson(managedUsers);
-                    sendToClient(userJson);
+                    sendToClient(userJson, serial);
+                }
+                else if(receivedPieces[0].equals("DeleteUser")){
+                    int serial = Integer.parseInt(receivedPieces[2]);
+                    String response = daoFactory.getUserDAO().deleteUser(receivedPieces[1]);
+                    sendToClient(response, serial);
+                } else if(receivedPieces[0].equals("DeleteShift")){
+                    int serial = Integer.parseInt(receivedPieces[2]);
+                    String response = daoFactory.getShiftDAO().deleteShift(receivedPieces[1]);
+                    sendToClient(response, serial);
                 }
             }
         }catch (Exception e){ //VIOLATION OF SOLID
@@ -134,7 +137,8 @@ public class DatabaseSocketHandler implements Runnable {
         }
     }
 
-    public void sendToClient(String toSend){
+    public void sendToClient(String toSend, int serial){
+        toSend = toSend+serial;
         try {
             byte[] toSendBytes = toSend.getBytes();
             int toSendLen = toSendBytes.length;

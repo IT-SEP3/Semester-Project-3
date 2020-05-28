@@ -26,34 +26,34 @@ namespace BusinessLogic.Controllers
         [HttpPost]
         public async Task<ActionResult<string>> PostUser(User user)
         {
-            return _context.PostUser(user);
+            return await _context.PostUser(user);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<string>> GetUser(int id)
         {
-            return  _context.GetUser(id);
+            return await _context.GetUser(id);
         }
 
 
         [HttpGet("id-name")]
         public async Task<ActionResult<string>> GetUsersIdName([FromQuery(Name = "managerId")] int managerId)
         {
-            return _context.GetUsersIdName(managerId);
+            return await _context.GetUsersIdName(managerId);
         }
 
 
         [HttpGet]
         public async Task<ActionResult<string>> GetUsers([FromQuery(Name = "managerId")] int managerId)
         {
-            return _context.GetUsersByManager(managerId);
+            return await _context.GetUsersByManager(managerId);
         }
 
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<String>> RemoveUser(int id)
         {
-            return _context.RemoveUser(id);
+            return await _context.RemoveUser(id);
         }
     }
 }

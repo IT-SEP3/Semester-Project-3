@@ -8,6 +8,6 @@ namespace BusinessLogic.Model.login
 {
     interface ILoginModel
     {
-        string ValidateLogin(User user);
+        Task<string> ValidateLogin(User user);
     }
 }

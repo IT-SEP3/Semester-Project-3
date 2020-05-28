@@ -9,11 +9,11 @@ namespace BusinessLogic.Model.user
 {
     interface IUserModel
     {
-        string GetUsers(object id);
-        string PostUser(User user);
-        string GetUser(int id);
-        string GetUsersIdName(int managerId);
-        string GetUsersByManager(int managerId);
-        string RemoveUser(int id);
+        Task<string> GetUsers(object id);
+        Task<string> PostUser(User user);
+        Task<string> GetUser(int id);
+        Task<string> GetUsersIdName(int managerId);
+        Task<string> GetUsersByManager(int managerId);
+        Task<string> RemoveUser(int id);
     }
 }
