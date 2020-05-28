@@ -1,5 +1,6 @@
 package persistence.shift;
 
+import com.mysql.cj.exceptions.DataConversionException;
 import exceptions.DataConnectionException;
 import persistence.database.IDBConnection;
 import shared.Shift;
@@ -198,4 +199,19 @@ public class ShiftDAO implements IShiftDAO {
         }
         return conclusion;
     }
+
+    @Override
+    public void deleteShift(int shiftId) {
+        PreparedStatement preparedStatement;
+        try {
+            String sql = "DELETE From Shift where Shift_ID = " + shiftId;
+            preparedStatement = databaseConnection.createPreparedStatement(sql);
+            preparedStatement.execute();
+        } catch (SQLException | DataConnectionException e){
+            e.printStackTrace();
+            databaseConnection.closeConnection();
+        }
+    }
+
+
 }
