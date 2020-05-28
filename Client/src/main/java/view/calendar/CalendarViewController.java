@@ -250,9 +250,7 @@ public class CalendarViewController {
         viewHandler.openCreateUserView();
     }
 
-    public void onAddShift(ActionEvent event) {
-        viewHandler.openAddShiftView();
-    }
+    public void onShiftList(ActionEvent event) {viewHandler.openShiftListView();}
 
     @FXML
     void onEmployeeList(ActionEvent event) {

@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="913.0" prefWidth="1416.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.calendar.CalendarViewController">
+<AnchorPane prefHeight="913.0" prefWidth="1416.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.calendar.CalendarViewController">
    <children>
       <VBox prefHeight="901.0" prefWidth="1416.0">
          <children>
@@ -351,6 +351,7 @@
                               <Label fx:id="access" layoutX="14.0" layoutY="116.0" text="Access: " />
                               <Button fx:id="createShift" layoutX="70.0" layoutY="219.0" mnemonicParsing="false" onAction="#onAddShift" text="Add Shift" />
                               <Button fx:id="employeeListButton" layoutX="59.0" layoutY="166.0" mnemonicParsing="false" onAction="#onEmployeeList" text="Employee List" />
+                              <Button layoutX="77.0" layoutY="274.0" mnemonicParsing="false" onAction="#onShiftList" text="Shift List" />
                            </children></AnchorPane>
                      </children>
                   </VBox>

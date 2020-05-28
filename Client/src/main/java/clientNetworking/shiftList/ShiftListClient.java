@@ -29,12 +29,13 @@ public class ShiftListClient implements IShiftListClient {
     }
 
     @Override
-    public void removeShift(int shiftId) {
+    public String removeShift(int shiftId) {
         String PATH ="http://127.0.0.1:5000/api/Shift/RemoveShift/?shiftId=" + shiftId;
         String removeShiftJson = jsonSerializer.toJson(shiftId);
-
         System.out.println(removeShiftJson);
         httpHandler.deleteFromAPI(removeShiftJson, PATH);
+        System.out.println(response);
+        return response;
     }
 
     @Override
