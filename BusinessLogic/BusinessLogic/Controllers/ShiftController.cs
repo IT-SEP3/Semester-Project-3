@@ -24,7 +24,7 @@ namespace BusinessLogic.Controllers
         [HttpGet]
         public async Task<ActionResult<String>> GetShifts([FromQuery (Name = "username")] string username, [FromQuery(Name = "accessLevel")] string accessLevel, [FromQuery (Name = "date")] string date)
         {
-            return await _context.GetAllShifts(username, accessLevel, date);
+            return  _context.GetAllShifts(username, accessLevel, date);
         }
 
 
@@ -32,7 +32,7 @@ namespace BusinessLogic.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<String>> GetShift(int id)
         {
-            return await _context.GetShift(id);
+            return _context.GetShift(id);
         }
 
 
@@ -43,7 +43,7 @@ namespace BusinessLogic.Controllers
         public async Task<ActionResult<String>> PostShift(Shift shift)
         {
             Console.WriteLine(shift);
-            return await _context.PostShift(shift);
+            return _context.PostShift(shift);
         }
         /*
         [HttpPost]
@@ -59,7 +59,7 @@ namespace BusinessLogic.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<String>> RemoveShift(int id)
         {
-            return await _context.GetShift(id);
+            return _context.GetShift(id);
         }
     }
 }
