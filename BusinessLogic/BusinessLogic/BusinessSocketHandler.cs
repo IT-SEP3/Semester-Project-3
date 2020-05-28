@@ -7,6 +7,7 @@ namespace BusinessLogic
     internal class BusinessSocketHandler
     {
         private Socket businessSocket;
+        static object responseLock = new object();
 
         private BusinessSocketHandler()
         {
@@ -57,14 +58,17 @@ namespace BusinessLogic
         // there is no need for a loop in the thread. You ask for response yourself.
         public String GetResponse()
         {
-            byte[] rcvLenBytes = new byte[4];
-            businessSocket.Receive(rcvLenBytes);
-            int rcvLen = System.BitConverter.ToInt32(rcvLenBytes, 0);
-            byte[] rcvBytes = new byte[rcvLen];
-            businessSocket.Receive(rcvBytes);
-            String received = System.Text.Encoding.ASCII.GetString(rcvBytes);
-            Console.WriteLine(received);
-            return received;
+            lock (responseLock)
+            {
+                byte[] rcvLenBytes = new byte[4];
+                businessSocket.Receive(rcvLenBytes);
+                int rcvLen = System.BitConverter.ToInt32(rcvLenBytes, 0);
+                byte[] rcvBytes = new byte[rcvLen];
+                businessSocket.Receive(rcvBytes);
+                String received = System.Text.Encoding.ASCII.GetString(rcvBytes);
+                Console.WriteLine(received);
+                return received;
+            }
         }
     }
 }

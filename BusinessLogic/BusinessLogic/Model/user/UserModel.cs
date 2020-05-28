@@ -64,5 +64,11 @@ namespace BusinessLogic.Model.user
             return socketHandler.GetResponse();
 
         }
+
+        public string RemoveUser(int id)
+        {
+            socketHandler.SendToDatabaseStringOnly("DeleteUser;" + id);
+            return socketHandler.GetResponse();
+        }
     }
 }

@@ -66,14 +66,12 @@ public class DatabaseSocketHandler implements Runnable {
                     String shiftsJson = gson.toJson(shiftsForMonth);
                     sendToClient(shiftsJson);
                 }
-
                 else if(receivedPieces[0].equals("GetUser")) {
                     System.out.println("trying to get user data");
                     User user = daoFactory.getUserDAO().getUser(receivedPieces[1]);
                     String userJson = gson.toJson(user);
                     sendToClient(userJson);
                 }
-
                 else if(receivedPieces[0].equals("PostUser")) {
                     System.out.println(received);
 
@@ -89,7 +87,6 @@ public class DatabaseSocketHandler implements Runnable {
                         sendToClient(addResponse);
                     }
                 }
-
                 else if (receivedPieces[0].equals("PostShift")) {
                     System.out.println(received);
                     if(!receivedPieces[1].equals("Confirmed")){
@@ -102,7 +99,6 @@ public class DatabaseSocketHandler implements Runnable {
                         sendToClient(addResponse);
                     }
                 }
-
                 else if (receivedPieces[0].equals("updateShift")) {
                     System.out.println(received);
                     if(!receivedPieces[1].equals("Confirmed")){
@@ -115,7 +111,6 @@ public class DatabaseSocketHandler implements Runnable {
                         sendToClient(addResponse);
                     }
                 }
-
                 else if(receivedPieces[0].equals("GetUsersIDName")) {
                     System.out.println("Trying to get users");
                     List<User> users_id_name = daoFactory.getUserDAO().getUsersIdName(receivedPieces[1]);
