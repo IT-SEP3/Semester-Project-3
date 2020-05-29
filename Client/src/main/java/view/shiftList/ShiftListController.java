@@ -18,23 +18,20 @@ import java.util.Optional;
 public class ShiftListController {
     @FXML
     private TableView<Shift> table;
-
     @FXML
     private TableColumn<Shift, Integer> shiftID;
-
     @FXML
     private TableColumn<Shift, Integer> managerID;
-
     @FXML
     private TableColumn<Shift, Integer> workerID;
-
     @FXML
     private TableColumn<Shift, LocalDate> dateID;
-
     @FXML
     private TableColumn<Shift, String> descriptionID;
-
-
+    @FXML
+    private Button deleteButton;
+    @FXML
+    private Button editButton;
 
     private ViewHandler viewHandler;
     private ShiftListViewModel viewModel;
@@ -49,6 +46,9 @@ public class ShiftListController {
         dateID.setCellValueFactory(new PropertyValueFactory<Shift, LocalDate>("date"));
         descriptionID.setCellValueFactory(new PropertyValueFactory<Shift, String>("description"));
 
+        deleteButton.visibleProperty().bindBidirectional(viewModel.getButtonsProperty());
+        editButton.visibleProperty().bindBidirectional(viewModel.getButtonsProperty());
+        viewModel.setFunctionalityDifferences();
         shifts.addAll(viewModel.populateListView());
         table.setItems(shifts);
     }

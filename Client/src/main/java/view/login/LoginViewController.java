@@ -9,29 +9,22 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class LoginViewController {
-
-    private ViewHandler viewHandler;
-    private LoginViewModel viewModel;
-
-    //Indivisible field on the gui. That changes when the user does something wrong or good
     @FXML
     private Label response;
-
     @FXML
     private TextField userNameText;
-
     @FXML
     private TextField passWordText;
+    private ViewHandler viewHandler;
+    private LoginViewModel viewModel;
 
     @FXML
     void onLogin(ActionEvent event) {
         viewModel.login();
-        System.out.println(response.getText());
         if(response.getText().equals("Login successful")){
             viewHandler.openCalendarView();
             System.out.println("trying to change to calendar");
         }
-
     }
 
     public void init(LoginViewModel vm, ViewHandler vh) {
@@ -42,6 +35,4 @@ public class LoginViewController {
         response.textProperty().bindBidirectional(vm.loginResponseProperty());
         vm.clearProperties();
     }
-
-
 }

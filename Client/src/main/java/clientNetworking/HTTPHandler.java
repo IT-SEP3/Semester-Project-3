@@ -21,8 +21,8 @@ public class HTTPHandler {
         try{
             client = new ResteasyClientBuilder().build();
             target = client.target(URL);
-
             response = target.request().post(Entity.entity(json, "application/json"));
+
             if (response.getStatus() != 200) {
                 throw new RuntimeException("Failed : HTTP error code : "
                         + response.getStatus());

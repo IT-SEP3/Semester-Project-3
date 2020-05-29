@@ -3,7 +3,6 @@ package persistence.employee;
 import exceptions.DataConnectionException;
 import persistence.database.IDBConnection;
 import shared.User;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

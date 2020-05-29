@@ -109,7 +109,6 @@ public class ViewHandler {
 
     }
 
-
     private Parent getRootByPath(String path, FXMLLoader loader) {
         loader.setLocation(getClass().getResource(path));
         Parent root = null;
@@ -118,9 +117,6 @@ public class ViewHandler {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return root;
     }
-
-
 }

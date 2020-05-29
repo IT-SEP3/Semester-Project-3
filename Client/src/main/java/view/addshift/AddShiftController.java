@@ -10,10 +10,6 @@ import view.ViewHandler;
 import viewModel.addshift.AddShiftViewModel;
 
 public class AddShiftController {
-
-    private ViewHandler viewHandler;
-    private AddShiftViewModel addShiftViewModel;
-
     @FXML
     private DatePicker shiftDatePicker;
     @FXML
@@ -22,6 +18,8 @@ public class AddShiftController {
     private ComboBox<String> employeeComboBox;
     @FXML
     private Label response;
+    private ViewHandler viewHandler;
+    private AddShiftViewModel addShiftViewModel;
 
     public void init(AddShiftViewModel vm, ViewHandler vh) {
         addShiftViewModel = vm;
@@ -53,5 +51,4 @@ public class AddShiftController {
         employeeComboBox.getSelectionModel().select(0);
         shiftDatePicker.getEditor().clear();
     }
-
 }

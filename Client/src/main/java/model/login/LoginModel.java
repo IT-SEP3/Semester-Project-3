@@ -31,7 +31,6 @@ public class LoginModel implements ILoginModel {
     public String loginResponse() {
         return response;
     }
-
     @Override
     public User getCurrentUser() {
         return currentUser;

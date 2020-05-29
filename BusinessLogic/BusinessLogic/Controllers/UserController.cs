@@ -14,46 +14,50 @@ namespace BusinessLogic.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IUserModel _context;
+        private readonly IUserModel userModel;
 
         public UserController()
         {
-            _context = new UserModel();
+            userModel = new UserModel();
         }
 
-
-        // POST: api/Employee
+        // POST: api/User
         [HttpPost]
         public async Task<ActionResult<string>> PostUser(User user)
         {
-            return _context.PostUser(user);
+            Console.WriteLine("PostUser");
+            return userModel.PostUser(user);
         }
 
+        // GET: api/User/id
         [HttpGet("{id}")]
         public async Task<ActionResult<string>> GetUser(int id)
         {
-            return  _context.GetUser(id);
+            Console.WriteLine("GetUser");
+            return  userModel.GetUser(id);
         }
 
-
+        // GET: api/Employee
         [HttpGet("id-name")]
         public async Task<ActionResult<string>> GetUsersIdName([FromQuery(Name = "managerId")] int managerId)
         {
-            return _context.GetUsersIdName(managerId);
+            Console.WriteLine("GetUsersIdName");
+            return userModel.GetUsersIdName(managerId);
         }
-
 
         [HttpGet]
         public async Task<ActionResult<string>> GetUsers([FromQuery(Name = "managerId")] int managerId)
         {
-            return _context.GetUsersByManager(managerId);
+            Console.WriteLine("GetUsers");
+            return userModel.GetUsersByManager(managerId);
         }
 
-
+        // DELEtE: api/Employee
         [HttpDelete("{id}")]
         public async Task<ActionResult<String>> RemoveUser(int id)
         {
-            return _context.RemoveUser(id);
+            Console.WriteLine("RemoveUser");
+            return userModel.RemoveUser(id);
         }
     }
 }

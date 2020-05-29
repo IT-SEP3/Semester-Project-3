@@ -13,18 +13,19 @@ namespace BusinessLogic.Controllers
     [ApiController]
     public class ShiftController : ControllerBase
     {
-        private IShiftModel _context;
+        private IShiftModel shiftModel;
 
         public ShiftController()
         {
-            _context = new ShiftModel();
+            shiftModel = new ShiftModel();
         }
 
         // GET: api/Shifts
         [HttpGet]
-        public async Task<ActionResult<String>> GetShifts([FromQuery (Name = "username")] string username, [FromQuery(Name = "accessLevel")] string accessLevel, [FromQuery (Name = "date")] string date)
+        public async Task<ActionResult<String>> GetShifts([FromQuery(Name = "username")] string username, [FromQuery(Name = "accessLevel")] string accessLevel, [FromQuery(Name = "date")] string date)
         {
-            return  _context.GetAllShifts(username, accessLevel, date);
+            Console.WriteLine("GetShifts");
+            return shiftModel.GetAllShifts(username, accessLevel, date);
         }
 
 
@@ -32,7 +33,8 @@ namespace BusinessLogic.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<String>> GetShift(int id)
         {
-            return _context.GetShift(id);
+            Console.WriteLine("GetShift");
+            return shiftModel.GetShift(id);
         }
 
 
@@ -42,24 +44,24 @@ namespace BusinessLogic.Controllers
         [HttpPost]
         public async Task<ActionResult<String>> PostShift(Shift shift)
         {
-            Console.WriteLine(shift);
-            return _context.PostShift(shift);
+            Console.WriteLine("PostShift");
+            return shiftModel.PostShift(shift);
         }
-        /*
-        [HttpPost]
-        public async Task<ActionResult<String>> updateShift(Shift shift)
-        {
-            Console.WriteLine(shift);
-            return _context.UpdateShift(shift);
-        } 
-        */
 
         // DELETE: api/Shift/RemoveShift/5(shiftId)
-
         [HttpDelete("{id}")]
         public async Task<ActionResult<String>> RemoveShift(int id)
         {
-            return _context.RemoveShift(id);
+            Console.WriteLine("RemoveShift");
+            return shiftModel.RemoveShift(id);
         }
+        /* WHOS IDEA WAS IT TO USE POST FOR UPDATING
+        [HttpPost]
+        public async Task<ActionResult<String>> UpdateShift(Shift shift)
+        {
+            Console.WriteLine("UpdateShift");
+            return shiftModel.UpdateShift(shift);
+        }
+        */
     }
 }

@@ -17,8 +17,6 @@ public class DBConnection implements IDBConnection {
     private final String shiftTableName;
 
     private Connection connection;
-    private Statement statement;
-    private ResultSet resultSet;
 
     public DBConnection() {
         schemaName = "sep3";

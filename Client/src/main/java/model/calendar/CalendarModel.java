@@ -46,8 +46,9 @@ public class CalendarModel implements ICalendarModel {
     public User getUserFromModel(){
         return currentUser;
     }
+
     @Override
-    public User getUserfromDatabase(int userId) {
+    public User getUserFromDatabase(int userId) {
         return calendarClient.getUser( Integer.toString(userId));
     }
 }

@@ -21,11 +21,9 @@ public class LoginViewModel {
     public StringProperty usernameProperty() {
         return username;
     }
-
     public StringProperty passwordProperty() {
         return password;
     }
-
     public StringProperty loginResponseProperty() {
         return loginResponse;
     }

@@ -23,14 +23,4 @@ public class CreateUserModel implements ICreateUserModel {
         System.out.println(answer);
         return answer;
     }
-
-    @Override
-    public String createUserResponse() {
-        return null;
-    }
-
-    @Override
-    public User getUserInfo() {
-        return userInfo;
-    }
 }

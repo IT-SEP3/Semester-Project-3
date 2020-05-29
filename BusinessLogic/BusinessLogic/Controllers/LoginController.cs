@@ -14,11 +14,11 @@ namespace BusinessLogic.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
-        private ILoginModel _context;
+        private ILoginModel loginModel;
 
         public LoginController()
         {
-            _context = new LoginModel();
+            loginModel = new LoginModel();
         }
 
 
@@ -26,7 +26,8 @@ namespace BusinessLogic.Controllers
         [HttpPost]
         public async Task<ActionResult<string>> ValidateUser(User user)
         {
-            return _context.ValidateLogin(user);
+            Console.WriteLine("ValidatUser");
+            return loginModel.ValidateLogin(user);
         }
     }
 }

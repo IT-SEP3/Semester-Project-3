@@ -16,28 +16,20 @@ import java.util.Optional;
 public class EmployeeListController {
     @FXML
     private TableView<User> tableOfEmployees;
-
     @FXML
     private TableColumn<User, Integer> tableID;
-
     @FXML
     private TableColumn<User, String> tableUsername;
-
     @FXML
     private TableColumn<User, String> tableFname;
-
     @FXML
     private TableColumn<User, String> tableLname;
-
     @FXML
     private TableColumn<User, String> tableEmail;
-
     @FXML
     private TableColumn<User, String> tableAcessLevel;
-
     @FXML
     private TableColumn<User, String> tableStatus;
-
     private ViewHandler viewHandler;
     private EmployeeListViewModel viewModel;
     private ObservableList<User> users = FXCollections.observableArrayList();
@@ -53,11 +45,9 @@ public class EmployeeListController {
         tableAcessLevel.setCellValueFactory(new PropertyValueFactory<User, String>("accessLevel"));
         tableStatus.setCellValueFactory(new PropertyValueFactory<User, String>("Status"));
 
-        //employeeList.getItems().addAll(viewModel.populateListView());
         users.addAll(viewModel.populateListView());
         tableOfEmployees.setItems(users);
     }
-
 
     @FXML
     void onBack(ActionEvent event) {
@@ -73,7 +63,6 @@ public class EmployeeListController {
     void onDeleteUser(ActionEvent event) {
         boolean delete = false;
         Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setContentText("Do you want to delete this user?");
         alert.setTitle("Delete user");
         alert.setHeaderText("Do you want to delete this user?");
 
@@ -85,9 +74,8 @@ public class EmployeeListController {
             delete = true;
         }
         if(delete){
-            User seleced = tableOfEmployees.getSelectionModel().getSelectedItem();
-            viewModel.saveUser(seleced);
-            viewModel.deleteUser(seleced.getId());
+            User selected = tableOfEmployees.getSelectionModel().getSelectedItem();
+            viewModel.deleteUser(selected.getId());
         }
         viewHandler.openEmployeeListView();
     }

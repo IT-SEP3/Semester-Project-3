@@ -132,7 +132,7 @@ public class DatabaseSocketHandler implements Runnable {
                     sendToClient(result);
                 }
             }
-        }catch (Exception e){ //VIOLATION OF SOLID
+        }catch (IOException e) {
             e.printStackTrace();
         }
     }

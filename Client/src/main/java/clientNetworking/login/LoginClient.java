@@ -22,7 +22,6 @@ public class LoginClient implements ILoginClient {
         String loginJson = jsonSerializer.toJson(loginCarrier);
         System.out.println(loginJson);
         response = httpHandler.postToAPI(loginJson, PATH);
-
         return response;
     }
 

@@ -32,17 +32,14 @@ public class AddShiftModel implements IAddShiftModel {
     public String addShift(String description, String employeeName, LocalDate date) {
         int manager_id = loginModel.getCurrentUser().getId();
         int user_id = 0;
-
         for (User user : userMap) {
             if (user.getFname().equals(employeeName)) {
                 user_id = user.getId();
             }
         }
-
         Shift tmp_shift = new Shift(user_id, description, manager_id, date);
         String api_response = client.postShift(tmp_shift);
         System.out.println(api_response);
         return api_response;
-
     }
 }

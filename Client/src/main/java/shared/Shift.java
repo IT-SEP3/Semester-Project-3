@@ -24,34 +24,24 @@ public class Shift {
         this.date = date;
     }
 
-    public int getUser_id() {
-        return user_id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public LocalDate getDate() {
-        return date;
+    public Shift(int user_id, LocalDate date) {
+        this.user_id = user_id;
+        this.date = date;
     }
 
     public int getId() {
         return id;
     }
-
     public int getManager_id() {
         return manager_id;
     }
-
-    @Override
-    public String toString() {
-        return "Shift{" +
-                "id=" + id +
-                ", date=" + date +
-                ", user_id=" + user_id +
-                ", manager_id=" + manager_id +
-                ", description='" + description + '\'' +
-                '}';
+    public int getUser_id() {
+        return user_id;
+    }
+    public String getDescription() {
+        return description;
+    }
+    public LocalDate getDate() {
+        return date;
     }
 }

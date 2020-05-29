@@ -129,7 +129,6 @@ public class ShiftDAO implements IShiftDAO {
                 return "OK";
             } catch (DataConnectionException | SQLException e) {
                 e.printStackTrace();
-                System.out.println();
                 databaseConnection.closeConnection();
                 return "NOT";
             }

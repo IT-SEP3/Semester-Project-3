@@ -29,9 +29,6 @@ namespace BusinessLogic
             return _instance;
         }
 
-        public async void Run()//May be removed.
-        { }
-
         public void SendToDatabase(String command, Object obj)
         {
             String objJson = JsonSerializer.Serialize(obj);
@@ -54,8 +51,6 @@ namespace BusinessLogic
             businessSocket.Send(toSendBytes);
         }
 
-        // Because the database will only give you things when you ask for them
-        // there is no need for a loop in the thread. You ask for response yourself.
         public String GetResponse()
         {
             lock (responseLock)
