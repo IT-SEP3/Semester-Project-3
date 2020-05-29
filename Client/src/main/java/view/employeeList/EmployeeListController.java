@@ -89,5 +89,6 @@ public class EmployeeListController {
             viewModel.saveUser(seleced);
             viewModel.deleteUser(seleced.getId());
         }
+        viewHandler.openEmployeeListView();
     }
 }

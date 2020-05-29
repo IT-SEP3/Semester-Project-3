@@ -170,7 +170,18 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-    public String deleteUser(String receivedPiece) {
-        return null;
+    public String deleteUser(String userId) {
+        PreparedStatement preparedStatement;
+        String conclusion = "NOT";
+        try {
+            String sql = "DELETE From "+ databaseConnection.getUserTable() + " where users_ID = " + userId;
+            preparedStatement = databaseConnection.createPreparedStatement(sql);
+            preparedStatement.execute();
+            conclusion ="OK";
+        } catch (SQLException | DataConnectionException e){
+            e.printStackTrace();
+            databaseConnection.closeConnection();
+        }
+        return conclusion;
     }
 }

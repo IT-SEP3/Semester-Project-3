@@ -77,6 +77,7 @@ public class ShiftListController {
             Shift shift = table.getSelectionModel().getSelectedItem();
             viewModel.removeShift(shift.getId());
         }
+        viewHandler.openShiftListView();
     }
 
     @FXML

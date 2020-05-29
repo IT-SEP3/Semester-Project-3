@@ -200,7 +200,18 @@ public class ShiftDAO implements IShiftDAO {
     }
 
     @Override
-    public String deleteShift(String receivedPiece) {
-        return null;
+    public String deleteShift(String shiftId) {
+        PreparedStatement preparedStatement;
+        String conclusion = "NOT";
+        try {
+            String sql = "DELETE From Shift where Shift_ID = " + shiftId;
+            preparedStatement = databaseConnection.createPreparedStatement(sql);
+            preparedStatement.execute();
+            conclusion ="OK";
+        } catch (SQLException | DataConnectionException e){
+            e.printStackTrace();
+            databaseConnection.closeConnection();
+        }
+        return conclusion;
     }
 }

@@ -100,12 +100,10 @@ public class ViewHandler {
 
     public void openShiftListView() {
         FXMLLoader loader = new FXMLLoader();
-        if (shiftList == null) {
-            Parent root = getRootByPath("shiftList/ShiftList.fxml", loader);
-            ShiftListController controller = loader.getController();
-            controller.init(viewModelFactory.getShiftListViewModel(), this);
-            shiftList = new Scene(root);
-        }
+        Parent root = getRootByPath("shiftList/ShiftList.fxml", loader);
+        ShiftListController controller = loader.getController();
+        controller.init(viewModelFactory.getShiftListViewModel(), this);
+        shiftList = new Scene(root);
         mainStage.setTitle("Shift list");
         mainStage.setScene(shiftList);
 

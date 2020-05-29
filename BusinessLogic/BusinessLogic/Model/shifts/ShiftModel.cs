@@ -79,5 +79,11 @@ namespace BusinessLogic.Model.shifts
                 return "Database already has this shift in it";
             }
         }
+
+        public string RemoveShift(int id)
+        {
+            socketHandler.SendToDatabaseStringOnly("DeleteShift;" + id);
+            return socketHandler.GetResponse();
+        }
     }
 }

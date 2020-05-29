@@ -122,6 +122,14 @@ public class DatabaseSocketHandler implements Runnable {
                     List<User> managedUsers = daoFactory.getUserDAO().getUsersByManager(receivedPieces[1]);
                     String userJson = gson.toJson(managedUsers);
                     sendToClient(userJson);
+                }else if(receivedPieces[0].equals("DeleteShift")){
+                    System.out.println("Trying delete shift with ID: "+receivedPieces[1]);
+                    String result = daoFactory.getShiftDAO().deleteShift(receivedPieces[1]);
+                    sendToClient(result);
+                }else if(receivedPieces[0].equals("DeleteUser")){
+                    System.out.println("Trying delete User with ID: "+receivedPieces[1]);
+                    String result = daoFactory.getUserDAO().deleteUser(receivedPieces[1]);
+                    sendToClient(result);
                 }
             }
         }catch (Exception e){ //VIOLATION OF SOLID

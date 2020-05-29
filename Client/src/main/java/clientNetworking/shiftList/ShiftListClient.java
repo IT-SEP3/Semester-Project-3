@@ -30,9 +30,8 @@ public class ShiftListClient implements IShiftListClient {
 
     @Override
     public void removeShift(int shiftId) {
-        String PATH ="http://127.0.0.1:5000/api/Shift/RemoveShift/?shiftId=" + shiftId;
-
-        httpHandler.deleteFromAPI( PATH);
+        String PATH ="http://127.0.0.1:5000/api/Shift/" + shiftId;
+        httpHandler.deleteFromAPI(PATH);
     }
 
     @Override
