@@ -30,13 +30,17 @@ public class AddShiftController {
     }
 
     public void onSubmitButton(ActionEvent event) {
-
-        if (employeeComboBox.getValue().contains("Choose an employee") || shiftDatePicker.getValue() == null ) {
-            response.setText("Please fill out the required fields to create a shift");
-        } else {
-            addShiftViewModel.submitShift(shiftDatePicker.getValue(), employeeComboBox.getValue());
-            viewHandler.openCalendarView();
+        try {
+            if (employeeComboBox.getValue().contains("Choose an employee") || shiftDatePicker.getValue() == null ) {
+                response.setText("Please fill out the required fields to create a shift");
+            } else {
+                addShiftViewModel.submitShift(shiftDatePicker.getValue(), employeeComboBox.getValue());
+                viewHandler.openCalendarView();
+            }
+        }catch (NullPointerException e){
+            System.out.println("No user selected");
         }
+
     }
 
     public void onCancelButton(ActionEvent event) {

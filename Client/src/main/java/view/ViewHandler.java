@@ -83,9 +83,9 @@ public class ViewHandler {
             AddShiftController controller = loader.getController();
             controller.init(viewModelFactory.getAddShiftViewModel(), this);
             addShift = new Scene(root);
-            mainStage.setTitle("Add Shift");
-            mainStage.setScene(addShift);
         }
+        mainStage.setTitle("Add Shift");
+        mainStage.setScene(addShift);
     }
 
     public void openEmployeeListView() {
