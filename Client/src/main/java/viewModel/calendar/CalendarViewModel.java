@@ -249,8 +249,14 @@ public class CalendarViewModel {
         if(model.getUserFromModel().getAccessLevel().equals("EMPLOYEE")){
             return model.getUserFromModel().getFname() + " " + model.getUserFromModel().getLname() + "\n" + shift.getDescription();
         } else if(model.getUserFromModel().getAccessLevel().equals("MANAGER")){
-            User user = model.getUserFromDatabase(shift.getUser_id());
-            return  "On shift: "+ user.getFname() + " " + user.getLname() + "\n" + "---------------------";
+            try {
+                User user = model.getUserFromDatabase(shift.getUser_id());
+                return  "On shift: "+ user.getFname() + " " + user.getLname() + "\n" + "---------------------";
+            }catch (NullPointerException e){
+                System.out.println("User was removed");
+                return  "On shift: User was removed " + "\n" + "---------------------";
+            }
+
         }else{
             return "User not found";
         }
