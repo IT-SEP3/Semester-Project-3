@@ -44,7 +44,9 @@ public class DatabaseSocketHandler implements Runnable {
                 String received = new String(receivedBytes, 0, len);
                 String[] receivedPieces = received.split(";");
 
-                if(receivedPieces[0].equals("Login")){
+                if(receivedPieces[0].equals("Check")){
+                    sendToClient("Check");
+                }else if(receivedPieces[0].equals("Login")){
                     System.out.println(receivedPieces[1]);
                     User login = gson.fromJson(receivedPieces[1], User.class);
                     String confirmation = daoFactory.getLoginDAO().validateLogin(login);

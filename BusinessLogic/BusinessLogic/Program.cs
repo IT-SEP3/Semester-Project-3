@@ -27,7 +27,18 @@ namespace BusinessLogic
                 BusinessSocket.Connect(serverAddress);
                 BusinessSocketHandler socketHandler = BusinessSocketHandler.getInstance();
                 socketHandler.setSocket(BusinessSocket);
-                Console.WriteLine("Connection to Database established");
+
+                socketHandler.SendToDatabaseStringOnly("Check");
+                string response = socketHandler.GetResponse();
+                if (response.Equals("Check"))
+                {
+                    Console.WriteLine("Connection to Database established");
+                }
+                else
+                {
+                    Console.WriteLine("Connection to database failed");
+                }
+                
             }
             catch (Exception e)// Breaking of solid principles
             {
