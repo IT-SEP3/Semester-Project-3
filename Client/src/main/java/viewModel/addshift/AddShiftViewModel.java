@@ -23,7 +23,9 @@ public class AddShiftViewModel {
     }
 
     public void submitShift(LocalDate date, String employee, String description) {
-
+        if(description== null){
+            description = "No description";
+        }
         if (employee != null) {
             String API_response = model.addShift(description, employee, date);
             response.setValue(API_response);

@@ -32,7 +32,6 @@ public class AddShiftController {
     }
 
     public void onSubmitButton(ActionEvent event) {
-
         try {
             if (shiftDatePicker.getValue() == null ) {
                 response.setText("Please fill out a date");
@@ -51,7 +50,7 @@ public class AddShiftController {
         addShiftViewModel.clearFields();
         employeeComboBox.getSelectionModel().select(1);
         shiftDatePicker.setValue(null);
-        viewHandler.openCalendarViewOld();
+        viewHandler.openCalendarView();
     }
 
     public void onResetButton(ActionEvent event) {

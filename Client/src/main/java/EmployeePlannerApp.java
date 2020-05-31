@@ -7,7 +7,6 @@ import view.ViewHandler;
 import viewModel.ViewModelFactory;
 
 public class EmployeePlannerApp extends Application {
-
     @Override
     public void start(Stage stage) {
         HTTPHandler httpHandler = new HTTPHandler();
