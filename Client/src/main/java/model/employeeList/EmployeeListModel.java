@@ -19,4 +19,9 @@ public class EmployeeListModel implements IEmployeeListModel {
     public ArrayList<User> getEmployees() {
         return employeeListClient.getEmployees(calendarModel.getUserFromModel().getId());
     }
+
+    @Override
+    public void deleteUser(int id) {
+        employeeListClient.deleteUser(id);
+    }
 }

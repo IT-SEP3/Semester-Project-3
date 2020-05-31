@@ -1,4 +1,5 @@
 ﻿using BusinessLogic.Model.Shared;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,6 @@ namespace BusinessLogic.Model.user
         string GetUser(int id);
         string GetUsersIdName(int managerId);
         string GetUsersByManager(int managerId);
+        string RemoveUser(int id);
     }
 }

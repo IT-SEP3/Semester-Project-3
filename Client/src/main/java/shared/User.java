@@ -14,8 +14,6 @@ public class User {
     private LocalDate employmentDate;
     private String accessLevel;
 
-
-
     public User(int id, int managerID, String username, String password, String fname, String lname, String email, String status, LocalDate employmentDate, String accessLevel) {
         this.id = id;
         this.managerID = managerID;
@@ -54,41 +52,31 @@ public class User {
     public int getManagerID() {
         return managerID;
     }
-
     public String getUsername() {
         return username;
     }
-
+    public String getPassword() {
+        return password;
+    }
     public String getFname() {
         return fname;
     }
-
     public String getLname() {
         return lname;
     }
-
-    public String getAccessLevel() {
-        return accessLevel;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getEmail() {
         return email;
     }
-
     public String getStatus() {
         return status;
     }
-
-    @Override
-    public String toString() {
-        return "Username: " + username + " User: " + fname + " " + lname  + " Email: "+ email + " Access level:  "+accessLevel + " Status: " + status;
+    public String getAccessLevel() {
+        return accessLevel;
+    }
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
     }
 }

@@ -1,9 +1,8 @@
 package viewModel.employeeList;
-
-import model.createUser.ICreateUserModel;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import model.employeeList.IEmployeeListModel;
 import shared.User;
-
 import java.util.ArrayList;
 
 public class EmployeeListViewModel {
@@ -17,4 +16,9 @@ public class EmployeeListViewModel {
     public ArrayList<User> populateListView() {
         return model.getEmployees();
     }
+
+    public void deleteUser(int id) {
+        model.deleteUser(id);
+    }
+
 }

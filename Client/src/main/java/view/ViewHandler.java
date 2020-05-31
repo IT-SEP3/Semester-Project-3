@@ -83,9 +83,9 @@ public class ViewHandler {
             AddShiftController controller = loader.getController();
             controller.init(viewModelFactory.getAddShiftViewModel(), this);
             addShift = new Scene(root);
-            mainStage.setTitle("Add Shift");
-            mainStage.setScene(addShift);
         }
+        mainStage.setTitle("Add Shift");
+        mainStage.setScene(addShift);
     }
 
     public void openEmployeeListView() {
@@ -94,23 +94,20 @@ public class ViewHandler {
         EmployeeListController controller = loader.getController();
         controller.init(viewModelFactory.getEmployeeListViewModel(), this);
         employeeList = new Scene(root);
-        mainStage.setTitle("Calendar");
-        mainStage.setScene(calendarScene);
+        mainStage.setTitle("Employee list");
+        mainStage.setScene(employeeList);
     }
 
     public void openShiftListView() {
         FXMLLoader loader = new FXMLLoader();
-        if (shiftList == null) {
-            Parent root = getRootByPath("shiftList/ShiftList.fxml", loader);
-            ShiftListController controller = loader.getController();
-            controller.init(viewModelFactory.getShiftListViewModel(), this);
-            shiftList = new Scene(root);
-        }
-        mainStage.setTitle("Add Shift");
-        mainStage.setScene(addShift);
+        Parent root = getRootByPath("shiftList/ShiftList.fxml", loader);
+        ShiftListController controller = loader.getController();
+        controller.init(viewModelFactory.getShiftListViewModel(), this);
+        shiftList = new Scene(root);
+        mainStage.setTitle("Shift list");
+        mainStage.setScene(shiftList);
 
     }
-
 
     private Parent getRootByPath(String path, FXMLLoader loader) {
         loader.setLocation(getClass().getResource(path));
@@ -120,9 +117,6 @@ public class ViewHandler {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         return root;
     }
-
-
 }

@@ -8,10 +8,9 @@ import java.util.Date;
 
 public interface ICalendarModel {
     User getUserFromModel();
-    User getUserfromDatabase(int userId);
+    User getUserFromDatabase(int userId);
     void getCalendar(String timeStamp);
     void getCurrentUser();
     ArrayList<Shift> getModelShifts();
-
     String getTimeStamp();
 }

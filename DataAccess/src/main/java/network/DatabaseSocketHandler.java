@@ -44,7 +44,9 @@ public class DatabaseSocketHandler implements Runnable {
                 String received = new String(receivedBytes, 0, len);
                 String[] receivedPieces = received.split(";");
 
-                if(receivedPieces[0].equals("Login")){
+                if(receivedPieces[0].equals("Check")){
+                    sendToClient("Check");
+                }else if(receivedPieces[0].equals("Login")){
                     System.out.println(receivedPieces[1]);
                     User login = gson.fromJson(receivedPieces[1], User.class);
                     String confirmation = daoFactory.getLoginDAO().validateLogin(login);
@@ -66,14 +68,12 @@ public class DatabaseSocketHandler implements Runnable {
                     String shiftsJson = gson.toJson(shiftsForMonth);
                     sendToClient(shiftsJson);
                 }
-
                 else if(receivedPieces[0].equals("GetUser")) {
                     System.out.println("trying to get user data");
                     User user = daoFactory.getUserDAO().getUser(receivedPieces[1]);
                     String userJson = gson.toJson(user);
                     sendToClient(userJson);
                 }
-
                 else if(receivedPieces[0].equals("PostUser")) {
                     System.out.println(received);
 
@@ -89,7 +89,6 @@ public class DatabaseSocketHandler implements Runnable {
                         sendToClient(addResponse);
                     }
                 }
-
                 else if (receivedPieces[0].equals("PostShift")) {
                     System.out.println(received);
                     if(!receivedPieces[1].equals("Confirmed")){
@@ -102,7 +101,6 @@ public class DatabaseSocketHandler implements Runnable {
                         sendToClient(addResponse);
                     }
                 }
-
                 else if (receivedPieces[0].equals("updateShift")) {
                     System.out.println(received);
                     if(!receivedPieces[1].equals("Confirmed")){
@@ -115,7 +113,6 @@ public class DatabaseSocketHandler implements Runnable {
                         sendToClient(addResponse);
                     }
                 }
-
                 else if(receivedPieces[0].equals("GetUsersIDName")) {
                     System.out.println("Trying to get users");
                     List<User> users_id_name = daoFactory.getUserDAO().getUsersIdName(receivedPieces[1]);
@@ -127,9 +124,17 @@ public class DatabaseSocketHandler implements Runnable {
                     List<User> managedUsers = daoFactory.getUserDAO().getUsersByManager(receivedPieces[1]);
                     String userJson = gson.toJson(managedUsers);
                     sendToClient(userJson);
+                }else if(receivedPieces[0].equals("DeleteShift")){
+                    System.out.println("Trying delete shift with ID: "+receivedPieces[1]);
+                    String result = daoFactory.getShiftDAO().deleteShift(receivedPieces[1]);
+                    sendToClient(result);
+                }else if(receivedPieces[0].equals("DeleteUser")){
+                    System.out.println("Trying delete User with ID: "+receivedPieces[1]);
+                    String result = daoFactory.getUserDAO().deleteUser(receivedPieces[1]);
+                    sendToClient(result);
                 }
             }
-        }catch (Exception e){ //VIOLATION OF SOLID
+        }catch (IOException e) {
             e.printStackTrace();
         }
     }

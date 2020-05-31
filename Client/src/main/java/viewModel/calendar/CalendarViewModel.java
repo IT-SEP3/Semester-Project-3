@@ -161,7 +161,7 @@ public class CalendarViewModel {
         model.getCalendar(timeStamp);
     }
 
-    public StringProperty getProperyList(int i) {
+    public StringProperty getPropertyList(int i) {
         return dates.get(i);
     }
 
@@ -180,7 +180,7 @@ public class CalendarViewModel {
     public void setCalendar(int month, int year) {
         String firstDayOfMonth = "01-" + month + "-" + year;
         String dayOfWeek = returnWeekDay(firstDayOfMonth);
-        int dayOfWeekInt = dayToIntday(dayOfWeek);
+        int dayOfWeekInt = dayToInt(dayOfWeek);
         int dayMax = getLastDayOfMonth(firstDayOfMonth);
 
         //Setts all days of the month. the numbers on days
@@ -190,7 +190,7 @@ public class CalendarViewModel {
         //Sets acctual shifts
         for (int i = 0; i < model.getModelShifts().size(); i++) {
             int dayMonth = model.getModelShifts().get(i).getDate().getDayOfMonth();
-            dates.get(dayOfWeekInt + dayMonth - 1).set(dates.get(dayOfWeekInt + dayMonth - 1).get() + "\n" + getShiftFormating(model.getModelShifts().get(i)));
+            dates.get(dayOfWeekInt + dayMonth - 1).set(dates.get(dayOfWeekInt + dayMonth - 1).get() + "\n" + getShiftFormatting(model.getModelShifts().get(i)));
         }
     }
 
@@ -208,35 +208,35 @@ public class CalendarViewModel {
         return day;
     }
 
-    public int dayToIntday(String day){
-        int dayOfweekCounter;
+    public int dayToInt(String day){
+        int dayOfWeekCounter;
         switch (day) {
             case "Monday":
-                dayOfweekCounter = 0;
+                dayOfWeekCounter = 0;
                 break;
             case "Tuesday":
-                dayOfweekCounter = 1;
+                dayOfWeekCounter = 1;
                 break;
             case "Wednesday":
-                dayOfweekCounter = 2;
+                dayOfWeekCounter = 2;
                 break;
             case "Thursday":
-                dayOfweekCounter = 3;
+                dayOfWeekCounter = 3;
                 break;
             case "Friday":
-                dayOfweekCounter = 4;
+                dayOfWeekCounter = 4;
                 break;
             case "Saturday":
-                dayOfweekCounter = 5;
+                dayOfWeekCounter = 5;
                 break;
             case "Sunday":
-                dayOfweekCounter = 6;
+                dayOfWeekCounter = 6;
                 break;
             default:
-                dayOfweekCounter = 0;
+                dayOfWeekCounter = 0;
                 break;
         }
-        return dayOfweekCounter;
+        return dayOfWeekCounter;
     }
 
     public int getLastDayOfMonth(String date){
@@ -245,12 +245,18 @@ public class CalendarViewModel {
         return maxMonthDay;
     }
 
-    public String getShiftFormating(Shift shift){
+    public String getShiftFormatting(Shift shift){
         if(model.getUserFromModel().getAccessLevel().equals("EMPLOYEE")){
             return model.getUserFromModel().getFname() + " " + model.getUserFromModel().getLname() + "\n" + shift.getDescription();
         } else if(model.getUserFromModel().getAccessLevel().equals("MANAGER")){
-            User user = model.getUserfromDatabase(shift.getUser_id());
-            return user.getFname() + " " + user.getLname() + "\n" + shift.getDescription();
+            try {
+                User user = model.getUserFromDatabase(shift.getUser_id());
+                return  "On shift: "+ user.getFname() + " " + user.getLname() + "\n" + "---------------------";
+            }catch (NullPointerException e){
+                System.out.println("User was removed");
+                return  "On shift: User was removed " + "\n" + "---------------------";
+            }
+
         }else{
             return "User not found";
         }

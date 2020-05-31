@@ -3,7 +3,6 @@ package persistence.employee;
 import exceptions.DataConnectionException;
 import persistence.database.IDBConnection;
 import shared.User;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -167,5 +166,21 @@ public class UserDAO implements IUserDAO {
         }
 
         return managedUsers;
+    }
+
+    @Override
+    public String deleteUser(String userId) {
+        PreparedStatement preparedStatement;
+        String conclusion = "NOT";
+        try {
+            String sql = "DELETE From "+ databaseConnection.getUserTable() + " where users_ID = " + userId;
+            preparedStatement = databaseConnection.createPreparedStatement(sql);
+            preparedStatement.execute();
+            conclusion ="OK";
+        } catch (SQLException | DataConnectionException e){
+            e.printStackTrace();
+            databaseConnection.closeConnection();
+        }
+        return conclusion;
     }
 }

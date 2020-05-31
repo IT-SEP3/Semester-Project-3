@@ -22,12 +22,10 @@ namespace BusinessLogic.Model.user
 
         public string PostUser(User user)
         {
-            //Check if there is one in database
             socketHandler.SendToDatabase("PostUser", user);
             string result = socketHandler.GetResponse();
             if (result.Equals("OK"))
             {
-                //If ok it post and returns if post was succesful
                 socketHandler.SendToDatabase("PostUser;Confirmed", user);
                 result = socketHandler.GetResponse();
                 if (result.Equals("OK"))
@@ -63,6 +61,12 @@ namespace BusinessLogic.Model.user
             socketHandler.SendToDatabaseStringOnly("GetManagedUsers;" + managerId);
             return socketHandler.GetResponse();
 
+        }
+
+        public string RemoveUser(int id)
+        {
+            socketHandler.SendToDatabaseStringOnly("DeleteUser;" + id);
+            return socketHandler.GetResponse();
         }
     }
 }

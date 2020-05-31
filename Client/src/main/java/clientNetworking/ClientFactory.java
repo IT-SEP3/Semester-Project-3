@@ -22,7 +22,6 @@ public class ClientFactory {
     private IEmployeeListClient employeeListClient;
     private IShiftListClient shiftListClient;
 
-
     public ClientFactory(HTTPHandler httpHandler){
         this.httpHandler = httpHandler;
     }

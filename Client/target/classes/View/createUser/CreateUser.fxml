@@ -40,7 +40,7 @@
         </Label>
         <TextField fx:id="emailTextField" layoutX="50.0" layoutY="200.0" prefHeight="25.0" prefWidth="401.0" promptText="donald-drump@mail.com..." />
         <ComboBox fx:id="statusComboBox" layoutX="50.0" layoutY="275.0" onAction="#statusComboBox" prefWidth="150.0" promptText="Choose a status" />
-        <ComboBox fx:id="accesslevelComboBox" layoutX="301.0" layoutY="275.0" onAction="#accesslevelComboBox" prefWidth="150.0" promptText="Choose accesslevel" />
+        <ComboBox fx:id="accessLevelComboBox" layoutX="301.0" layoutY="275.0" onAction="#accessLevelComboBox" prefWidth="150.0" promptText="Choose accesslevel" />
         <Label fx:id="labelStatus" layoutX="50.0" layoutY="250.0" text="Status:">
             <font>
                 <Font name="System Bold" size="12.0" />
@@ -55,6 +55,5 @@
         <Label fx:id="response" layoutX="50.0" layoutY="375.0" />
         <Label fx:id="labelStatusString" layoutX="100.0" layoutY="250.0" />
         <Label fx:id="labelAccesslevelString" layoutX="385.0" layoutY="250.0" />
-      <Label fx:id="labelFillFields" layoutX="301.0" layoutY="375.0" />
     </children>
 </AnchorPane>

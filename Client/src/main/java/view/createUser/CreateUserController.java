@@ -10,10 +10,6 @@ import view.ViewHandler;
 import viewModel.createUser.CreateUserViewModel;
 
 public class CreateUserController {
-
-    private ViewHandler viewHandler;
-    private CreateUserViewModel createUserViewModel;
-
     @FXML
     private TextField usernameTextField;
     @FXML
@@ -27,11 +23,9 @@ public class CreateUserController {
     @FXML
     private ComboBox<String> statusComboBox;
     @FXML
-    private ComboBox<String> accesslevelComboBox;
+    private ComboBox<String> accessLevelComboBox;
     @FXML
     private Label response;
-    @FXML
-    private Label labelFillFields;
     @FXML
     private Label labelUsername;
     @FXML
@@ -50,8 +44,8 @@ public class CreateUserController {
     private Label labelStatusString;
     @FXML
     private Label labelAccesslevelString;
-
-
+    private ViewHandler viewHandler;
+    private CreateUserViewModel createUserViewModel;
 
     public void init(CreateUserViewModel vm, ViewHandler vh) {
         createUserViewModel = vm;
@@ -73,20 +67,20 @@ public class CreateUserController {
 
         statusComboBox.getItems().add("ACTIVE");
         statusComboBox.getItems().add("INACTIVE");
-        accesslevelComboBox.getItems().add("EMPLOYEE");
-        accesslevelComboBox.getItems().add("MANAGER");
+        accessLevelComboBox.getItems().add("EMPLOYEE");
+        accessLevelComboBox.getItems().add("MANAGER");
 
         statusComboBox.getSelectionModel().select(0);
         statusComboBox();
-        accesslevelComboBox.getSelectionModel().select(0);
-        accesslevelComboBox();
+        accessLevelComboBox.getSelectionModel().select(0);
+        accessLevelComboBox();
         vm.resetColors();
         vm.resetAddUser();
     }
 
+    @FXML
     public void onSubmitButton(ActionEvent event) {
         createUserViewModel.submitEmployee();
-        // Opens the calendar after all the information have been added to the database, else writing something went wrong.
         if(response.getText() == null){
             //Just to avoid errors
         } else if (response.getText().equals("Success")){
@@ -95,15 +89,17 @@ public class CreateUserController {
         }
     }
 
+    @FXML
     public void onCancelButton(ActionEvent event) {
         createUserViewModel.clearFields();
         viewHandler.openEmployeeListView();
     }
 
+    @FXML
     public void onResetButton(ActionEvent event) {
         createUserViewModel.clearFields();
         statusComboBox.getSelectionModel().select(0);
-        accesslevelComboBox.getSelectionModel().select(0);
+        accessLevelComboBox.getSelectionModel().select(0);
         labelUsername.setTextFill(Color.BLACK);
         labelPassword.setTextFill(Color.BLACK);
         labelFirstname.setTextFill(Color.BLACK);
@@ -112,23 +108,27 @@ public class CreateUserController {
 
     }
 
+    @FXML
     public void statusComboBox(ActionEvent event) {
         String selectedValue = statusComboBox.getValue();
         labelStatusString.setText(selectedValue);
     }
 
+    @FXML
     public void statusComboBox() {
         String selectedValue = statusComboBox.getValue();
         labelStatusString.setText(selectedValue);
     }
 
-    public void accesslevelComboBox(ActionEvent event) {
-        String selectedValue = accesslevelComboBox.getValue();
+    @FXML
+    public void accessLevelComboBox(ActionEvent event) {
+        String selectedValue = accessLevelComboBox.getValue();
         labelAccesslevelString.setText(selectedValue);
     }
 
-    public void accesslevelComboBox() {
-        String selectedValue = accesslevelComboBox.getValue();
+    @FXML
+    public void accessLevelComboBox() {
+        String selectedValue = accessLevelComboBox.getValue();
         labelAccesslevelString.setText(selectedValue);
     }
 }

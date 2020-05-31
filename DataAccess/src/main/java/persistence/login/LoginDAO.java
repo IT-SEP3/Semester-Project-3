@@ -38,10 +38,7 @@ public class LoginDAO implements ILoginDAO {
                     conclusion = "OK;" + id;
                 }
             }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (DataConnectionException e) {
+        } catch (DataConnectionException | SQLException e) {
             e.printStackTrace();
         } finally {
             databaseConnection.closeConnection();

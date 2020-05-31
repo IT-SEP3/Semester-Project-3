@@ -129,7 +129,6 @@ public class ShiftDAO implements IShiftDAO {
                 return "OK";
             } catch (DataConnectionException | SQLException e) {
                 e.printStackTrace();
-                System.out.println();
                 databaseConnection.closeConnection();
                 return "NOT";
             }
@@ -195,6 +194,22 @@ public class ShiftDAO implements IShiftDAO {
                 databaseConnection.closeConnection();
                 conclusion = "NOT";
             }
+        }
+        return conclusion;
+    }
+
+    @Override
+    public String deleteShift(String shiftId) {
+        PreparedStatement preparedStatement;
+        String conclusion = "NOT";
+        try {
+            String sql = "DELETE From Shift where Shift_ID = " + shiftId;
+            preparedStatement = databaseConnection.createPreparedStatement(sql);
+            preparedStatement.execute();
+            conclusion ="OK";
+        } catch (SQLException | DataConnectionException e){
+            e.printStackTrace();
+            databaseConnection.closeConnection();
         }
         return conclusion;
     }

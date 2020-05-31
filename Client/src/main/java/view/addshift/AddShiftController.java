@@ -10,10 +10,6 @@ import view.ViewHandler;
 import viewModel.addshift.AddShiftViewModel;
 
 public class AddShiftController {
-
-    private ViewHandler viewHandler;
-    private AddShiftViewModel addShiftViewModel;
-
     @FXML
     private DatePicker shiftDatePicker;
     @FXML
@@ -22,6 +18,8 @@ public class AddShiftController {
     private ComboBox<String> employeeComboBox;
     @FXML
     private Label response;
+    private ViewHandler viewHandler;
+    private AddShiftViewModel addShiftViewModel;
 
     public void init(AddShiftViewModel vm, ViewHandler vh) {
         addShiftViewModel = vm;
@@ -32,13 +30,17 @@ public class AddShiftController {
     }
 
     public void onSubmitButton(ActionEvent event) {
-
-        if (employeeComboBox.getValue().contains("Choose an employee") || shiftDatePicker.getValue() == null ) {
-            response.setText("Please fill out the required fields to create a shift");
-        } else {
-            addShiftViewModel.submitShift(shiftDatePicker.getValue(), employeeComboBox.getValue());
-            viewHandler.openCalendarView();
+        try {
+            if (employeeComboBox.getValue().contains("Choose an employee") || shiftDatePicker.getValue() == null ) {
+                response.setText("Please fill out the required fields to create a shift");
+            } else {
+                addShiftViewModel.submitShift(shiftDatePicker.getValue(), employeeComboBox.getValue());
+                viewHandler.openCalendarView();
+            }
+        }catch (NullPointerException e){
+            System.out.println("No user selected");
         }
+
     }
 
     public void onCancelButton(ActionEvent event) {
@@ -53,5 +55,4 @@ public class AddShiftController {
         employeeComboBox.getSelectionModel().select(0);
         shiftDatePicker.getEditor().clear();
     }
-
 }
