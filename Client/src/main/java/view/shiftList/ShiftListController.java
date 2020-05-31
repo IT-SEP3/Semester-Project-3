@@ -5,10 +5,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import shared.Shift;
 import shared.User;
@@ -64,7 +60,6 @@ public class ShiftListController {
 
     @FXML
     void onDeleteShift(ActionEvent event) {
-
         boolean delete = false;
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setContentText("Do you want to delete this user?");
@@ -89,6 +84,5 @@ public class ShiftListController {
         Shift seleced = table.getSelectionModel().getSelectedItem();
         viewModel.saveShiftForEditing(seleced);
         //viewHandler.openEditShift();
-
     }
 }

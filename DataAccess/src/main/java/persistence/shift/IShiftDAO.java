@@ -9,5 +9,6 @@ public interface IShiftDAO {
     ArrayList<Shift> getShifts(String userID, String month, String year);
     ArrayList<Shift> getShiftsManager(String managerID, String month, String year);
     String updateShift(Shift shift, String operation);
-    String deleteShift(int shiftId);
+
+    String deleteShift(String receivedPiece);
 }

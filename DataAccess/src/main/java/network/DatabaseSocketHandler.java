@@ -128,9 +128,6 @@ public class DatabaseSocketHandler implements Runnable {
                     String userJson = gson.toJson(managedUsers);
                     sendToClient(userJson);
                 }
-                else if(receivedPieces[0].equals("deleteShift")){
-                    System.out.println("Trying delete shift with ID: "+receivedPieces[1]);
-                }
             }
         }catch (Exception e){ //VIOLATION OF SOLID
             e.printStackTrace();
