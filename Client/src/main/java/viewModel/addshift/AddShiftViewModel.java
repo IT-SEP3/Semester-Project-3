@@ -22,19 +22,19 @@ public class AddShiftViewModel {
         return model.getUsers();
     }
 
-    public void submitShift(LocalDate date, String employee) {
+    public void submitShift(LocalDate date, String employee, String description) {
 
-        if (description.get().isEmpty() || description.get().isEmpty()) {
-            response.setValue("Please fill out the required fields to create a shift");
-        }
-        else {
-            String API_response = model.addShift(description.getValue(), employee, date);
+        if (employee != null) {
+            String API_response = model.addShift(description, employee, date);
             response.setValue(API_response);
+        } else {
+            response.setValue("Please select a valid employee");
         }
+
     }
 
     public void clearFields() {
-        description.setValue("");
+        description.setValue(null);
         response.setValue("");
     }
 
@@ -45,6 +45,5 @@ public class AddShiftViewModel {
     public StringProperty responseProperty() {
         return response;
     }
-
 
 }

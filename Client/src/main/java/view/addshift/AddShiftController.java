@@ -10,6 +10,10 @@ import view.ViewHandler;
 import viewModel.addshift.AddShiftViewModel;
 
 public class AddShiftController {
+
+    private ViewHandler viewHandler;
+    private AddShiftViewModel addShiftViewModel;
+
     @FXML
     private DatePicker shiftDatePicker;
     @FXML
@@ -18,8 +22,6 @@ public class AddShiftController {
     private ComboBox<String> employeeComboBox;
     @FXML
     private Label response;
-    private ViewHandler viewHandler;
-    private AddShiftViewModel addShiftViewModel;
 
     public void init(AddShiftViewModel vm, ViewHandler vh) {
         addShiftViewModel = vm;
@@ -30,29 +32,32 @@ public class AddShiftController {
     }
 
     public void onSubmitButton(ActionEvent event) {
+
         try {
-            if (employeeComboBox.getValue().contains("Choose an employee") || shiftDatePicker.getValue() == null ) {
-                response.setText("Please fill out the required fields to create a shift");
+            if (shiftDatePicker.getValue() == null ) {
+                response.setText("Please fill out a date");
+                if (descriptionTextField.getText() == null) {
+                    response.setText("Please fill out a description");
+                }
             } else {
-                addShiftViewModel.submitShift(shiftDatePicker.getValue(), employeeComboBox.getValue());
-                viewHandler.openCalendarView();
+                addShiftViewModel.submitShift(shiftDatePicker.getValue(), employeeComboBox.getValue(), descriptionTextField.getText());
             }
         }catch (NullPointerException e){
-            System.out.println("No user selected");
+            response.setText("Please choose an employee");
         }
-
     }
 
     public void onCancelButton(ActionEvent event) {
         addShiftViewModel.clearFields();
-        employeeComboBox.getSelectionModel().select(0);
-        shiftDatePicker.getEditor().clear();
+        employeeComboBox.getSelectionModel().select(1);
+        shiftDatePicker.setValue(null);
         viewHandler.openCalendarViewOld();
     }
 
     public void onResetButton(ActionEvent event) {
         addShiftViewModel.clearFields();
-        employeeComboBox.getSelectionModel().select(0);
-        shiftDatePicker.getEditor().clear();
+        employeeComboBox.getSelectionModel().select(1);
+        shiftDatePicker.setValue(null);
     }
+
 }
