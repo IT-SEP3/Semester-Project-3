@@ -32,18 +32,8 @@ public class AddShiftController {
     }
 
     public void onSubmitButton(ActionEvent event) {
-        try {
-            if (shiftDatePicker.getValue() == null ) {
-                response.setText("Please fill out a date");
-                if (descriptionTextField.getText() == null) {
-                    response.setText("Please fill out a description");
-                }
-            } else {
-                addShiftViewModel.submitShift(shiftDatePicker.getValue(), employeeComboBox.getValue(), descriptionTextField.getText());
-            }
-        }catch (NullPointerException e){
-            response.setText("Please choose an employee");
-        }
+        addShiftViewModel.submitShift(shiftDatePicker.getValue(), employeeComboBox.getValue(), descriptionTextField.getText());
+        
     }
 
     public void onCancelButton(ActionEvent event) {

@@ -23,16 +23,19 @@ public class AddShiftViewModel {
     }
 
     public void submitShift(LocalDate date, String employee, String description) {
-        if(description== null){
-            description = "No description";
-        }
         if (employee != null) {
-            String API_response = model.addShift(description, employee, date);
-            response.setValue(API_response);
+            if(date != null){
+                if(description == null){
+                    description = "No description";
+                }
+                String API_response = model.addShift(description, employee, date);
+                response.setValue(API_response);
+            }else {
+                response.setValue("Please select a date");
+            }
         } else {
             response.setValue("Please select a valid employee");
         }
-
     }
 
     public void clearFields() {
