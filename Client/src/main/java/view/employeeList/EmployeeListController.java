@@ -61,22 +61,27 @@ public class EmployeeListController {
 
     @FXML
     void onDeleteUser(ActionEvent event) {
-        boolean delete = false;
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Delete user");
-        alert.setHeaderText("Do you want to delete this user?");
 
-        ButtonType cancelButtonType =  new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
-        alert.getDialogPane().getButtonTypes().add(cancelButtonType);
+        User selected = tableOfEmployees.getSelectionModel().getSelectedItem();
+        if(selected != null){
+            boolean delete = false;
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Delete user");
+            alert.setHeaderText("Do you want to delete this user?");
 
-        Optional<ButtonType> result = alert.showAndWait();
-        if(result.isPresent() && result.get() == ButtonType.OK){
-            delete = true;
+            ButtonType cancelButtonType =  new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+            alert.getDialogPane().getButtonTypes().add(cancelButtonType);
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if(result.isPresent() && result.get() == ButtonType.OK){
+                delete = true;
+            }
+            if(delete){
+                selected = tableOfEmployees.getSelectionModel().getSelectedItem();
+                viewModel.deleteUser(selected.getId());
+            }
+            viewHandler.openEmployeeListView();
         }
-        if(delete){
-            User selected = tableOfEmployees.getSelectionModel().getSelectedItem();
-            viewModel.deleteUser(selected.getId());
-        }
-        viewHandler.openEmployeeListView();
+
     }
 }

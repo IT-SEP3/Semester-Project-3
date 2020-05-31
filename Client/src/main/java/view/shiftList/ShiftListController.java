@@ -60,24 +60,26 @@ public class ShiftListController {
 
     @FXML
     void onDeleteShift(ActionEvent event) {
-        boolean delete = false;
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setContentText("Do you want to delete this user?");
-        alert.setTitle("Delete user");
-        alert.setHeaderText("Do you want to delete this user?");
+        Shift shift = table.getSelectionModel().getSelectedItem();
+        if(shift != null){
+            boolean delete = false;
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Delete user");
+            alert.setHeaderText("Do you want to delete this user?");
 
-        ButtonType cancelButtonType =  new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
-        alert.getDialogPane().getButtonTypes().add(cancelButtonType);
+            ButtonType cancelButtonType =  new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+            alert.getDialogPane().getButtonTypes().add(cancelButtonType);
 
-        Optional<ButtonType> result = alert.showAndWait();
-        if(result.isPresent() && result.get() == ButtonType.OK){
-            delete = true;
+            Optional<ButtonType> result = alert.showAndWait();
+            if(result.isPresent() && result.get() == ButtonType.OK){
+                delete = true;
+            }
+            if(delete){
+                shift = table.getSelectionModel().getSelectedItem();
+                viewModel.removeShift(shift.getId());
+            }
+            viewHandler.openShiftListView();
         }
-        if(delete){
-            Shift shift = table.getSelectionModel().getSelectedItem();
-            viewModel.removeShift(shift.getId());
-        }
-        viewHandler.openShiftListView();
     }
 
     @FXML
