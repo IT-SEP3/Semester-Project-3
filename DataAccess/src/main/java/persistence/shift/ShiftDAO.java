@@ -7,6 +7,7 @@ import shared.Shift;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -98,10 +99,10 @@ public class ShiftDAO implements IShiftDAO {
         if(operation.equals("Check")){
             try {
                 String sql = "SELECT Users_ID, Manager_ID, description, day, month, year FROM "
-                        + databaseConnection.getShiftTable() + " WHERE Manager_ID = " + shift.getManager_id() +" AND Users_ID = "+ shift.getUser_id() + " AND description = '" + shift.getDescription() +"';";
+                        + databaseConnection.getShiftTable() + " WHERE Users_ID = "+ shift.getUser_id() + " AND day = '" + shift.getDate().getDayOfMonth() +"' AND month = '" + shift.getDate().getMonthValue() +"'AND year = '" + shift.getDate().getYear() +"';";
                 preparedStatement = databaseConnection.createPreparedStatement(sql);
                 resultSet = preparedStatement.executeQuery();
-
+                System.out.println("In the add shift");
                 if(resultSet.next()){
                     databaseConnection.closeConnection();
                     return "NOT";
